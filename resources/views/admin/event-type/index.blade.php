@@ -51,7 +51,6 @@
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.event-type.columns.id') }}</th>
                                         <th is='sortable' :column="'name'">{{ trans('admin.event-type.columns.name') }}</th>
-                                        <th is='sortable' :column="'admin_user_id'">{{ trans('admin.event-type.columns.admin_user_id') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -77,7 +76,6 @@
 
                                     <td>@{{ item.id }}</td>
                                         <td>@{{ item.name }}</td>
-                                        <td>@{{ item.admin_user_id }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">
