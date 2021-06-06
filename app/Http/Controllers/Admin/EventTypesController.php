@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class EventTypesController extends Controller
@@ -78,6 +79,8 @@ class EventTypesController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        
+        $sanitized['admin_user_id'] = Auth::user()->id;
 
         // Store the EventType
         $eventType = EventType::create($sanitized);
