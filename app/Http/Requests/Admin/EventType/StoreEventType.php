@@ -27,8 +27,6 @@ class StoreEventType extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'admin_user_id' => ['required', 'string'],
-            
         ];
     }
 
