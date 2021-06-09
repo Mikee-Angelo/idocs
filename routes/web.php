@@ -73,7 +73,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:user'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('gad-plans')->name('gad-plans/')->group(static function() {
             Route::get('/',                                             'GadPlansController@index')->name('index');
@@ -88,7 +88,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:user'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('gad-plan-lists')->name('gad-plan-lists/')->group(static function() {
             Route::get('/',                                             'GadPlanListsController@index')->name('index');
