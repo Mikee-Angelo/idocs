@@ -75,7 +75,7 @@
                                             </label>
                                         </td>
 
-                                        <td>@{{ item.model_id }}</td>
+                                        <td>@{{ item.user.school.name }}</td>
                                         <td>
                                             <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
                                             <span v-else class="badge badge-pill badge-success">Approved</span>
