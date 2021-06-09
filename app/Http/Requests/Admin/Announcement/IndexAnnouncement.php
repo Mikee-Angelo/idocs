@@ -14,7 +14,8 @@ class IndexAnnouncement extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.announcement.index');
+        // return Gate::allows('admin.announcement.index');
+        return  true;
     }
 
     /**

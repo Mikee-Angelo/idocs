@@ -15,7 +15,8 @@ class UpdateGadPlanList extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.gad-plan-list.edit', $this->gadPlanList);
+        // return Gate::allows('admin.gad-plan-list.edit', $this->gadPlanList);
+        return true; 
     }
 
     /**

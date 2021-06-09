@@ -14,7 +14,8 @@ class IndexSourceOfBudget extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.source-of-budget.index');
+        // return Gate::allows('admin.source-of-budget.index');
+        return true ;
     }
 
     /**

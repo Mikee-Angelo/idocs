@@ -14,7 +14,8 @@ class DestroyAnnouncement extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.announcement.delete', $this->announcement);
+        // return Gate::allows('admin.announcement.delete', $this->announcement);
+        return true;
     }
 
     /**

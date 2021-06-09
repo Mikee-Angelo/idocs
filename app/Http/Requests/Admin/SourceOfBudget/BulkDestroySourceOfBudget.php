@@ -14,7 +14,8 @@ class BulkDestroySourceOfBudget extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.source-of-budget.bulk-delete');
+        // return Gate::allows('admin.source-of-budget.bulk-delete');
+        return true; 
     }
 
     /**

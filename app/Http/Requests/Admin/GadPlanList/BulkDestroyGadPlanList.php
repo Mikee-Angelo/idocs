@@ -14,7 +14,8 @@ class BulkDestroyGadPlanList extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.gad-plan-list.bulk-delete');
+        // return Gate::allows('admin.gad-plan-list.bulk-delete');
+        return true ;
     }
 
     /**

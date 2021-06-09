@@ -14,7 +14,8 @@ class IndexRelevantAgency extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.relevant-agency.index');
+        // return Gate::allows('admin.relevant-agency.index');
+        return true ; 
     }
 
     /**

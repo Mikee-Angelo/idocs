@@ -15,7 +15,8 @@ class StoreReimbursement extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.reimbursement.create');
+        // return Gate::allows('admin.reimbursement.create');
+        return true ;
     }
 
     /**

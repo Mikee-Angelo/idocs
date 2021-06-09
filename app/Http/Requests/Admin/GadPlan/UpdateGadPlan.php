@@ -15,7 +15,8 @@ class UpdateGadPlan extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.gad-plan.edit', $this->gadPlan);
+        // return Gate::allows('admin.gad-plan.edit', $this->gadPlan);
+        return true; 
     }
 
     /**

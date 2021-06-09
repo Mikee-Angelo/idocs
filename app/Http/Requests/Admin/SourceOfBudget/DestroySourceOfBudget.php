@@ -14,7 +14,8 @@ class DestroySourceOfBudget extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.source-of-budget.delete', $this->sourceOfBudget);
+        // return Gate::allows('admin.source-of-budget.delete', $this->sourceOfBudget);
+        return true ;
     }
 
     /**

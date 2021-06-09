@@ -15,7 +15,8 @@ class StoreSupplier extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.supplier.create');
+        // return Gate::allows('admin.supplier.create');
+        return true ;
     }
 
     /**

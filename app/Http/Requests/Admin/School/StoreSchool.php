@@ -15,7 +15,8 @@ class StoreSchool extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.school.create');
+        // return Gate::allows('admin.school.create');
+        return true ;
     }
 
     /**

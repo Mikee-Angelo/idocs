@@ -14,7 +14,7 @@ return [
 
         'columns' => [
             'id' => 'ID',
-            'school_name' => 'School Name',
+            'school_id' => 'Campus Name',
             'last_login_at' => 'Last login',
             'first_name' => 'First name',
             'last_name' => 'Last name',
@@ -44,7 +44,7 @@ return [
             'id' => 'ID',
             'role_id' => 'Role',
             'model_type' => 'Model type',
-            'model_id' => 'School Name',
+            'model_id' => 'Campus Name',
             'created_at' => 'Date Created',
             'status' => 'Status',
             
@@ -76,17 +76,17 @@ return [
     ],
 
     'school' => [
-        'title' => 'Registered Schools',
+        'title' => 'Registered Campus',
 
         'actions' => [
-            'index' => 'Registered Schools',
-            'create' => 'Add School',
+            'index' => 'Registered Campus',
+            'create' => 'Add Campus',
             'edit' => 'Edit :name',
         ],
 
         'columns' => [
             'id' => 'ID',
-            'name' => 'School Name', 
+            'name' => 'Campus Name', 
             'admin_users_id' => 'Created By', 
             'status' => 'Status',
             'address' => 'Complete Address'

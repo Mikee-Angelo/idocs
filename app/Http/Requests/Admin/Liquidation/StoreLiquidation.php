@@ -15,7 +15,8 @@ class StoreLiquidation extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.liquidation.create');
+        // return Gate::allows('admin.liquidation.create');
+        return true; 
     }
 
     /**

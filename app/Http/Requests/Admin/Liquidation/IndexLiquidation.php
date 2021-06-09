@@ -14,7 +14,8 @@ class IndexLiquidation extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.liquidation.index');
+        // return Gate::allows('admin.liquidation.index');
+        return true ;
     }
 
     /**

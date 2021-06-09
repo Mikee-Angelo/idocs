@@ -15,7 +15,8 @@ class StoreProposal extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.proposal.create');
+        // return Gate::allows('admin.proposal.create');
+        return true; 
     }
 
     /**

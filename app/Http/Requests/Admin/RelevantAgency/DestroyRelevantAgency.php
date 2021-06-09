@@ -14,7 +14,8 @@ class DestroyRelevantAgency extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.relevant-agency.delete', $this->relevantAgency);
+        // return Gate::allows('admin.relevant-agency.delete', $this->relevantAgency);
+        return true;
     }
 
     /**

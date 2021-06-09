@@ -15,7 +15,8 @@ class StoreSourceOfBudget extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.source-of-budget.create');
+        // return Gate::allows('admin.source-of-budget.create');
+        return true;
     }
 
     /**

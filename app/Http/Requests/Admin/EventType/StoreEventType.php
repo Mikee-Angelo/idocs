@@ -15,7 +15,8 @@ class StoreEventType extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.event-type.create');
+        // return Gate::allows('admin.event-type.create');
+        return true;
     }
 
     /**

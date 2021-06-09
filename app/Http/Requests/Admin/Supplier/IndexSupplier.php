@@ -14,7 +14,8 @@ class IndexSupplier extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.supplier.index');
+        // return Gate::allows('admin.supplier.index');
+        return true ;
     }
 
     /**

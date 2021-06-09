@@ -14,7 +14,8 @@ class IndexGadPlanList extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.gad-plan-list.index');
+        // return Gate::allows('admin.gad-plan-list.index');
+        return true; 
     }
 
     /**

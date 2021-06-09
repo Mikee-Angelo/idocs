@@ -15,7 +15,8 @@ class UpdateRelevantAgency extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.relevant-agency.edit', $this->relevantAgency);
+        // return Gate::allows('admin.relevant-agency.edit', $this->relevantAgency);
+        return true;
     }
 
     /**

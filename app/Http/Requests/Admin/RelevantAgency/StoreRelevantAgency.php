@@ -15,7 +15,8 @@ class StoreRelevantAgency extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.relevant-agency.create');
+        // return Gate::allows('admin.relevant-agency.create');
+        return true;
     }
 
     /**

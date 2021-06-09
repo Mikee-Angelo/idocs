@@ -15,7 +15,8 @@ class StoreUnit extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.unit.create');
+        // return Gate::allows('admin.unit.create');
+        return true ;
     }
 
     /**

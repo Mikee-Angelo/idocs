@@ -9,7 +9,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'admin',
+        'guard' => 'user',
         'passwords' => 'admin_users',
         'activations' => 'admin_users',
     ],

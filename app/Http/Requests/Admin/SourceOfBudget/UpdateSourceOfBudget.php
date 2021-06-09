@@ -15,7 +15,8 @@ class UpdateSourceOfBudget extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.source-of-budget.edit', $this->sourceOfBudget);
+        // return Gate::allows('admin.source-of-budget.edit', $this->sourceOfBudget);
+        return true;
     }
 
     /**

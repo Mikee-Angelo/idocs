@@ -15,7 +15,8 @@ class UpdateUnit extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.unit.edit', $this->unit);
+        // return Gate::allows('admin.unit.edit', $this->unit);
+        return true;
     }
 
     /**

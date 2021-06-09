@@ -14,7 +14,8 @@ class BulkDestroyLiquidation extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.liquidation.bulk-delete');
+        // return Gate::allows('admin.liquidation.bulk-delete');
+        return true ;
     }
 
     /**

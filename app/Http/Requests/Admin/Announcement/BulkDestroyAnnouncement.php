@@ -14,7 +14,8 @@ class BulkDestroyAnnouncement extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.announcement.bulk-delete');
+        // return Gate::allows('admin.announcement.bulk-delete');
+        return true;
     }
 
     /**

@@ -14,7 +14,8 @@ class BulkDestroyProposal extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.proposal.bulk-delete');
+        // return Gate::allows('admin.proposal.bulk-delete');
+        return true; 
     }
 
     /**

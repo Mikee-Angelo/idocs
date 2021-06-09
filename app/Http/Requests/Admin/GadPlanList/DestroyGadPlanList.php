@@ -14,7 +14,8 @@ class DestroyGadPlanList extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.gad-plan-list.delete', $this->gadPlanList);
+        // return Gate::allows('admin.gad-plan-list.delete', $this->gadPlanList);
+        return true; 
     }
 
     /**

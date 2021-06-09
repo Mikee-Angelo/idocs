@@ -41,6 +41,11 @@ return [
             'provider' => 'admin_users',
         ],
         
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'admin_users',
+        ],
+        
         'web' => [
             'driver' => 'session',
             'provider' => 'users',

@@ -14,7 +14,8 @@ class IndexReimbursement extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.reimbursement.index');
+        // return Gate::allows('admin.reimbursement.index');
+        return true; 
     }
 
     /**

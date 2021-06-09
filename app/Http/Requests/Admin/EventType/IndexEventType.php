@@ -14,7 +14,8 @@ class IndexEventType extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.event-type.index');
+        // return Gate::allows('admin.event-type.index');
+        return true;
     }
 
     /**

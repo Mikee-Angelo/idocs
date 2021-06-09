@@ -14,7 +14,8 @@ class IndexProposal extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.proposal.index');
+        // return Gate::allows('admin.proposal.index');
+        return true; 
     }
 
     /**

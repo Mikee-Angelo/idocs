@@ -14,7 +14,8 @@ class BulkDestroyRelevantAgency extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.relevant-agency.bulk-delete');
+        // return Gate::allows('admin.relevant-agency.bulk-delete');
+        return true;
     }
 
     /**

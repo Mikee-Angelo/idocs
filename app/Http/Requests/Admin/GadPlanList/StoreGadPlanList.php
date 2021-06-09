@@ -15,7 +15,8 @@ class StoreGadPlanList extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.gad-plan-list.create');
+        // return Gate::allows('admin.gad-plan-list.create');
+        return true ;
     }
 
     /**

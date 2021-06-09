@@ -14,7 +14,8 @@ class IndexSchool extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.school.index');
+        // return Gate::allows('admin.school.index');
+        return true ;
     }
 
     /**
