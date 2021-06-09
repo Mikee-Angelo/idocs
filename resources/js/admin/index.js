@@ -13,3 +13,4 @@ import './supplier';
 import './unit';
 import './reimbursement';
 import './event-type';
+import './announcement';

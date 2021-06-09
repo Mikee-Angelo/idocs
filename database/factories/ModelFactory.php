@@ -166,3 +166,20 @@ $factory->define(App\Models\EventType::class, static function (Faker\Generator $
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Announcement::class, static function (Faker\Generator $faker) {
+    return [
+        'event_type_id' => $faker->randomNumber(5),
+        'header_img' => $faker->text(),
+        'title' => $faker->text(),
+        'description' => $faker->text(),
+        'url' => $faker->text(),
+        'starts_at' => $faker->dateTime,
+        'ends_at' => $faker->dateTime,
+        'created_by' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

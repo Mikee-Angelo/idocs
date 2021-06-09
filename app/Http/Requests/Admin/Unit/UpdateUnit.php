@@ -27,7 +27,6 @@ class UpdateUnit extends FormRequest
     {
         return [
             'name' => ['sometimes', 'string'],
-            'added_by' => ['sometimes', 'string'],
             
         ];
     }

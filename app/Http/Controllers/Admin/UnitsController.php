@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class UnitsController extends Controller
@@ -40,7 +41,10 @@ class UnitsController extends Controller
             ['id', 'name', 'added_by'],
 
             // set columns to searchIn
-            ['id', 'name']
+            ['id', 'name'],
+            function($query) use ($request) {
+                $query->with('user');
+            }
         );
 
         if ($request->ajax()) {
@@ -79,7 +83,8 @@ class UnitsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
-        // Store the Unit
+        $sanitized['added_by'] = Auth::user()->id;
+        // Store the Unit   
         $unit = Unit::create($sanitized);
 
         if ($request->ajax()) {

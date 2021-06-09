@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class SourceOfBudgetController extends Controller
@@ -78,7 +79,8 @@ class SourceOfBudgetController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
-
+        
+        $sanitized['added_by'] = Auth::user()->id;
         // Store the SourceOfBudget
         $sourceOfBudget = SourceOfBudget::create($sanitized);
 

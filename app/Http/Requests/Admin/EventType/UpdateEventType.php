@@ -27,7 +27,6 @@ class UpdateEventType extends FormRequest
     {
         return [
             'name' => ['sometimes', 'string'],
-            'admin_user_id' => ['sometimes', 'string'],
             
         ];
     }

@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class SuppliersController extends Controller
@@ -40,7 +41,10 @@ class SuppliersController extends Controller
             ['id', 'name', 'added_by'],
 
             // set columns to searchIn
-            ['id', 'name']
+            ['id', 'name'],
+            function($query) use ($request) {
+                $query->with('user');
+            }
         );
 
         if ($request->ajax()) {
@@ -79,6 +83,7 @@ class SuppliersController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
+        $sanitized['added_by'] =  Auth::user()->id;
         // Store the Supplier
         $supplier = Supplier::create($sanitized);
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User; 
+use Brackets\AdminAuth\Models\AdminUser;
 
 class GadPlan extends Model
 {
@@ -32,6 +33,6 @@ class GadPlan extends Model
     }
 
     public function user(){ 
-        return $this->belongsTo(User::class, 'model_id');
+        return $this->belongsTo(AdminUser::class, 'model_id');
     }
 }

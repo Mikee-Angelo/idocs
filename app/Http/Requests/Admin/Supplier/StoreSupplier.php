@@ -27,7 +27,6 @@ class StoreSupplier extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'added_by' => ['required', 'string'],
             
         ];
     }

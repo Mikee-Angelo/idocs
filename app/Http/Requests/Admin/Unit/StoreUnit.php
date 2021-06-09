@@ -26,9 +26,7 @@ class StoreUnit extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'added_by' => ['required', 'string'],
-            
+            'name' => ['required', 'string'],   
         ];
     }
 

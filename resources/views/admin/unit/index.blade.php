@@ -77,7 +77,7 @@
 
                                     <td>@{{ item.id }}</td>
                                         <td>@{{ item.name }}</td>
-                                        <td>@{{ item.added_by }}</td>
+                                        <td>@{{ item.user.first_name + ' ' + item.user.last_name }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">

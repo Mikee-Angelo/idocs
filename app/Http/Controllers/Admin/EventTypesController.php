@@ -89,7 +89,7 @@ class EventTypesController extends Controller
             return ['redirect' => url('admin/event-types'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
-        return redirect('admin/event-types');
+        return redirect('admin/event-types/create');
     }
 
     /**

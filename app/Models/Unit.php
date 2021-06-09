@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Brackets\AdminAuth\Models\AdminUser;
 
 class Unit extends Model
 {
@@ -26,5 +27,9 @@ class Unit extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/units/'.$this->getKey());
+    }
+
+    public function user(){ 
+        return $this->belongsTo(AdminUser::class, 'added_by');
     }
 }
