@@ -9,6 +9,8 @@ use App\Http\Requests\Admin\GadPlanList\IndexGadPlanList;
 use App\Http\Requests\Admin\GadPlanList\StoreGadPlanList;
 use App\Http\Requests\Admin\GadPlanList\UpdateGadPlanList;
 use App\Models\GadPlanList;
+use App\Models\RelevantAgency;
+use App\Models\SourceOfBudget;
 use App\Models\GadPlan;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
@@ -65,9 +67,14 @@ class GadPlanListsController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin.gad-plan-list.create');
+        // $this->authorize('admin.gad-plan-list.create');
+        $relevant_agencies = RelevantAgency::get();
+        $source_of_budget = SourceOfBudget::get(); 
 
-        return view('admin.gad-plan-list.create');
+        return view('admin.gad-plan-list.create', [
+            'relevant_agencies' => $relevant_agencies, 
+            'budget_source' => $source_of_budget,
+        ]);
     }
 
     /**
@@ -81,14 +88,17 @@ class GadPlanListsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
         
+        $gp = GadPlan::whereYear('created_at', date('Y'))->first(); 
+
+        if(is_null($gp)){ 
+            $gadplan->model_id = Auth::user()->id;
+            $gadplan->save();
+            $sanitized['gad_plans_id'] = $gadplan->id;
+        }else{ 
+            $sanitized['gad_plans_id'] = $gp->id;
+        }
+        
         //Store data to gad plan
-        $gadplan->role_id = Auth::user()->roles->first()->id;
-        $gadplan->model_type = get_class(Auth::user());
-        $gadplan->model_id = Auth::user()->id;
-        $gadplan->save();
-        //Get created gad plan id and set to gad plan list
-        $sanitized['gad_plans_id'] = $gadplan->id;
-        // Store the GadPlanList
         $gadPlanList = GadPlanList::create($sanitized);
 
         if ($request->ajax()) {
