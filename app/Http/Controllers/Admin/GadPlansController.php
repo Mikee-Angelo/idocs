@@ -39,13 +39,13 @@ class GadPlansController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'model_id', 'model_type', 'status', 'created_at'],
+            ['id', 'model_id', 'status', 'created_at'],
 
             // set columns to searchIn
-            ['id', 'model_type'],
+            ['id'],
 
             function($query) use ($request) {
-                $query->with('user');
+                $query->with(['user','user.school']);
             }
         );
         
