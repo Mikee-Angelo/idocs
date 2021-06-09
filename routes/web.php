@@ -251,3 +251,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('announcements')->name('announcements/')->group(static function() {
+            Route::get('/',                                             'AnnouncementsController@index')->name('index');
+            Route::get('/create',                                       'AnnouncementsController@create')->name('create');
+            Route::post('/',                                            'AnnouncementsController@store')->name('store');
+            Route::get('/{announcement}/edit',                          'AnnouncementsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'AnnouncementsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{announcement}',                              'AnnouncementsController@update')->name('update');
+            Route::delete('/{announcement}',                            'AnnouncementsController@destroy')->name('destroy');
+        });
+    });
+});
