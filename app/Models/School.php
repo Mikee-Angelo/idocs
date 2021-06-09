@@ -34,6 +34,6 @@ class School extends Model
     }
 
     public function admin_user() {
-        return $this->belongsTo(AdminUser::class, 'admin_users_id');
+        return $this->hasMany(AdminUser::class);
     }
 }
