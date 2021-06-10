@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\RelevantAgency; 
 
 class GadPlanList extends Model
 {
@@ -34,5 +35,12 @@ class GadPlanList extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/gad-plan-lists/'.$this->getKey());
+    }
+
+    
+    /* ******************** RELATIONSHIP *********************** */
+
+    public function relevant_agency(){ 
+        return $this->belongsTo(RelevantAgency::class, 'relevant_agencies');
     }
 }
