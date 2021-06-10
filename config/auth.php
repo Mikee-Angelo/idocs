@@ -83,7 +83,7 @@ return [
         
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => Brackets\AdminAuth\Models\AdminUser::class,
         ],
 
         // 'users' => [
