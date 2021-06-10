@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\GadPlanList;
 
 class RelevantAgency extends Model
 {
@@ -25,5 +26,11 @@ class RelevantAgency extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/relevant-agencies/'.$this->getKey());
+    }
+
+    /* ******************** RELATIONSHIP *********************** */
+
+    public function gadplanlist(){ 
+        return $this->hasMany(GadPlanList::class);
     }
 }
