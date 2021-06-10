@@ -34,17 +34,17 @@ class AdminUsersController extends Controller
      *
      * @var string
      */
-    protected $guard = 'admin';
+    protected $guard = 'user';
 
     /**
      * AdminUsersController constructor.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->guard = config('admin-auth.defaults.guard');
-    }
+    // public function __construct()
+    // {
+    //     $this->guard = config('admin-auth.defaults.guard');
+    // }
 
     /**
      * Display a listing of the resource.
