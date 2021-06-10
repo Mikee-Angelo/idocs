@@ -41,10 +41,13 @@ class GadPlanListsController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'gad_plans_id', 'relevant_agencies', 'budget_requirement', 'budget_source', 'responsible_unit'],
+            ['id', 'gad_plans_id', 'gad_issue_mandate', 'cause_of_issue' , 'gad_statement_objective','relevant_agencies', 'gad_activity', 'indicator_target','budget_requirement', 'budget_source', 'responsible_unit'],
 
             // set columns to searchIn
-            ['id', 'gad_issue_mandate', 'cause_of_issue', 'gad_statement_objective', 'gad_activity', 'indicator_target']
+            ['id', 'gad_issue_mandate', 'cause_of_issue', 'gad_statement_objective', 'gad_activity', 'indicator_target'],
+            function($query) use ($request) {
+                $query->with(['relevant_agency', 'sourceofbudget']);
+            }
         );
 
         if ($request->ajax()) {
