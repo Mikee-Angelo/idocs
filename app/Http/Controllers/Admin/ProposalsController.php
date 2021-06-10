@@ -63,7 +63,7 @@ class ProposalsController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin.proposal.create');
+        // $this->authorize('admin.proposal.create');
 
         return view('admin.proposal.create');
     }
