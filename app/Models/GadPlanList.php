@@ -43,4 +43,8 @@ class GadPlanList extends Model
     public function relevant_agency(){ 
         return $this->belongsTo(RelevantAgency::class, 'relevant_agencies');
     }
+
+    public function sourceofbudget(){ 
+        return $this->belongsTo(SourceOfBudget::class, 'budget_source');
+    }
 }
