@@ -82,10 +82,15 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.id }}</td>
-                                        <td>@{{ item.relevant_agencies }}</td>
+                                        <td>@{{ item.id }}</td>
+                                        <td>@{{ item.gad_issue_mandate }}</td>
+                                        <td>@{{ item.cause_of_issue }}</td>
+                                        <td>@{{ item.gad_statement_objective }}</td>
+                                        <td>@{{ item.relevant_agency.name }}</td>
+                                        <td>@{{ item.gad_activity }}</td>
+                                        <td>@{{ item.indicator_target }}</td>
                                         <td>@{{ item.budget_requirement }}</td>
-                                        <td>@{{ item.budget_source }}</td>
+                                        <td>@{{ item.sourceofbudget.name }}</td>
                                         <td>@{{ item.responsible_unit }}</td>
                                         
                                         <td>
