@@ -77,7 +77,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web' , 'auth:admin'])->group(static function () {
+Route::middleware(['web' , 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('schools')->name('schools/')->group(static function() {
             Route::get('/',                                             'SchoolsController@index')->name('index');
@@ -107,7 +107,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web', 'auth:admin'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('relevant-agencies')->name('relevant-agencies/')->group(static function() {
             Route::get('/',                                             'RelevantAgenciesController@index')->name('index');
@@ -122,7 +122,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web', 'auth:admin'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('source-of-budgets')->name('source-of-budgets/')->group(static function() {
             Route::get('/',                                             'SourceOfBudgetController@index')->name('index');
@@ -167,7 +167,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web', 'auth:admin'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('suppliers')->name('suppliers/')->group(static function() {
             Route::get('/',                                             'SuppliersController@index')->name('index');
@@ -182,7 +182,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web', 'auth:admin'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('units')->name('units/')->group(static function() {
             Route::get('/',                                             'UnitsController@index')->name('index');
@@ -212,7 +212,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web', 'auth:admin'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('event-types')->name('event-types/')->group(static function() {
             Route::get('/',                                             'EventTypesController@index')->name('index');
@@ -227,7 +227,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web', 'auth:admin'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('announcements')->name('announcements/')->group(static function() {
             Route::get('/',                                             'AnnouncementsController@index')->name('index');
