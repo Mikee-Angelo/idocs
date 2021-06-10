@@ -14,7 +14,10 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.gad-plan.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan.actions.create') }}</a>
+
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                            <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan.actions.create') }}</a>
+                        @endif
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
