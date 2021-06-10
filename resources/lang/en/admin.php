@@ -200,7 +200,9 @@ return [
 
         'columns' => [
             'id' => 'ID',
+            'admin_user_id' => 'Created By',
             'letter_body' => 'Letter Body',
+            'status' => 'Status',
         ],
     ],
 
