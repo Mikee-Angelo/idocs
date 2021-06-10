@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\RelevantAgency; 
+use App\Models\SourceOfBudget; 
 
 class GadPlanList extends Model
 {
@@ -45,6 +46,6 @@ class GadPlanList extends Model
     }
 
     public function sourceofbudget(){ 
-        return $this->belongsTo(SourceOfBudget::class, 'budget_source');
+        return $this->belongsTo(SourceOfBudget::class , 'budget_source');
     }
 }
