@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Brackets\AdminAuth\Models\AdminUser;
+use App\Models\GadPlan;
 
 class School extends Model
 {
@@ -35,5 +36,9 @@ class School extends Model
 
     public function admin_user() {
         return $this->hasMany(AdminUser::class);
+    }
+
+    public function gadplan(){ 
+        return $this->hasMany(GadPlan::class);
     }
 }
