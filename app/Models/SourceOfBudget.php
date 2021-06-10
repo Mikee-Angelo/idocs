@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\GadPlanList; 
 
 class SourceOfBudget extends Model
 {
@@ -27,5 +28,11 @@ class SourceOfBudget extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/source-of-budgets/'.$this->getKey());
+    }
+
+    /* ******************** RELATIONSHIP *********************** */
+
+    public function gadplanlist(){
+        return $this->hasMany(GadPlanList::class);
     }
 }
