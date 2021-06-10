@@ -35,7 +35,7 @@ class School extends Model
     }
 
     public function admin_user() {
-        return $this->hasMany(AdminUser::class);
+        return $this->hasOne(AdminUser::class);
     }
 
     public function gadplan(){ 
