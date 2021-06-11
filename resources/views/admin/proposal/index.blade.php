@@ -14,8 +14,10 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.proposal.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
-                    </div>
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                            <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
+                        @endif
+                        </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
                             <form @submit.prevent="">
@@ -80,7 +82,7 @@
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-auto">
-                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
+                                                    <a class="  btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
                                                 </div>
                                                 <form class="col" @submit.prevent="deleteItem(item.resource_url)">
                                                     <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
@@ -103,9 +105,11 @@
                             <div class="no-items-found" v-if="!collection.length > 0">
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
-                                <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
-                            </div>
+                                @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                                    <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
+                                    <a class="btn btn-primary btn-spinner" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
+                                @endif
+                                </div>
                         </div>
                     </div>
                 </div>
