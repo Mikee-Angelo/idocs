@@ -58,6 +58,8 @@ return [
             'index' => 'Gad Plans and Budget Lists',
             'create' => 'Add GAD Plan',
             'edit' => 'Edit :name',
+            'accept' => 'Accept',
+            'decline' => 'Decline',
         ],
 
         'columns' => [
