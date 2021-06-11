@@ -57,6 +57,8 @@ Route::middleware(['web','auth:admin'])->group(static function () {
             Route::post('/bulk-destroy',                                'GadPlansController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{gadPlan}',                                   'GadPlansController@update')->name('update');
             Route::delete('/{gadPlan}',                                 'GadPlansController@destroy')->name('destroy');
+
+            Route::get('/{gadPlan}/items',                      'GadPlanListsController@index')->name('index');               
         });
     });
 });
