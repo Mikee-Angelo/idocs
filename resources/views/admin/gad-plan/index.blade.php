@@ -78,7 +78,9 @@
                                             </label>
                                         </td>
 
-                                        <td>@{{ item.user.school.name }}</td>
+                                        <td>
+                                            <a :href="item.resource_url + '/items'">@{{ item.user.school.name }}</a>
+                                        </td>
                                         <td>
                                             <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
                                             <span v-else class="badge badge-pill badge-success">Approved</span>
