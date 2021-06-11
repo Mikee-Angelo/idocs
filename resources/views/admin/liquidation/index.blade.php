@@ -14,7 +14,10 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.liquidation.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/liquidations/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.liquidation.actions.create') }}</a>
+
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                            <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/liquidations/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.liquidation.actions.create') }}</a>
+                        @endif
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
@@ -105,8 +108,11 @@
                             <div class="no-items-found" v-if="!collection.length > 0">
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
-                                <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/liquidations/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.liquidation.actions.create') }}</a>
+                                
+                                @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                                    <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
+                                    <a class="btn btn-primary btn-spinner" href="{{ url('admin/liquidations/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.liquidation.actions.create') }}</a>
+                                @endif
                             </div>
                         </div>
                     </div>
