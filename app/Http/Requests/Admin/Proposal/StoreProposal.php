@@ -27,9 +27,8 @@ class StoreProposal extends FormRequest
     public function rules(): array
     {
         return [
-            'gad_plans_id' => ['required', 'string'],
-            'letter_body' => ['required', 'string'],
-            'proposal_body' => ['required', 'string'],
+            'letter_body' => ['required'],
+            'proposal_body' => ['required'],
             
         ];
     }
