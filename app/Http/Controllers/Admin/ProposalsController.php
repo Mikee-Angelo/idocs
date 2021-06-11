@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Proposal\IndexProposal;
 use App\Http\Requests\Admin\Proposal\StoreProposal;
 use App\Http\Requests\Admin\Proposal\UpdateProposal;
 use App\Models\Proposal;
+use App\Models\GadPlan;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -18,6 +19,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ProposalsController extends Controller
@@ -78,15 +80,28 @@ class ProposalsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        
+        //Find the latest gad plan that is approved by the admin
+        $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 1])->whereYear('created_at', date('Y'))->first();
 
+        if(!is_null($gad)) { 
         // Store the Proposal
-        $proposal = Proposal::create($sanitized);
+            $sanitized['gad_plans_id'] = $gad->id;
+            $proposal = Proposal::create($sanitized);
 
-        if ($request->ajax()) {
-            return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            if ($request->ajax()) {
+                return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            }
+
+            return redirect('admin/proposals');
+        }else{ 
+           if ($request->ajax()) {
+                return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.failed')];
+            }
+            return redirect('admin/proposals');
+
         }
 
-        return redirect('admin/proposals');
     }
 
     /**
