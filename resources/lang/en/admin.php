@@ -60,6 +60,7 @@ return [
             'edit' => 'Edit :name',
             'accept' => 'Accept',
             'decline' => 'Decline',
+            'submit' => 'Submit',
         ],
 
         'columns' => [
