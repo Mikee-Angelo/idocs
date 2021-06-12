@@ -194,8 +194,8 @@ class GadPlansController extends Controller
     }
 
     public function changeStatus(GadPlan $gadPlan, Request $request) { 
-        
-        $gadPlan->status = $request->status;
+    
+        $gadPlan->status = $request->status ? 2 : 3;
         $gadPlan->save(); 
         if ($request->ajax()) {
             return [
