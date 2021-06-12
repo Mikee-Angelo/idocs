@@ -19,7 +19,7 @@
                         @if(Auth::user()->roles()->pluck('id')[0] == 2)
                             <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
                         @else
-                            <form @submit.prevent="deleteItem(item.resource_url)">
+                            <form @submit.prevent="acceptItem('change-status')">
                                 <button type="submit" class="btn btn-success btn-spinner btn-sm pull-right m-b-0 text-white ml-2" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-check"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.accept') }}</button>
                             </form>
                             <form @submit.prevent="deleteItem(item.resource_url)">
