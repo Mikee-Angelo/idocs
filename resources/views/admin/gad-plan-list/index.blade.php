@@ -16,7 +16,7 @@
                         <i class="fa fa-align-justify"></i> {{ trans('admin.gad-plan-list.actions.index') }}
 
                         
-                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2 && is_null($status))
                             <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
                         @else
                             @if($status <= 1 || is_null($status))
@@ -82,17 +82,20 @@
 
                                         <th></th>
                                     </tr>
-                                    <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
-                                        <td class="bg-bulk-info d-table-cell text-center" colspan="8">
-                                            <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/gad-plan-lists')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
-                                                        href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
 
-                                            <span class="pull-right pr-2">
-                                                <button class="btn btn-sm btn-danger pr-3 pl-3" @click="bulkDelete('/admin/gad-plan-lists/bulk-destroy')">{{ trans('brackets/admin-ui::admin.btn.delete') }}</button>
-                                            </span>
+                                    @if(Auth::user()->roles()->pluck('id')[0] == 2 && is_null($status))
+                                        <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
+                                            <td class="bg-bulk-info d-table-cell text-center" colspan="8">
+                                                <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/gad-plan-lists')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
+                                                            href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
 
-                                        </td>
-                                    </tr>
+                                                <span class="pull-right pr-2">
+                                                    <button class="btn btn-sm btn-danger pr-3 pl-3" @click="bulkDelete('/admin/gad-plan-lists/bulk-destroy')">{{ trans('brackets/admin-ui::admin.btn.delete') }}</button>
+                                                </span>
+
+                                            </td>
+                                        </tr>
+                                    @endif
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
@@ -117,7 +120,7 @@
                                         <td>@{{ item.responsible_unit }}</td>
                                         
 
-                                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 2 && is_null($status))
                                             <td>
                                                 <div class="row no-gutters">
                                                     <div class="col-auto">
