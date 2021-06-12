@@ -33,7 +33,7 @@ class GadPlanListsController extends Controller
      * @param IndexGadPlanList $request
      * @return array|Factory|View
      */
-    public function index($id, IndexGadPlanList $request)
+    public function index(?int $id = null, IndexGadPlanList $request )
     {
 
         // create and AdminListing instance for a specific model and
@@ -63,6 +63,7 @@ class GadPlanListsController extends Controller
             }
             return ['data' => $data];
         }
+
 
         return view('admin.gad-plan-list.index', ['data' => $data, 'id' => $id]);
     }
