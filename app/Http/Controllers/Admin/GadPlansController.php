@@ -206,4 +206,22 @@ class GadPlansController extends Controller
 
         return redirect('admin/gad-plans');
     }
+
+    
+    public function submitStatus(GadPlan $gadPlan, Request $request) { 
+    
+        if($request->status){ 
+            $gadPlan->status = 1;
+            $gadPlan->save(); 
+
+            if ($request->ajax()) {
+                return [
+                    'redirect' => url('admin/gad-plans'),
+                    'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+                ];
+            }
+        }
+
+        return redirect('admin/gad-plans');
+    }
 }
