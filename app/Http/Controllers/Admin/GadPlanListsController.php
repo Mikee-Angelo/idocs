@@ -60,7 +60,7 @@ class GadPlanListsController extends Controller
             $gad = GadPlan::where([
                 ['status', '>', 0],
                 ['model_id', '=', Auth::user()->id]
-            ])->whereYear('created_at', date('Y'))->First();
+            ])->whereYear('created_at', date('Y'))->first();
 
             $status = !is_null($gad) ? $gad->status : null;
         }
