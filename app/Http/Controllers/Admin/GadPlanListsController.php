@@ -54,11 +54,17 @@ class GadPlanListsController extends Controller
 
         if(!is_null($id)){ 
             $data->where('id', $id);
-
             $gad = GadPlan::find($id);
-
             $status = $gad->status;
+        }else{
+            $gad = GadPlan::where([
+                ['status', '>', 0],
+                ['model_id', '=', Auth::user()->id]
+            ])->whereYear('created_at', date('Y'))->First();
+
+            $status = !is_null($gad) ? $gad->status : null;
         }
+
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
