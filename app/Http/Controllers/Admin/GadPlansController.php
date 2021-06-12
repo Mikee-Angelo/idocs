@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
@@ -30,9 +31,8 @@ class GadPlansController extends Controller
      * @param IndexGadPlan $request
      * @return array|Factory|View
      */
-    public function index(IndexGadPlan $request)
+    public function index( IndexGadPlan $request)
     {
-  
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(GadPlan::class)->processRequestAndGet(
             // pass the request with params
@@ -57,6 +57,8 @@ class GadPlansController extends Controller
             }
             return ['data' => $data];
         }
+
+    
         return view('admin.gad-plan.index', ['data' => $data]);
     }
 
@@ -189,5 +191,19 @@ class GadPlansController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    public function changeStatus(GadPlan $gadPlan, Request $request) { 
+        
+        $gadPlan->status = 1;
+        $gadPlan->save(); 
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/gad-plans'),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/gad-plans');
     }
 }
