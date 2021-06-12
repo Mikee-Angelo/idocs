@@ -13,11 +13,14 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> {{ trans('admin.gad-plan-list.actions.index') }}
-
-                        
-                        @if(Auth::user()->roles()->pluck('id')[0] == 2 && is_null($status))
-                            <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                            @if(is_null($status))
+                                 <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
+                            @elseif($status == 0)
+                                <form @submit.prevent="submitStatus('submit-status', true)">
+                                    <button type="submit" class="btn btn-success btn-spinner btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-send"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.submit') }}</button>
+                                </form>
+                            @endif
                         @else
                             @if($status <= 1 || is_null($status))
                                 <form @submit.prevent="changeStatus('change-status', true)">
@@ -28,7 +31,10 @@
                                 </form>
                             @endif
                         @endif
-                        </div>
+                        <i class="fa fa-align-justify"></i> {{ trans('admin.gad-plan-list.actions.index') }}
+
+                    </div>
+
                     <div class="card-body" v-cloak>
                         <div class="card-block">
 
