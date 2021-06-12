@@ -33,6 +33,8 @@ class ProposalsController extends Controller
      */
     public function index(IndexProposal $request)
     {
+
+        $status = null ;
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(Proposal::class)->processRequestAndGet(
             // pass the request with params
@@ -45,6 +47,15 @@ class ProposalsController extends Controller
             ['id', 'letter_body', 'proposal_body']
         );
 
+        $gad = GadPlan::where([
+                ['status', '>', 0],
+                ['model_id', '=', Auth::user()->id]
+            ])->whereYear('created_at', date('Y'))->first();
+
+        if(!is_null($gad)){ 
+            $status = $gad->status; 
+        }
+
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -54,7 +65,7 @@ class ProposalsController extends Controller
             return ['data' => $data];
         }
 
-        return view('admin.proposal.index', ['data' => $data]);
+        return view('admin.proposal.index', ['data' => $data, 'status' => $status]);
     }
 
     /**
@@ -82,25 +93,17 @@ class ProposalsController extends Controller
         $sanitized = $request->getSanitized();
         
         //Find the latest gad plan that is approved by the admin
-        $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 1])->whereYear('created_at', date('Y'))->first();
+        $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 2])->whereYear('created_at', date('Y'))->first();
 
-        if(!is_null($gad)) { 
         // Store the Proposal
-            $sanitized['gad_plans_id'] = $gad->id;
-            $proposal = Proposal::create($sanitized);
+        $sanitized['gad_plans_id'] = $gad->id;
+        $proposal = Proposal::create($sanitized);
 
-            if ($request->ajax()) {
-                return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
-            }
-
-            return redirect('admin/proposals');
-        }else{ 
-           if ($request->ajax()) {
-                return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.failed')];
-            }
-            return redirect('admin/proposals');
-
+        if ($request->ajax()) {
+            return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
+
+        return redirect('admin/proposals');
 
     }
 
