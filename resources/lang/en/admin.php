@@ -138,7 +138,7 @@ return [
 
         'columns' => [
             'id' => 'ID',
-            'gad_plans_id' => 'GAD Plans',
+            'gad_plans_id' => 'GAD',
             'letter_body' => 'Letter Body', 
             'proposal_body' => 'Proposal Body', 
         ],
