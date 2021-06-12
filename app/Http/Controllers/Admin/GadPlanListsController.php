@@ -35,6 +35,7 @@ class GadPlanListsController extends Controller
      */
     public function index(?int $id = null, IndexGadPlanList $request )
     {
+        $status = null;
 
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(GadPlanList::class)->processRequestAndGet(
@@ -53,8 +54,11 @@ class GadPlanListsController extends Controller
 
         if(!is_null($id)){ 
             $data->where('id', $id);
-        }
 
+            $gad = GadPlan::find($id);
+
+            $status = $gad->status;
+        }
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -65,7 +69,7 @@ class GadPlanListsController extends Controller
         }
 
 
-        return view('admin.gad-plan-list.index', ['data' => $data, 'id' => $id]);
+        return view('admin.gad-plan-list.index', ['data' => $data, 'id' => $id, 'status' => $status]);
     }
 
     /**
