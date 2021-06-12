@@ -38,6 +38,7 @@ return [
             'index' => 'Gad Plans and Budget',
             'create' => 'New Gad Plan',
             'edit' => 'Edit :name',
+            'create_gad' => 'Create Gad Plan first'
         ],
 
         'columns' => [
