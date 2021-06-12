@@ -58,8 +58,8 @@ Route::middleware(['web','auth:admin'])->group(static function () {
             Route::post('/{gadPlan}',                                   'GadPlansController@update')->name('update');
             Route::delete('/{gadPlan}',                                 'GadPlansController@destroy')->name('destroy');
 
-            Route::get('/{gadPlan}/change-status',                      'GadPlanController@changeStatus')->name('change-status'); 
-            Route::get('/{gadPlan}/items',                              'GadPlanListsController@index')->name('index');                
+            Route::post('/{gadPlan}/change-status',                     'GadPlanSController@changeStatus')->name('change-status'); 
+            Route::get('/{gadPlan?}/items',                              'GadPlanListsController@index')->name('index');                
         });
     });
 });
