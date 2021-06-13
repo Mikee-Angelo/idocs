@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\EventType; 
 
 class Announcement extends Model
 {
@@ -34,5 +35,11 @@ class Announcement extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/announcements/'.$this->getKey());
+    }
+
+    /********************** RELATIONSHIPS *************************/
+
+    public function event_types(){ 
+        return $this->belongsTo(EventType::class, 'event_type_id');
     }
 }
