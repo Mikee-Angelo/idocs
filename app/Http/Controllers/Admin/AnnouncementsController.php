@@ -19,6 +19,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Models\EventType; 
 
 class AnnouncementsController extends Controller
 {
@@ -40,9 +41,9 @@ class AnnouncementsController extends Controller
             ['id', 'event_type_id', 'starts_at', 'ends_at', 'created_by'],
 
             // set columns to searchIn
-            ['id', 'header_img', 'title', 'description', 'url']
+            ['id', 'header_img', 'title', 'description', 'url'],
         );
-
+        
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -61,11 +62,11 @@ class AnnouncementsController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create(EventType $event_type)
     {
         $this->authorize('admin.announcement.create');
 
-        return view('admin.announcement.create');
+        return view('admin.announcement.create', ['event_type' => $event_type->get()]);
     }
 
     /**
