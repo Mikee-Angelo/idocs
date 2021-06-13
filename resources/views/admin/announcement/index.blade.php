@@ -54,6 +54,7 @@
                                         <th is='sortable' :column="'starts_at'">{{ trans('admin.announcement.columns.starts_at') }}</th>
                                         <th is='sortable' :column="'ends_at'">{{ trans('admin.announcement.columns.ends_at') }}</th>
                                         <th is='sortable' :column="'created_by'">{{ trans('admin.announcement.columns.created_by') }}</th>
+                                        <th is='sortable' :column="'created_at'">{{ trans('admin.announcement.columns.created_at') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -77,11 +78,12 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.id }}</td>
+                                        <td>@{{ item.id }}</td>
                                         <td>@{{ item.event_type_id }}</td>
                                         <td>@{{ item.starts_at | datetime }}</td>
                                         <td>@{{ item.ends_at | datetime }}</td>
                                         <td>@{{ item.created_by }}</td>
+                                        <td>@{{ item.created_at | datetime }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">
