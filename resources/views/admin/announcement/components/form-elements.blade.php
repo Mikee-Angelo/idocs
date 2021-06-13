@@ -1,7 +1,10 @@
+
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('event_type_id'), 'has-success': fields.event_type_id && fields.event_type_id.valid }">
     <label for="event_type_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.announcement.columns.event_type_id') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.event_type_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('event_type_id'), 'form-control-success': fields.event_type_id && fields.event_type_id.valid}" id="event_type_id" name="event_type_id" placeholder="{{ trans('admin.announcement.columns.event_type_id') }}">
+        <select class="form-control" v-model="form.event_type_id"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('event_type_id'), 'form-control-success': fields.event_type_id && fields.event_type_id.valid}" id="event_type_id" name="event_type_id">
+            <option v-for="types in {{ $event_type }}" :value="types.id">@{{types.name}}</option>
+        </select>
         <div v-if="errors.has('event_type_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('event_type_id') }}</div>
     </div>
 </div>
