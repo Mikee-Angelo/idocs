@@ -34,7 +34,6 @@ class StoreAnnouncement extends FormRequest
             'url' => ['nullable', 'string'],
             'starts_at' => ['required', 'date'],
             'ends_at' => ['required', 'date'],
-            'created_by' => ['required', 'string'],
             
         ];
     }
