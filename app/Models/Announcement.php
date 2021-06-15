@@ -15,7 +15,7 @@ class Announcement extends Model
         'url',
         'starts_at',
         'ends_at',
-        'created_by',
+        'model_id'
     
     ];
     
