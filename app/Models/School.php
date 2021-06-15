@@ -8,7 +8,7 @@ use App\Models\GadPlan;
 
 class School extends Model
 {
-    protected $table = 's   chools';
+    protected $table = 'schools';
 
     protected $fillable = [
         'name',
