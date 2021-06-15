@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\EventType; 
 
@@ -38,12 +39,14 @@ class AnnouncementsController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'event_type_id', 'starts_at', 'ends_at', 'created_by'],
+            ['id', 'event_type_id', 'starts_at', 'ends_at'],
 
             // set columns to searchIn
             ['id', 'header_img', 'title', 'description', 'url'],
+            function ($query) use ($request){ 
+                $query->with('event_types');
+            }
         );
-        
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -78,8 +81,9 @@ class AnnouncementsController extends Controller
     public function store(StoreAnnouncement $request)
     {
         // Sanitize input
+        
         $sanitized = $request->getSanitized();
-
+        $sanitized['model_id'] = Auth::user()->id; 
         // Store the Announcement
         $announcement = Announcement::create($sanitized);
 
