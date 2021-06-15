@@ -248,5 +248,30 @@ return [
             'created_at' => 'Created At'
         ],
     ],
+
+    'calendar' => [
+        'title' => 'Calendar',
+
+        'actions' => [
+            'index' => 'Calendar',
+            'create' => 'Add announcements',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Event Type Name',
+            'header_img' => 'Header Image',
+            'title' => 'Title',
+            'description' => 'Description',
+            'url' => 'Meeting Url   ',
+            'event_type_id' => 'Event Type',
+            'starts_at' => 'Starts At',
+            'ends_at' => 'Ends At',
+            'created_by' => 'Created By',
+            'created_at' => 'Created At'
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];
