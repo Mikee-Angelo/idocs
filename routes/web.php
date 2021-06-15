@@ -244,3 +244,11 @@ Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
         });
     });
 });
+/* Auto-generated admin routes */
+Route::middleware(['web', 'auth:admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('calendar')->name('calendar/')->group(static function() {
+            Route::get('/',                                             'CalendarsController@index')->name('index');
+        });
+    });
+});
