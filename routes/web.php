@@ -21,7 +21,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('admin-users')->name('admin-users/')->group(static function() {
             Route::get('/',                                             'AdminUsersController@index')->name('index');
