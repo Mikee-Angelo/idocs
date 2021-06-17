@@ -43,7 +43,7 @@
     <label for="gad_activity" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.gad-plan-list.columns.gad_activity') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
         <div>
-            <textarea class="form-control" v-model="form.gad_activity" v-validate="'required'" id="gad_activity" name="gad_activity"></textarea>
+            <input type="text" class="form-control" v-validate="'required'" id="gad_activity" name="gad_activity" value="GAA" disabled>
         </div>
         <div v-if="errors.has('gad_activity')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('gad_activity') }}</div>
     </div>
@@ -77,14 +77,13 @@
     </div>
 </div>
 
-
-
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('responsible_unit'), 'has-success': fields.responsible_unit && fields.responsible_unit.valid }">
     <label for="responsible_unit" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.gad-plan-list.columns.responsible_unit') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.responsible_unit" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('responsible_unit'), 'form-control-success': fields.responsible_unit && fields.responsible_unit.valid}" id="responsible_unit" name="responsible_unit" placeholder="{{ trans('admin.gad-plan-list.columns.responsible_unit') }}">
+        <select class="form-control" v-model="form.responsible_unit"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('responsible_unit'), 'form-control-success': fields.responsible_unit && fields.responsible_unit.valid}" id="responsible_unit" name="responsible_unit" placeholder="{{ trans('admin.admin-user.columns.responsible_unit') }}">
+            <option v-for="agencies in {{ $responsible_unit }}" :value="agencies.id">@{{agencies.name}}</option>
+        </select>
         <div v-if="errors.has('responsible_unit')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('responsible_unit') }}</div>
     </div>
 </div>
-
 
