@@ -80,11 +80,11 @@ return [
     ],
 
     'school' => [
-        'title' => 'Registered Campus',
+        'title' => 'Campus/College',
 
         'actions' => [
-            'index' => 'Registered Campus',
-            'create' => 'Add Campus',
+            'index' => 'Campus/College',
+            'create' => 'Add Campus/College',
             'edit' => 'Edit :name',
         ],
 
