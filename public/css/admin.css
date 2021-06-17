@@ -3845,7 +3845,7 @@
   --gray: #73818f;
   --gray-dark: #2f353a;
   --light-blue: #63c2de;
-  --primary: #4273FA;
+  --primary: #00007a;
   --secondary: #c8ced3;
   --success: #60CF7D;
   --info: #63c2de;
@@ -6135,7 +6135,7 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #4273FA;
+  background-color: #00007a;
   border-color: #4273FA;
 }
 .btn-primary:hover {
@@ -15763,7 +15763,7 @@ canvas {
   flex-direction: column;
   padding: 0;
   color: #fff;
-  background: #485779;
+  background: #00007a;
 }
 .sidebar .sidebar-close {
   position: absolute;
