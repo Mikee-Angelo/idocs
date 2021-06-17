@@ -12,6 +12,7 @@ use App\Models\GadPlanList;
 use App\Models\RelevantAgency;
 use App\Models\SourceOfBudget;
 use App\Models\GadPlan;
+use App\Models\School;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -89,10 +90,12 @@ class GadPlanListsController extends Controller
         // $this->authorize('admin.gad-plan-list.create');
         $relevant_agencies = RelevantAgency::get();
         $source_of_budget = SourceOfBudget::get(); 
+        $schools = School::get();
 
         return view('admin.gad-plan-list.create', [
             'relevant_agencies' => $relevant_agencies, 
             'budget_source' => $source_of_budget,
+            'responsible_unit' => $schools,
         ]);
     }
 
@@ -117,6 +120,7 @@ class GadPlanListsController extends Controller
             $sanitized['gad_plans_id'] = $gp->id;
         }
         
+        $sanitized['gad_activity'] = 'GAA';
         //Store data to gad plan
         $gadPlanList = GadPlanList::create($sanitized);
 
