@@ -112,6 +112,7 @@ class GadPlanListsController extends Controller
         
         $gp = GadPlan::whereYear('created_at', date('Y'))->first(); 
 
+        $sanitized['budget_source'] = 'GAA';
         if(is_null($gp)){ 
             $gadplan->model_id = Auth::user()->id;
             $gadplan->save();
@@ -120,7 +121,6 @@ class GadPlanListsController extends Controller
             $sanitized['gad_plans_id'] = $gp->id;
         }
         
-        $sanitized['gad_activity'] = 'GAA';
         //Store data to gad plan
         $gadPlanList = GadPlanList::create($sanitized);
 
