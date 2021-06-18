@@ -45,7 +45,7 @@ class GadPlansController extends Controller
             ['id'],
 
             function($query) use ($request) {
-                $query->with(['user','user.school']);
+                $query->with(['admin_user','admin_user.school']);
             }
         );
         
