@@ -122,7 +122,7 @@
                                         <td>@{{ item.gad_activity }}</td>
                                         <td>@{{ item.indicator_target }}</td>
                                         <td>@{{ item.budget_requirement }}</td>
-                                        <td>@{{ item.sourceofbudget.name }}</td>
+                                        <td>@{{ item.budget_source }}</td>
                                         <td>@{{ item.responsible_unit }}</td>
                                         
 
