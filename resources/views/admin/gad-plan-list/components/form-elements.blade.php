@@ -43,7 +43,7 @@
     <label for="gad_activity" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.gad-plan-list.columns.gad_activity') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
         <div>
-            <input type="text" class="form-control" v-validate="'required'" id="gad_activity" name="gad_activity" value="GAA" disabled>
+            <textarea class="form-control" v-model="form.gad_activity" v-validate="'required'" id="gad_activity" name="gad_activity"></textarea>
         </div>
         <div v-if="errors.has('gad_activity')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('gad_activity') }}</div>
     </div>
@@ -70,12 +70,12 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('budget_source'), 'has-success': fields.budget_source && fields.budget_source.valid }">
     <label for="budget_source" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.gad-plan-list.columns.budget_source') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-          <select class="form-control" v-model="form.budget_source"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('budget_source'), 'form-control-success': fields.budget_source && fields.budget_source.valid}" id="budget_source" name="budget_source" placeholder="{{ trans('admin.admin-user.columns.budget_source') }}">
-            <option v-for="budget in {{ $budget_source }}" :value="budget.id">@{{budget.name}}</option>
-        </select>
+          <input class="form-control"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('budget_source'), 'form-control-success': fields.budget_source && fields.budget_source.valid}" id="budget_source" name="budget_source" placeholder="{{ trans('admin.gad-plan-list.columns.budget_source') }}" value="GAD" disabled/>
+        
         <div v-if="errors.has('budget_source')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('budget_source') }}</div>
     </div>
 </div>
+
 
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('responsible_unit'), 'has-success': fields.responsible_unit && fields.responsible_unit.valid }">
     <label for="responsible_unit" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.gad-plan-list.columns.responsible_unit') }}</label>
