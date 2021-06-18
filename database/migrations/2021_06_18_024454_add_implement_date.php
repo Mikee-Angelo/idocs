@@ -15,7 +15,7 @@ class AddImplementDate extends Migration
     {
         Schema::table('gad_plans', function (Blueprint $table) {
             //
-            $table->integer('year');
+            $table->integer('implement_year')->after('status')->nullable();
         });
     }
 
