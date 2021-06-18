@@ -79,12 +79,12 @@
                                         </td>
 
                                         <td>
-                                            <a :href="item.resource_url + '/items'">@{{ item.user.school.name }}</a>
+                                            <a :href="item.resource_url + '/items'">@{{ item.created_at  }}</a>
                                         </td>
                                         <td>
-                                            <span v-if="item.status == 1" class="badge badge-pill badge-warning">Pending</span>
-                                            <span v-else-if="item.status == 2" class="badge badge-pill badge-success text-white">Approved</span>
-                                            <span v-else-if="item.status == 3" class="badge badge-pill badge-danger text-white">Declined</span>
+                                            <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
+                                            <span v-else-if="item.status == 1" class="badge badge-pill badge-success text-white">Approved</span>
+                                            <span v-else-if="item.status == 2" class="badge badge-pill badge-danger text-white">Declined</span>
                                         </td>
                                         
                                         <td>@{{ item.created_at }}</td>
