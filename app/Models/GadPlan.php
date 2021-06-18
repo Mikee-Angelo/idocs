@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User; 
+use App\Models\School;
 use Brackets\AdminAuth\Models\AdminUser;
 
 class GadPlan extends Model
@@ -32,7 +33,9 @@ class GadPlan extends Model
         return url('/admin/gad-plans/'.$this->getKey());
     }
 
-    public function user(){ 
+    public function admin_user(){ 
         return $this->belongsTo(AdminUser::class, 'model_id');
     }
+
+  
 }
