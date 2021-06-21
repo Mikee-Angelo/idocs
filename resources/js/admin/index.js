@@ -14,3 +14,4 @@ import './unit';
 import './reimbursement';
 import './event-type';
 import './announcement';
+import './accomplishment';
