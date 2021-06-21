@@ -41,10 +41,10 @@ class ProposalsController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'gad_plans_id'],
+            ['id', 'gad_plans_id', 'prop_no','status',],
 
             // set columns to searchIn
-            ['id', 'letter_body', 'proposal_body']
+            ['id', 'status']
         );
 
         $gad = GadPlan::where([
@@ -91,12 +91,22 @@ class ProposalsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
-        
+
+        $proposal = Proposal::first();
         //Find the latest gad plan that is approved by the admin
         $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 2])->whereYear('created_at', date('Y'))->first();
 
-        // Store the Proposal
         $sanitized['gad_plans_id'] = $gad->id;
+        $tmp = 'PROP'.Auth::user()->id.'-'.date('Y').'-';
+
+        if(is_null($proposal)){ 
+            $sanitized['prop_no'] = $tmp.(10000 + 1);
+        }else{ 
+            $rmb = explode('-', $rb->rmb_no);
+            $sanitized['prop_no'] = $tmp.($proposal[1] + 1);
+        }
+
+        // Store the Proposal
         $proposal = Proposal::create($sanitized);
 
         if ($request->ajax()) {
@@ -130,8 +140,6 @@ class ProposalsController extends Controller
      */
     public function edit(Proposal $proposal)
     {
-        $this->authorize('admin.proposal.edit', $proposal);
-
 
         return view('admin.proposal.edit', [
             'proposal' => $proposal,
