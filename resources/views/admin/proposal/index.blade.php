@@ -56,7 +56,8 @@
                                         </th>
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.proposal.columns.id') }}</th>
-                                        <th is='sortable' :column="'gad_plans_id'">{{ trans('admin.proposal.columns.gad_plans_id') }}</th>
+                                        <th is='sortable' :column="'prop_no'">{{ trans('admin.proposal.columns.prop_no') }}</th>
+                                        <th is='sortable' :column="'prop_no'">{{ trans('admin.proposal.columns.status') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -80,8 +81,12 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.id }}</td>
-                                        <td>@{{ item.gad_plans_id }}</td>
+                                        <td>@{{ item.id }}</td>
+                                        <td>@{{ item.prop_no }}</td>
+                                        <td>
+                                              <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
+                                            <span v-else-if="item.status == 1" class="badge badge-pill badge-success text-white">Approved</span>
+                                        </td>
                                         
                                         <td>
                                             <div class="row no-gutters">
