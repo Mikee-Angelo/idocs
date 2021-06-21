@@ -13,21 +13,26 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
-                            @if(is_null($status))
-                                 <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
-                            @elseif($status == 0)
-                                <form @submit.prevent="submitStatus('submit-status', true)">
-                                    <button type="submit" class="btn btn-success btn-spinner btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-send"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.submit') }}</button>
-                                </form>
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2 )
+
+                            @if($status == 0)
+                                @if(count($data) > 0)
+                                    <form @submit.prevent="submitStatus('submit-status', true)">
+                                        <button type="submit" class="btn btn-success btn-spinner btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-send"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.submit') }}</button>
+                                    </form>
+
+                                 @endif
+                                  <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0 mr-2" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
                             @endif
+                          
+                           
                         @else
                             @if($status <= 1 || is_null($status))
                                 <form @submit.prevent="changeStatus('change-status', true)">
-                                    <button type="submit" class="btn btn-success btn-spinner btn-sm pull-right m-b-0 text-white ml-2" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-check"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.accept') }}</button>
+                                    <button type="submit"  class="btn btn-success  btn-sm pull-right m-b-0 text-white ml-2" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-check"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.accept') }}</button>
                                 </form>
                                 <form @submit.prevent="changeStatus('change-status', false)">
-                                    <button type="submit" class="btn btn-danger btn-spinner btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-close"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.decline') }}</button>
+                                    <button type="submit" class="btn btn-danger btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-close"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.decline') }}</button>
                                 </form>
                             @endif
                         @endif
@@ -66,7 +71,7 @@
                                     <tr>
 
                                         
-                                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 2 && $status == 0)
                                             <th class="bulk-checkbox">
                                                 <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
                                                 <label class="form-check-label" for="enabled">
@@ -106,7 +111,7 @@
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
                                         
-                                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 2 && $status == 0)
                                             <td class="bulk-checkbox">
                                                 <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                                 <label class="form-check-label" :for="'enabled' + item.id">
@@ -126,7 +131,7 @@
                                         <td>@{{ item.responsible_unit }}</td>
                                         
 
-                                        @if(Auth::user()->roles()->pluck('id')[0] == 2 && is_null($status))
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 2 && $status == 0)
                                             <td>
                                                 <div class="row no-gutters">
                                                     <div class="col-auto">
@@ -144,14 +149,14 @@
                             </table>
                             
                             @if(Auth::user()->roles()->pluck('id')[0] == 2)
-                            <div class="row" v-if="pagination.state.total > 0">
-                                <div class="col-sm">
-                                    <span class="pagination-caption">{{ trans('brackets/admin-ui::admin.pagination.overview') }}</span>
+                                <div class="row" v-if="pagination.state.total > 0">
+                                    <div class="col-sm">
+                                        <span class="pagination-caption">{{ trans('brackets/admin-ui::admin.pagination.overview') }}</span>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <pagination></pagination>
+                                    </div>
                                 </div>
-                                <div class="col-sm-auto">
-                                    <pagination></pagination>
-                                </div>
-                            </div>
                             @endif
                             <div class="no-items-found" v-if="!collection.length > 0">
                                 <i class="icon-magnifier"></i>
