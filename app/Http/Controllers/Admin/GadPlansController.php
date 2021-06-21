@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
@@ -34,12 +35,16 @@ class GadPlansController extends Controller
     public function index( IndexGadPlan $request)
     {
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(GadPlan::class)->processRequestAndGet(
+        $data = AdminListing::create(GadPlan::class)->modifyQuery(function($query) use ($request){
+            if (Auth::user()->roles()->pluck('id')[0] == 1) {
+                $query->where('status', '!=', 0);
+            }
+        })->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'model_id', 'status', 'created_at'],
+            ['id', 'model_id', 'status', 'created_at', 'implement_year'],
 
             // set columns to searchIn
             ['id'],
@@ -48,7 +53,8 @@ class GadPlansController extends Controller
                 $query->with(['admin_user','admin_user.school']);
             }
         );
-        
+
+
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
