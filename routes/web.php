@@ -252,3 +252,18 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('accomplishments')->name('accomplishments/')->group(static function() {
+            Route::get('/',                                             'AccomplishmentsController@index')->name('index');
+            Route::get('/create',                                       'AccomplishmentsController@create')->name('create');
+            Route::post('/',                                            'AccomplishmentsController@store')->name('store');
+            Route::get('/{accomplishment}/edit',                        'AccomplishmentsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'AccomplishmentsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{accomplishment}',                            'AccomplishmentsController@update')->name('update');
+            Route::delete('/{accomplishment}',                          'AccomplishmentsController@destroy')->name('destroy');
+        });
+    });
+});
