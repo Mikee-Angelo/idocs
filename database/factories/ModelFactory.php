@@ -183,3 +183,14 @@ $factory->define(App\Models\Announcement::class, static function (Faker\Generato
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Accomplishment::class, static function (Faker\Generator $faker) {
+    return [
+        'gad_plans_id' => $faker->sentence,
+        'description' => $faker->text(),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
