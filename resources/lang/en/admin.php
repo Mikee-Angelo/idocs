@@ -48,6 +48,7 @@ return [
             'model_id' => 'Campus Name',
             'created_at' => 'Date Created',
             'status' => 'Status',
+            'implement_year' => 'Implement Year',
             
         ],
     ],
@@ -138,7 +139,9 @@ return [
 
         'columns' => [
             'id' => 'ID',
+            'prop_no' => 'PROP_NO', 
             'gad_plans_id' => 'GAD',
+            'status' => 'Status', 
             'letter_body' => 'Letter Body', 
             'proposal_body' => 'Proposal Body', 
         ],
@@ -204,6 +207,7 @@ return [
 
         'columns' => [
             'id' => 'ID',
+            'rmb_no' => 'RMB_NO',
             'admin_user_id' => 'Created By',
             'letter_body' => 'Letter Body',
             'status' => 'Status',
@@ -270,6 +274,24 @@ return [
             'ends_at' => 'Ends At',
             'created_by' => 'Created By',
             'created_at' => 'Created At'
+        ],
+    ],
+
+    'accomplishment' => [
+        'title' => 'Accomplishments',
+
+        'actions' => [
+            'index' => 'Accomplishments',
+            'create' => 'New Accomplishment',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'header' => 'Title', 
+            'gad_plans_id' => 'Gad plans',
+            'description' => 'Description',
+            'created_at' => 'Created At',
         ],
     ],
 
