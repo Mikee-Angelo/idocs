@@ -10,7 +10,7 @@ class Proposal extends Model
         'gad_plans_id',
         'letter_body',
         'proposal_body',
-    
+        'prop_no',
     ];
     
     
