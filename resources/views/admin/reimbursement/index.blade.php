@@ -53,7 +53,11 @@
                                         </th>
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.reimbursement.columns.id') }}</th>
-                                        <th is='sortable' :column="'admin_user_id'">{{ trans('admin.reimbursement.columns.admin_user_id') }}</th>
+                                        <th is='sortable' :column="'rmb_no'">{{ trans('admin.reimbursement.columns.rmb_no') }}</th>
+                                        
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                                            <th is='sortable' :column="'admin_user_id'">{{ trans('admin.reimbursement.columns.admin_user_id') }}</th>
+                                        @endif
                                         <th is='sortable' :column="'status'">{{ trans('admin.reimbursement.columns.status') }}</th>
 
                                         <th></th>
@@ -79,19 +83,30 @@
                                         </td>
 
                                     <td>@{{ item.id }}</td>
-                                        <td>@{{ item.admin_user_id }}</td>
-                                        <td>@{{ item.status }}</td>
+                                    <td>@{{ item.rmb_no }}</td>
+                                    
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                                            <td>@{{ item.admin_user.first_name + ' ' + item.admin_user.last_name }}</td>
+                                        @endif
+                                        <td>
+                                            <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
+                                            <span v-else-if="item.status == 1" class="badge badge-pill badge-success text-white">Approved</span>
+                                        </td>
                                         
                                         <td>
-                                            <div class="row no-gutters">
-                                                <div class="col-auto">
-                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
+                                                
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                                                <div class="row no-gutters">
+                                                    <div class="col-auto">
+                                                        <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
+                                                    </div>
+                                                    <form class="col" @submit.prevent="deleteItem(item.resource_url)">
+                                                        <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
+                                                    </form>
                                                 </div>
-                                                <form class="col" @submit.prevent="deleteItem(item.resource_url)">
-                                                    <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                                
+                                        @endif
+                                            </td>
                                     </tr>
                                 </tbody>
                             </table>
