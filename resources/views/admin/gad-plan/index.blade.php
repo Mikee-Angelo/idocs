@@ -52,7 +52,12 @@
                                             </label>
                                         </th>
 
-                                        <th is='sortable' :column="'model_id'">{{ trans('admin.gad-plan.columns.model_id') }}</th>
+                                        <th is='sortable' :column="'implement_year'">{{ trans('admin.gad-plan.columns.implement_year') }}</th>
+                                        
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                                            <th is='sortable' :column="'model_id'">{{ trans('admin.gad-plan.columns.model_id') }}</th>
+                                        @endif
+
                                         <th is='sortable' :column="'status'">{{ trans('admin.gad-plan.columns.status') }}</th>
                                         <th is='sortable' :column="'created_at'">{{ trans('admin.gad-plan.columns.created_at') }}</th>
 
@@ -72,6 +77,7 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
+                                   
                                         <td class="bulk-checkbox">
                                             <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                             <label class="form-check-label" :for="'enabled' + item.id">
@@ -79,12 +85,18 @@
                                         </td>
 
                                         <td>
-                                            <a :href="item.resource_url + '/items'">@{{ item.created_at  }}</a>
+                                            <a :href="item.resource_url + '/items'">@{{ item.implement_year  }}</a>
                                         </td>
+
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                                            <td>
+                                            @{{item.admin_user.school.name}} 
+                                            </td>
+                                        @endif
                                         <td>
-                                            <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
-                                            <span v-else-if="item.status == 1" class="badge badge-pill badge-success text-white">Approved</span>
-                                            <span v-else-if="item.status == 2" class="badge badge-pill badge-danger text-white">Declined</span>
+                                            <span v-if="item.status == 1" class="badge badge-pill badge-warning">Pending</span>
+                                            <span v-else-if="item.status == 2" class="badge badge-pill badge-success text-white">Approved</span>
+                                            <span v-else-if="item.status == 3" class="badge badge-pill badge-danger text-white">Declined</span>
                                         </td>
                                         
                                         <td>@{{ item.created_at }}</td>
