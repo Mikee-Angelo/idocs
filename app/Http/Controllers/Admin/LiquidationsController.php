@@ -63,7 +63,6 @@ class LiquidationsController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin.liquidation.create');
 
         return view('admin.liquidation.create');
     }
