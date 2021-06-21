@@ -110,11 +110,15 @@ class GadPlanListsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
         
-        $gp = GadPlan::whereYear('created_at', date('Y'))->first(); 
-
+        $gp = GadPlan::where([
+            ['model_id', '=', Auth::user()->id], 
+        ])->last(); 
+        
         $sanitized['budget_source'] = 'GAA';
+        
         if(is_null($gp)){ 
             $gadplan->model_id = Auth::user()->id;
+            $sanitized['implement_year'] = $gp->implement_year + 1;
             $gadplan->save();
             $sanitized['gad_plans_id'] = $gadplan->id;
         }else{ 
