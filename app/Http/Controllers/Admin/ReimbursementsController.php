@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ReimbursementsController extends Controller
@@ -37,12 +38,14 @@ class ReimbursementsController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'admin_user_id', 'status'],
+            ['id', 'admin_user_id', 'status' , 'rmb_no'],
 
             // set columns to searchIn
-            ['id', 'letter_body']
+            ['id', 'letter_body'],
+            function($query) use ($request) {
+                $query->with(['admin_user']);
+            }
         );
-
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -63,7 +66,6 @@ class ReimbursementsController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin.reimbursement.create');
 
         return view('admin.reimbursement.create');
     }
@@ -78,6 +80,19 @@ class ReimbursementsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+
+        
+        $rb = Reimbursement::first();
+
+        $tmp = 'RMB'.Auth::user()->id.'-'.date('Y').'-';
+        $sanitized['admin_user_id'] = Auth::user()->id;
+
+        if(is_null($rb)){ 
+            $sanitized['rmb_no'] = $tmp.(10000 + 1);
+        }else{ 
+            $rmb = explode('-', $rb->rmb_no);
+            $sanitized['rmb_no'] = $tmp.($rmb[1] + 1);
+        }
 
         // Store the Reimbursement
         $reimbursement = Reimbursement::create($sanitized);
@@ -185,4 +200,6 @@ class ReimbursementsController extends Controller
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }
+
+
 }
