@@ -2,10 +2,12 @@
     <nav class="sidebar-nav">
     <div class="d-flex justify-content-center">
 
-        <img src="{{ url('images/logo.png')}}" style="width: 9rem; height: 9rem" class="mt-3 mb-3" alt="PRMSU Logo">
+        <img src="{{ url('images/gad_xl.png')}}" style="width: 9rem; height: 9rem" class="mt-3 mb-3 mr-2" alt="PRMSU Logo">
     </div>
+        <h5 class="text-dark text-center">{{Auth::user()->school->name}}</h5>
+        <hr class="mt-4 ">
         <ul class="nav">
-         <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.content') }}</li>
+         <li class="nav-title text-black">{{ trans('brackets/admin-ui::admin.sidebar.content') }}</li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/gad-plans') }}"><i class="nav-icon icon-ghost"></i> {{ trans('admin.gad-plan.title') }}</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/proposals') }}"><i class="nav-icon icon-compass"></i> {{ trans('admin.proposal.title') }}</a></li>
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/liquidations') }}"><i class="nav-icon icon-flag"></i> {{ trans('admin.liquidation.title') }}</a></li>
