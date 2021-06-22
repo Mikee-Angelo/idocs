@@ -48,7 +48,6 @@ class CalendarsController extends Controller
         );
         
         $events = []; 
-        
         foreach($data as $value){ 
             $events[] = \Calendar::event(
                 $value->title, //event title
@@ -59,6 +58,7 @@ class CalendarsController extends Controller
                 [
                     'description' => $value->description,
                     'type' => $value->event_types->name,
+                    'img' => count($value->getMedia('header')) == 0 ? null : $value->getMedia('header')[0]->getUrl(),
                 ]
             );
         }
@@ -80,6 +80,8 @@ class CalendarsController extends Controller
             'select' => 'function(selectionInfo){
             }',
             'eventClick' => 'function(event){
+                console.log(event.event.extendedProps.img);
+                $("#headerImage").css("background-image", "url("+ event.event.extendedProps.img +")");
                 $("#modalTitle").html(event.event.title);
                 $("#eventStart").html( event.event.start);
                 $("#eventEnd").html( event.event.end);
