@@ -3845,7 +3845,7 @@
   --gray: #73818f;
   --gray-dark: #2f353a;
   --light-blue: #63c2de;
-  --primary: #4273FA;
+  --primary: #8e24aa;
   --secondary: #c8ced3;
   --success: #60CF7D;
   --info: #63c2de;
@@ -15763,7 +15763,7 @@ canvas {
   flex-direction: column;
   padding: 0;
   color: #fff;
-  background: #00007a;
+  background: #f3e5f5;
 }
 .sidebar .sidebar-close {
   position: absolute;
@@ -15852,7 +15852,7 @@ canvas {
 .sidebar .nav-link {
   display: block;
   padding: 0.75rem 1rem;
-  color: #fff;
+  color: #000;
   text-decoration: none;
   background: transparent;
 }
@@ -15870,14 +15870,14 @@ canvas {
 }
 .sidebar .nav-link.active {
   color: #fff;
-  background: #4273FA;
+  background: #8e24aa;
 }
 .sidebar .nav-link.active .nav-icon {
   color: white;
 }
 .sidebar .nav-link:hover {
   color: #fff;
-  background: #4273FA;
+  background: #8e24aa;
 }
 .sidebar .nav-link:hover .nav-icon {
   color: #fff;
@@ -19282,8 +19282,8 @@ body {
   cursor: pointer;
 }
 .btn-primary, .btn-info {
-  background-color: #4273FA;
-  border-color: #4273FA;
+  background-color: #8e24aa;
+  border-color: #8e24aa;
 }
 .btn-primary:hover, .btn-info:hover {
   background-color: #104ef9;
