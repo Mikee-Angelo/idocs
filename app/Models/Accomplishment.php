@@ -22,6 +22,7 @@ class Accomplishment extends Model implements HasMedia
         'gad_plans_id',
         'header',
         'description',
+        'admin_users_id',
     ];
     
     
@@ -45,7 +46,6 @@ class Accomplishment extends Model implements HasMedia
      */
     public function registerMediaCollections(): void {
         $this->addMediaCollection('gallery')
-            ->private() 
             ->accepts('image/*')
             ->maxNumberOfFiles(20)
             ->canView('media.view')

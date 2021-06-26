@@ -1,5 +1,10 @@
 
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('event_type_id'), 'has-success': fields.event_type_id && fields.event_type_id.valid }">
+@include('brackets/admin-ui::admin.includes.media-uploader', [
+    'mediaCollection' => app(App\Models\Announcement::class)->getMediaCollection('header'),
+    'label' => 'Upload Cover Photo'
+])
+
+<div class="form-group row align-items-center mt-3 " :class="{'has-danger': errors.has('event_type_id'), 'has-success': fields.event_type_id && fields.event_type_id.valid }">
     <label for="event_type_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.announcement.columns.event_type_id') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
         <select class="form-control" v-model="form.event_type_id"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('event_type_id'), 'form-control-success': fields.event_type_id && fields.event_type_id.valid}" id="event_type_id" name="event_type_id">
@@ -9,15 +14,6 @@
     </div>
 </div>
 
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('header_img'), 'has-success': fields.header_img && fields.header_img.valid }">
-    <label for="header_img" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.announcement.columns.header_img') }}</label>
-    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <div>
-            <textarea class="form-control" v-model="form.header_img" v-validate="''" id="header_img" name="header_img"></textarea>
-        </div>
-        <div v-if="errors.has('header_img')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('header_img') }}</div>
-    </div>
-</div>
 
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('title'), 'has-success': fields.title && fields.title.valid }">
     <label for="title" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.announcement.columns.title') }}</label>

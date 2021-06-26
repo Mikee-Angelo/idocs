@@ -50,6 +50,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
 Route::middleware(['web','auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('gad-plans')->name('gad-plans/')->group(static function() {
+            Route::post('/submit-status',                               'GadPlansController@submitStatus')->name('submit-status');         
             Route::get('/',                                             'GadPlansController@index')->name('index');
             Route::get('/create',                                       'GadPlansController@create')->name('create');
             Route::post('/',                                            'GadPlansController@store')->name('store');
@@ -58,9 +59,9 @@ Route::middleware(['web','auth:admin'])->group(static function () {
             Route::post('/{gadPlan}',                                   'GadPlansController@update')->name('update');
             Route::delete('/{gadPlan}',                                 'GadPlansController@destroy')->name('destroy');
 
-            Route::post('/{gadPlan}/change-status',                     'GadPlanSController@changeStatus')->name('change-status');
-            Route::post('/{gadPlan}/submit-status',                     'GadPlanSController@submitStatus')->name('submit-status'); 
-            Route::get('/{gadPlan?}/items',                              'GadPlanListsController@index')->name('index');                
+            Route::post('/{gadPlan}/change-status',                     'GadPlansController@changeStatus')->name('change-status');
+            Route::get('/{gadPlan}/items',                              'GadPlanListsController@show')->name('index');        
+          
         });
     });
 });
@@ -151,6 +152,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
             Route::post('/bulk-destroy',                                'ProposalsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{proposal}',                                  'ProposalsController@update')->name('update');
             Route::delete('/{proposal}',                                'ProposalsController@destroy')->name('destroy');
+            Route::get('/{proposal}/',                                  'ProposalsController@show')->name('show');
         });
     });
 });
@@ -211,6 +213,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
             Route::post('/bulk-destroy',                                'ReimbursementsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{reimbursement}',                             'ReimbursementsController@update')->name('update');
             Route::delete('/{reimbursement}',                           'ReimbursementsController@destroy')->name('destroy');
+            Route::get('/{reimbursement}/',                             'ReimbursementsController@show')->name('show');
         });
     });
 });
@@ -264,6 +267,8 @@ Route::middleware(['auth:admin'])->group(static function () {
             Route::post('/bulk-destroy',                                'AccomplishmentsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{accomplishment}',                            'AccomplishmentsController@update')->name('update');
             Route::delete('/{accomplishment}',                          'AccomplishmentsController@destroy')->name('destroy');
+            Route::get('/{accomplishment}/',                             'AccomplishmentsController@show')->name('show');
+            
         });
     });
 });

@@ -4,7 +4,8 @@
 
         <img src="{{ url('images/gad_xl.png')}}" style="width: 9rem; height: 9rem" class="mt-3 mb-3 mr-2" alt="PRMSU Logo">
     </div>
-        <h5 class="text-dark text-center">{{Auth::user()->school->name}}</h5>
+        <h5 class="text-dark text-center">{{Auth::user()->roles()->pluck('id')[0] == 1 ? 'Administrator' : Auth::user()->user_school->name
+        }}</h5>
         <hr class="mt-4 ">
         <ul class="nav">
          <li class="nav-title text-black">{{ trans('brackets/admin-ui::admin.sidebar.content') }}</li>

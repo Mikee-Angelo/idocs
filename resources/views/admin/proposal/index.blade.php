@@ -82,7 +82,9 @@
                                         </td>
 
                                         <td>@{{ item.id }}</td>
-                                        <td>@{{ item.prop_no }}</td>
+                                        <td>
+                                            <a :href="item.resource_url + '/'">@{{ item.prop_no }}</a>
+                                        </td>
                                         <td>
                                               <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
                                             <span v-else-if="item.status == 1" class="badge badge-pill badge-success text-white">Approved</span>

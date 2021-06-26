@@ -70,7 +70,7 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('budget_source'), 'has-success': fields.budget_source && fields.budget_source.valid }">
     <label for="budget_source" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.gad-plan-list.columns.budget_source') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-          <input class="form-control"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('budget_source'), 'form-control-success': fields.budget_source && fields.budget_source.valid}" id="budget_source" name="budget_source" placeholder="{{ trans('admin.gad-plan-list.columns.budget_source') }}" value="GAD" disabled/>
+          <input class="form-control"  v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('budget_source'), 'form-control-success': fields.budget_source && fields.budget_source.valid}" id="budget_source" name="budget_source" placeholder="{{ trans('admin.gad-plan-list.columns.budget_source') }}" value="GAA" disabled/>
         
         <div v-if="errors.has('budget_source')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('budget_source') }}</div>
     </div>

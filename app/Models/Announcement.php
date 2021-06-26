@@ -4,9 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\EventType; 
+use Brackets\Media\HasMedia\AutoProcessMediaTrait;
+use Brackets\Media\HasMedia\HasMediaCollectionsTrait;
+use Brackets\Media\HasMedia\HasMediaThumbsTrait;
+use Brackets\Media\HasMedia\ProcessMediaTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Announcement extends Model
+class Announcement extends Model implements HasMedia
 {
+    use AutoProcessMediaTrait;
+    use HasMediaCollectionsTrait;
+    use HasMediaThumbsTrait;
+    use ProcessMediaTrait;
+
     protected $fillable = [
         'event_type_id',
         'header_img',
@@ -16,7 +27,7 @@ class Announcement extends Model
         'starts_at',
         'ends_at',
         'model_id'
-    
+        
     ];
     
     
@@ -29,6 +40,52 @@ class Announcement extends Model
     ];
     
     protected $appends = ['resource_url'];
+
+    public function getAvatarThumbUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('header', 'thumb_150') ?: null;
+    }
+    
+    /* ************************ MEDIA ************************ */
+
+    /**
+     * Register media collections
+     */
+    public function registerMediaCollections(): void {
+        $this->addMediaCollection('header')
+            ->disk('media')
+            ->accepts('image/*')
+            ->maxNumberOfFiles(20)
+            ->canView('media.view');
+    }
+
+    /**
+     * Register media conversions
+     *
+     * @param Media|null $media
+     * @throws InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->autoRegisterThumb200();
+    }
+
+     /**
+     * Auto register thumb overridden
+     */
+    public function autoRegisterThumb200()
+    {
+        $this->getMediaCollections()->filter->isImage()->each(function ($mediaCollection) {
+            $this->addMediaConversion('thumb_200')
+                ->width(200)
+                ->height(200)
+                ->fit('crop', 200, 200)
+                ->optimize()
+                ->performOnCollections($mediaCollection->getName())
+                ->nonQueued();
+        });
+    }
+
 
     /* ************************ ACCESSOR ************************* */
 

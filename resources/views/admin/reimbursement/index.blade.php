@@ -83,7 +83,9 @@
                                         </td>
 
                                     <td>@{{ item.id }}</td>
-                                    <td>@{{ item.rmb_no }}</td>
+                                    <td>
+                                        <a :href="item.resource_url + '/'">@{{ item.rmb_no }}</a>
+                                    </td>
                                     
                                         @if(Auth::user()->roles()->pluck('id')[0] == 1)
                                             <td>@{{ item.admin_user.first_name + ' ' + item.admin_user.last_name }}</td>

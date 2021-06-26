@@ -119,9 +119,12 @@ class AnnouncementsController extends Controller
     {
         $this->authorize('admin.announcement.edit', $announcement);
 
+        $event_type = EventType::get(); 
+
 
         return view('admin.announcement.edit', [
             'announcement' => $announcement,
+            'event_type' => $event_type,
         ]);
     }
 

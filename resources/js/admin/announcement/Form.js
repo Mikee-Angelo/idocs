@@ -14,7 +14,8 @@ Vue.component('announcement-form', {
                 ends_at:  '' ,
                 created_by:  '' ,
                 
-            }
+            },
+            mediaCollections: ['header']
         }
     }
 

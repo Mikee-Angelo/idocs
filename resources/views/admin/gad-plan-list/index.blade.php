@@ -14,27 +14,16 @@
                 <div class="card">
                     <div class="card-header">
                         @if(Auth::user()->roles()->pluck('id')[0] == 2 )
-
                             @if($status == 0)
                                 @if(count($data) > 0)
-                                    <form @submit.prevent="submitStatus('submit-status', true)">
-                                        <button type="submit" class="btn btn-success btn-spinner btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-send"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.submit') }}</button>
+                                    <form @submit.prevent="submitStatus('gad-plans/submit-status', true)">
+                                        <button type="submit" class="btn btn-success btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-send"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.submit') }}</button>
                                     </form>
 
                                  @endif
                                   <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0 mr-2" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
                             @endif
                           
-                           
-                        @else
-                            @if($status <= 1 || is_null($status))
-                                <form @submit.prevent="changeStatus('change-status', true)">
-                                    <button type="submit"  class="btn btn-success  btn-sm pull-right m-b-0 text-white ml-2" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-check"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.accept') }}</button>
-                                </form>
-                                <form @submit.prevent="changeStatus('change-status', false)">
-                                    <button type="submit" class="btn btn-danger btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-close"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.decline') }}</button>
-                                </form>
-                            @endif
                         @endif
                         <i class="fa fa-align-justify"></i> {{ trans('admin.gad-plan-list.actions.index') }}
 

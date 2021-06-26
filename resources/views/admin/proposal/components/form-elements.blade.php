@@ -49,7 +49,7 @@
         </div>
         <hr class="mt-0" style="border:solid thin black">
 
-        <h5 class="text-center font-weight-bold mb-5">PROPOSAL LETTER</h5>
+        <h5 class="text-center font-weight-bold mb-5">PROJECT PROPOSAL</h5>
 
         <div>
             <wysiwyg class="form-control" v-model="form.proposal_body" v-validate="'required'" id="proposal_body"

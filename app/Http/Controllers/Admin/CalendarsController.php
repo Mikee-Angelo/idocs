@@ -81,7 +81,12 @@ class CalendarsController extends Controller
             }',
             'eventClick' => 'function(event){
                 console.log(event.event.extendedProps.img);
-                $("#headerImage").css("background-image", "url("+ event.event.extendedProps.img +")");
+                if( event.event.extendedProps.img != null){
+                    $("#headerImage").css("background-image", "url("+ event.event.extendedProps.img +")");
+                }else{
+                    $("#headerImage").remove();
+                }
+                
                 $("#modalTitle").html(event.event.title);
                 $("#eventStart").html( event.event.start);
                 $("#eventEnd").html( event.event.end);

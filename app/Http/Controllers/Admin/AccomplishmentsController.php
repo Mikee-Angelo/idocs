@@ -34,7 +34,14 @@ class AccomplishmentsController extends Controller
     public function index(IndexAccomplishment $request)
     {
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(Accomplishment::class)->processRequestAndGet(
+        $data = AdminListing::create(Accomplishment::class)
+        ->modifyQuery(function($query) use ($request){
+
+            if (Auth::user()->roles()->pluck('id')[0] == 2) {
+                $query->where('admin_users_id', Auth::user()->id);    
+            }
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
@@ -88,9 +95,9 @@ class AccomplishmentsController extends Controller
         ])->first();
         
         if(!is_null($gad)){ 
+            $sanitized['admin_users_id'] = Auth::user()->id;
             $sanitized['gad_plans_id'] = $gad->id;
             $accomplishment = Accomplishment::create($sanitized);
-
         }
         if ($request->ajax()) {
             return ['redirect' => url('admin/accomplishments'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -105,9 +112,22 @@ class AccomplishmentsController extends Controller
      * @throws AuthorizationException
      * @return void
      */
-    public function show(Accomplishment $accomplishment)
+    public function show($id)
     {
-        $this->authorize('admin.accomplishment.show', $accomplishment);
+        // $this->authorize('admin.accomplishment.show', $accomplishment);
+        $data = Accomplishment::where([
+            ['id', '=', $id]
+        ])->first();
+        
+        if(Auth::user()->roles()->pluck('id')[0] == 2){ 
+            $data->where('admin_users_id', Auth::user()->id);
+        }
+
+        if(is_null($data)){ 
+            abort(404);
+        }
+
+        return view('admin.accomplishment.show', ['data' => $data]);
 
         // TODO your code goes here
     }

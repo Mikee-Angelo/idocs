@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.accomplishment.actions.index') }}
-                        @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
                             <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/accomplishments/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.accomplishment.actions.create') }}</a>
                         @endif
                         </div>
@@ -78,12 +78,14 @@
                                         </td>
 
                                         <td>@{{ item.id }}</td>
-                                        <td>@{{ item.header }}</td>
+                                        <td>
+                                            <a :href="item.resource_url + '/'">@{{ item.header }}</a>
+                                        </td>
                                         <td>@{{ item.created_at || datetime }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">
-                                                @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                                                @if(Auth::user()->roles()->pluck('id')[0] == 2)
 
                                                     {{-- <div class="col-auto">
                                                         <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
@@ -111,7 +113,10 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
+                                
+                            @if(Auth::user()->roles()->pluck('id')[0] == 2)
                                 <a class="btn btn-primary btn-spinner" href="{{ url('admin/accomplishments/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.accomplishment.actions.create') }}</a>
+                            @endif
                             </div>
                         </div>
                     </div>

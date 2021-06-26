@@ -28,4 +28,8 @@ class Proposal extends Model
     {
         return url('/admin/proposals/'.$this->getKey());
     }
+
+    public function gad_plan(){
+        return $this->belongsTo(GadPlan::class, 'gad_plans_id');
+    }
 }

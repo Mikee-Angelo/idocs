@@ -36,17 +36,30 @@ class ProposalsController extends Controller
 
         $status = null ;
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(Proposal::class)->processRequestAndGet(
+        $data = AdminListing::create(Proposal::class)
+        ->modifyQuery(function($query) use ($request){
+            if (Auth::user()->roles()->pluck('id')[0] == 2) {
+                $gad = GadPlan::where([
+                    ['status', '>', 0],
+                    ['model_id', '=', Auth::user()->id],
+                    ['implement_year', '=', date('Y')]
+                ])->first();
+                $query->where('gad_plans_id', '=', !is_null($gad) ? $gad->id : null);   
+            }
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'gad_plans_id', 'prop_no','status',],
+            ['id', 'gad_plans_id', 'prop_no','status'],
 
             // set columns to searchIn
-            ['id', 'status']
+            ['id', 'status'],
+            function($query) use ($request) {
+                $query->with(['gad_plan']);
+            }
         );
-
         $gad = GadPlan::where([
                 ['status', '>', 0],
                 ['model_id', '=', Auth::user()->id]
@@ -94,7 +107,7 @@ class ProposalsController extends Controller
 
         $proposal = Proposal::first();
         //Find the latest gad plan that is approved by the admin
-        $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 2])->whereYear('created_at', date('Y'))->first();
+        $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 2, 'implement_year' => date('Y')])->first();
 
         $sanitized['gad_plans_id'] = $gad->id;
         $tmp = 'PROP'.Auth::user()->id.'-'.date('Y').'-';
@@ -102,8 +115,8 @@ class ProposalsController extends Controller
         if(is_null($proposal)){ 
             $sanitized['prop_no'] = $tmp.(10000 + 1);
         }else{ 
-            $rmb = explode('-', $rb->rmb_no);
-            $sanitized['prop_no'] = $tmp.($proposal[1] + 1);
+            $proposal = explode('-', $proposal->prop_no);
+            $sanitized['prop_no'] = $tmp.($prop[2] + 1);
         }
 
         // Store the Proposal
@@ -124,10 +137,13 @@ class ProposalsController extends Controller
      * @throws AuthorizationException
      * @return void
      */
-    public function show(Proposal $proposal)
+    public function show($id)
     {
-        $this->authorize('admin.proposal.show', $proposal);
+        $data = Proposal::where([
+            ['id', '=', $id], 
+        ])->firstOrFail();
 
+        return view('admin.proposal.show',['data' => $data]);
         // TODO your code goes here
     }
 
