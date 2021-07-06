@@ -1,0 +1,452 @@
+{
+  "id": "9cdc2839-2f84-42d4-ac28-76cb8fa39d89",
+  "version": "2.0",
+  "name": "i-docs",
+  "url": "http://localhost:8000/admin/proposals/create",
+  "tests": [{
+    "id": "d6376f8d-d931-4b44-866d-06499592eba9",
+    "name": "Create GAD Lists",
+    "commands": [{
+      "id": "bc1d7324-aeab-411f-a2c7-198725504741",
+      "comment": "",
+      "command": "open",
+      "target": "/admin/gad-plan-lists/create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6d741f43-672d-48dd-8d9e-6321e39856ee",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1053",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ecb2c9da-d76b-43b9-832a-01bdd97a4a15",
+      "comment": "",
+      "command": "click",
+      "target": "id=gad_issue_mandate",
+      "targets": [
+        ["id=gad_issue_mandate", "id"],
+        ["name=gad_issue_mandate", "name"],
+        ["css=#gad_issue_mandate", "css:finder"],
+        ["xpath=//textarea[@id='gad_issue_mandate']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "571929ce-23c3-4564-bf69-ade60b6c125f",
+      "comment": "",
+      "command": "type",
+      "target": "id=gad_issue_mandate",
+      "targets": [
+        ["id=gad_issue_mandate", "id"],
+        ["name=gad_issue_mandate", "name"],
+        ["css=#gad_issue_mandate", "css:finder"],
+        ["xpath=//textarea[@id='gad_issue_mandate']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Low level of awareness on GAD issues and concerns on legal mandates on GAD among faculty and staff / RA 10070"
+    }, {
+      "id": "e50240fc-00a0-47ec-83d6-f0d15ddddf1d",
+      "comment": "",
+      "command": "click",
+      "target": "id=cause_of_issue",
+      "targets": [
+        ["id=cause_of_issue", "id"],
+        ["name=cause_of_issue", "name"],
+        ["css=#cause_of_issue", "css:finder"],
+        ["xpath=//textarea[@id='cause_of_issue']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[2]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f2c8d26-027c-4d12-bb81-06c02c8a3831",
+      "comment": "",
+      "command": "type",
+      "target": "id=cause_of_issue",
+      "targets": [
+        ["id=cause_of_issue", "id"],
+        ["name=cause_of_issue", "name"],
+        ["css=#cause_of_issue", "css:finder"],
+        ["xpath=//textarea[@id='cause_of_issue']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[2]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/textarea", "xpath:position"]
+      ],
+      "value": "Lack of opportunity to learn Gad mandates and core messages \\n\\n"
+    }, {
+      "id": "0a5ed34a-8037-4896-9e48-98cdb84a2ac0",
+      "comment": "",
+      "command": "click",
+      "target": "id=gad_statement_objective",
+      "targets": [
+        ["id=gad_statement_objective", "id"],
+        ["name=gad_statement_objective", "name"],
+        ["css=#gad_statement_objective", "css:finder"],
+        ["xpath=//textarea[@id='gad_statement_objective']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[3]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "89d1cb04-0707-41fb-92bc-031d534265d2",
+      "comment": "",
+      "command": "type",
+      "target": "id=gad_statement_objective",
+      "targets": [
+        ["id=gad_statement_objective", "id"],
+        ["name=gad_statement_objective", "name"],
+        ["css=#gad_statement_objective", "css:finder"],
+        ["xpath=//textarea[@id='gad_statement_objective']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[3]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/textarea", "xpath:position"]
+      ],
+      "value": "To promote gender equality in the classroom setting and in the workplace \\n\\n"
+    }, {
+      "id": "e0a1bda9-3e31-4b70-99ac-a782f9e6bd63",
+      "comment": "",
+      "command": "select",
+      "target": "id=relevant_agencies",
+      "targets": [],
+      "value": "label=MFO: 2"
+    }, {
+      "id": "4af506d3-d9a2-401a-a83b-a7ce08f5a770",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "id=relevant_agencies",
+      "targets": [
+        ["id=relevant_agencies", "id"],
+        ["name=relevant_agencies", "name"],
+        ["css=#relevant_agencies", "css:finder"],
+        ["xpath=//select[@id='relevant_agencies']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[4]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "-699,-399"
+    }, {
+      "id": "e72f6dce-0713-4ba9-b8e4-fbbceb0c7c84",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "id=relevant_agencies",
+      "targets": [
+        ["id=relevant_agencies", "id"],
+        ["name=relevant_agencies", "name"],
+        ["css=#relevant_agencies", "css:finder"],
+        ["xpath=//select[@id='relevant_agencies']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[4]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "-699,-399"
+    }, {
+      "id": "16454627-e5ce-4e9f-9cfd-087efce58e7c",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "id=relevant_agencies",
+      "targets": [
+        ["id=relevant_agencies", "id"],
+        ["name=relevant_agencies", "name"],
+        ["css=#relevant_agencies", "css:finder"],
+        ["xpath=//select[@id='relevant_agencies']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[4]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "-699,-399"
+    }, {
+      "id": "cdaaa123-da49-4177-96c2-a1ee8db0de77",
+      "comment": "",
+      "command": "click",
+      "target": "id=relevant_agencies",
+      "targets": [
+        ["id=relevant_agencies", "id"],
+        ["name=relevant_agencies", "name"],
+        ["css=#relevant_agencies", "css:finder"],
+        ["xpath=//select[@id='relevant_agencies']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[4]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de00a83b-63a0-499f-8e9d-1ad476e6e8df",
+      "comment": "",
+      "command": "click",
+      "target": "id=gad_activity",
+      "targets": [
+        ["id=gad_activity", "id"],
+        ["name=gad_activity", "name"],
+        ["css=#gad_activity", "css:finder"],
+        ["xpath=//textarea[@id='gad_activity']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[5]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ceb46a0-0807-43fd-a56d-028c4ea30cdb",
+      "comment": "",
+      "command": "type",
+      "target": "id=gad_activity",
+      "targets": [
+        ["id=gad_activity", "id"],
+        ["name=gad_activity", "name"],
+        ["css=#gad_activity", "css:finder"],
+        ["xpath=//textarea[@id='gad_activity']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[5]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/textarea", "xpath:position"]
+      ],
+      "value": "Sub-Project 2.1\\nSeminar on Gender Sensitivity \\n"
+    }, {
+      "id": "1870f8c3-aec2-4b70-a768-b6540be6b7c1",
+      "comment": "",
+      "command": "click",
+      "target": "id=indicator_target",
+      "targets": [
+        ["id=indicator_target", "id"],
+        ["name=indicator_target", "name"],
+        ["css=#indicator_target", "css:finder"],
+        ["xpath=//textarea[@id='indicator_target']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[6]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ee06af9-1d0c-468e-a74a-4f7f06433921",
+      "comment": "",
+      "command": "type",
+      "target": "id=indicator_target",
+      "targets": [
+        ["id=indicator_target", "id"],
+        ["name=indicator_target", "name"],
+        ["css=#indicator_target", "css:finder"],
+        ["xpath=//textarea[@id='indicator_target']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[6]/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/textarea", "xpath:position"]
+      ],
+      "value": "Number of seminars to conduct = 4\\n740 students\\n"
+    }, {
+      "id": "47c22e2a-4def-4de4-b9aa-22a0101d9150",
+      "comment": "",
+      "command": "click",
+      "target": "id=budget_requirement",
+      "targets": [
+        ["id=budget_requirement", "id"],
+        ["name=budget_requirement", "name"],
+        ["css=#budget_requirement", "css:finder"],
+        ["xpath=//input[@id='budget_requirement']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[7]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab3d225b-61b9-4537-97f9-e284e2db32d9",
+      "comment": "",
+      "command": "type",
+      "target": "id=budget_requirement",
+      "targets": [
+        ["id=budget_requirement", "id"],
+        ["name=budget_requirement", "name"],
+        ["css=#budget_requirement", "css:finder"],
+        ["xpath=//input[@id='budget_requirement']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[7]/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "70000"
+    }, {
+      "id": "004db959-b57e-42e0-83e4-cceab1f64bc0",
+      "comment": "",
+      "command": "select",
+      "target": "id=responsible_unit",
+      "targets": [],
+      "value": "label=Test High School"
+    }, {
+      "id": "cd8d8a29-81c7-43ec-bfa7-86e7e25a92bc",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "id=responsible_unit",
+      "targets": [
+        ["id=responsible_unit", "id"],
+        ["name=responsible_unit", "name"],
+        ["css=#responsible_unit", "css:finder"],
+        ["xpath=//select[@id='responsible_unit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[9]/div/select", "xpath:idRelative"],
+        ["xpath=//div[9]/div/select", "xpath:position"]
+      ],
+      "value": "-699,-696"
+    }, {
+      "id": "c8d8d5e5-5330-4384-afcf-9dd3e4f86771",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "id=responsible_unit",
+      "targets": [
+        ["id=responsible_unit", "id"],
+        ["name=responsible_unit", "name"],
+        ["css=#responsible_unit", "css:finder"],
+        ["xpath=//select[@id='responsible_unit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[9]/div/select", "xpath:idRelative"],
+        ["xpath=//div[9]/div/select", "xpath:position"]
+      ],
+      "value": "-699,-696"
+    }, {
+      "id": "9fd8fabd-e76b-45b9-9547-e62b275e1147",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "id=responsible_unit",
+      "targets": [
+        ["id=responsible_unit", "id"],
+        ["name=responsible_unit", "name"],
+        ["css=#responsible_unit", "css:finder"],
+        ["xpath=//select[@id='responsible_unit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[9]/div/select", "xpath:idRelative"],
+        ["xpath=//div[9]/div/select", "xpath:position"]
+      ],
+      "value": "-699,-696"
+    }, {
+      "id": "79c7bf06-4fa9-4068-88fc-dcab7da74535",
+      "comment": "",
+      "command": "click",
+      "target": "id=responsible_unit",
+      "targets": [
+        ["id=responsible_unit", "id"],
+        ["name=responsible_unit", "name"],
+        ["css=#responsible_unit", "css:finder"],
+        ["xpath=//select[@id='responsible_unit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[9]/div/select", "xpath:idRelative"],
+        ["xpath=//div[9]/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8dbc1cd1-825a-4a22-9d29-ddc6a5e47de3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Save')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ec34c5cc-0efa-4919-b16a-f3b497a51b0e",
+    "name": "Create Proposal",
+    "commands": [{
+      "id": "241a5b7b-8f30-498d-a082-0e8dcd241d62",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/admin/proposals/create",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d9254f38-3c7f-41f0-bc2e-03c710f9b37b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1053",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c9bacc8b-2ed5-4637-916e-38c1e27dba71",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "css=div:nth-child(3) > .trumbowyg-box > .trumbowyg-editor",
+      "targets": [
+        ["css=div:nth-child(3) > .trumbowyg-box > .trumbowyg-editor", "css:finder"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f092bde4-7a4a-457a-a57c-52778940a502",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.trumbowyg-editor > p",
+      "targets": [
+        ["css=.trumbowyg-editor > p", "css:finder"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div/div/div[2]/div/div[2]/p", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/p", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "494ef11a-5dd2-4953-92a4-15eb37ce0269",
+      "comment": "",
+      "command": "click",
+      "target": "css=div:nth-child(3) > .trumbowyg-box > .trumbowyg-editor",
+      "targets": [
+        ["css=div:nth-child(3) > .trumbowyg-box > .trumbowyg-editor", "css:finder"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "09328bc0-19db-49db-ae8e-7ee9bd356de7",
+      "comment": "",
+      "command": "editContent",
+      "target": "css=div:nth-child(3) > .trumbowyg-box > .trumbowyg-editor",
+      "targets": [
+        ["css=div:nth-child(3) > .trumbowyg-box > .trumbowyg-editor", "css:finder"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "<p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">March 15, 2021</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">ROY N. VILLALOBOS, D.P.A.</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">University President</span></p><p><strong><br><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Dear Sir:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The undersigned has the honor to submit for your consideration and appropriate action the proposal for the conduct of Webinar on </span><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Self Defense Training </span><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;on March 26, 2021. This is in connection with the University-wide activity of the </span><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2021 National Women’s Month Celebration </span><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">which is linked in the national advocacy campaign.</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The amount attributed of </span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">P 29, 660.00 for personnel expenses may be</span><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"> charged to the mandatory minimum 5% budgetary allocation for Gender and Development programs, projects, and activities as per the pertinent guidelines of the DBM, the NEDA, and the PCW.</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Very truly yours,</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">MARIE CELIA R. AGLIBOT</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">GAD Coordinator&nbsp;</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Noted:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">IVY H. CASUPANAN, Ed.D.</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Campus Director</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Recommending Approval:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">EDEN T. BELTRAN, Ph.D.</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">GAD Director</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Certified Funds Available RAF GAA</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">ROBERTO C. BRIONES JR.</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">University Accountant IV</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Approved:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">ROY N. VILLALOBOS, D.P.A.</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">University President</span></p><p><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><br></span></p>"
+    }, {
+      "id": "119157e3-d68f-4a38-8a4d-2432c2f4ced7",
+      "comment": "",
+      "command": "click",
+      "target": "css=div:nth-child(4) .trumbowyg-editor",
+      "targets": [
+        ["css=div:nth-child(4) .trumbowyg-editor", "css:finder"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[2]/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "23c778e1-ef4b-498e-88dd-3bbc7c4e7dce",
+      "comment": "",
+      "command": "editContent",
+      "target": "css=div:nth-child(4) .trumbowyg-editor",
+      "targets": [
+        ["css=div:nth-child(4) .trumbowyg-editor", "css:finder"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[2]/div[2]/div/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": "<p dir=\"ltr\" style=\"line-height:1.2;text-indent: -144pt;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 0pt 144pt;\"><span style=\"font-size:11pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">PROJECT TITLE &nbsp; &nbsp; &nbsp; </span><span style=\"font-size:11pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; Webinar On Self Defense Training&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">PROPONENT</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">S</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; GAD office/ PRMSU Castillejos</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">DATE&nbsp; </span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; March 26, 2021</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">DURATION</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; One (1) DAY</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-indent: -106.35pt;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 0pt 106.35pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">VENUE</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; PRMSU- CASTILLEJOS CAMPUS</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Attribution</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; P 29, 660.00</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Honorarium</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; P</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Total Budget Requested </span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; P</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;border-bottom:solid #000000 1.5pt;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 1pt 0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Total</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:&nbsp; &nbsp; P&nbsp;</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">RATIONALE</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The 18-Day Campaign to End Violence Against Women (VAW) is observed annually from November 25 to December 12 to raise awareness among all stakeholders that VAW is a public issue of national concern. It supports the Philippine Government’s goal to protect the human rights of women and its commitment to address all forms of VAW. The following issuances provide the national legal mandates for the annual campaign:</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;</span></p><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px;\"><li dir=\"ltr\" style=\"list-style-type:disc;font-size:10pt;font-family:'Noto Sans Symbols',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: -6pt;\" aria-level=\"1\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 15pt 0pt;\" role=\"presentation\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Proclamation 1172 s. 2006 – Declaring 25 November to 12 December as the 18-Day Campaign to End Violence Against Women (VAW)</span></p></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:10pt;font-family:'Noto Sans Symbols',sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: -6pt;\" aria-level=\"1\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:15pt;\" role=\"presentation\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Republic Act 10398 (2013) – Declaring November 25 of Every Year as National Consciousness Day for the Elimination of Violence Against Women and Children</span></p></li></ul><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The 16 Days of Activism Against Gender-Based Violence begun in 1991, linking November 25 (International Day Against VAW) and December 10 (International Human Rights Day) to emphasize that VAW is a human rights violation. It is further strengthened with the launching in 2008 of the United Nations (UN) Secretary-General’s Unite to End VAW Campaign which envisions a world free from all forms of violence against women and girls. For the UN, this vision can only be realized through meaningful actions and on-going political commitments of national governments, backed by adequate resources.</span></p><p dir=\"ltr\" style=\"line-height:1.2;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The Philippine government has participated in this worldwide campaign to eliminate VAW since 2002. Recognizing that human trafficking is a form of VAW, Presidential Proclamation 1172 s. 2006 extended the national campaign to 18 days, to include December 12, a historic date that marked the start of opening for signature in year 2000 of the UN Protocol to Prevent, Suppress and Punish Trafficking in Persons, Especially Women and Children, supplementing the UN Convention Against Transnational Organized Crime.&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\">&nbsp;</p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">In 2016, the Inter-Agency Council on Violence Against Women (IACVAWC) adopted the theme “VAW-free community starts with Me” for the 18-Day Campaign to End Violence Against Women (VAW). The Council also agreed that the said theme shall be used every year from 2016 to 2021.</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\">&nbsp;</p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The theme shifts the 18-Day Campaign To End VAW to positive advocacy as it enjoins everyone to pursue the common vision of a VAW-free community, and highlights what can be done to achieve such.&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\">&nbsp;</p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The 2017 Campaign to End VAW shall focus on Primary Prevention, to reduce incidents of VAW in the country.&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">The 2017 campaign approach is to make people understand VAW from the point of view of victim-survivors. It is hoped that such deeper understanding would ignite compassion from stakeholders, so that they would not commit, condone, or remain silent about VAW. For service providers, such compassion towards victim-survivors would encourage them to provide better services to their clients.</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt;\">&nbsp;</p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">OBJECTIVES:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">This activity aims to:&nbsp;</span></p><p><strong><br></strong></p><ol style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px;\"><li dir=\"ltr\" style=\"list-style-type:decimal;font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 18pt;\" aria-level=\"1\"><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\" role=\"presentation\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Promote awareness on the different issues of women and girls in the society.</span></p></li><li dir=\"ltr\" style=\"list-style-type:decimal;font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 18pt;\" aria-level=\"1\"><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\" role=\"presentation\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Involve the faculty, staff and students to participate in the campaign to end violence against women.&nbsp;</span></p></li><li dir=\"ltr\" style=\"list-style-type:decimal;font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 18pt;\" aria-level=\"1\"><p dir=\"ltr\" style=\"line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;\" role=\"presentation\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Increase the level of awareness and responsiveness of the university and community on the issues of violence against women.&nbsp;</span></p></li></ol><p><strong><br><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">PROGRAM OF ACTIVITIES:</span></p><p><strong><br><br></strong></p><p dir=\"ltr\" style=\"margin-left:-5.4pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"226\"><col width=\"132\"><col width=\"164\"><col width=\"115\"></colgroup><tbody><tr style=\"height:21.05pt\"><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Activity</span></p></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Date</span></p></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Venue</span></p></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-left: -5.4pt;margin-right: -5.4pt;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Responsible Unit</span></p></td></tr><tr style=\"height:51.2pt\"><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-right: -3.95pt;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Self Defense Training&nbsp;</span></p><br></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">March 26 ,2021</span></p></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Facebook Live</span></p></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">GAD Office/Castillejos Campus</span></p><br></td></tr></tbody></table></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">BUDGETARY REQUIREMENTS:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"margin-left:-5.4pt;\" align=\"left\"><table style=\"border:none;border-collapse:collapse;\"><colgroup><col width=\"368\"><col width=\"274\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">DESCRIPTION</span></p></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">AMOUNT</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1. Personnel Services</span></p><p dir=\"ltr\" style=\"line-height:1.2;margin-left: 8.45pt;text-indent: -27.55pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 0pt 27.55pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Attribution of 22 Faculty-Instructor 1</span></p><p dir=\"ltr\" style=\"line-height:1.2;margin-left: 8.45pt;text-indent: -27.55pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 0pt 27.55pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">7 Personnel&nbsp;&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.2;margin-left: 8.45pt;text-indent: -27.55pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;padding:0pt 0pt 0pt 27.55pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Total Attribution</span></p></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><br><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">P &nbsp; 26,048.00</span></p><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">P &nbsp; &nbsp; 3612.00</span></p><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">P &nbsp; 29, 660.00</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><br></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2. Honorarium of resource speaker</span></p><br></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><br></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><br></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><br></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><br></td><td style=\"border-left:solid #000000 0.5pt;border-right:solid #000000 0.5pt;border-bottom:solid #000000 0.5pt;border-top:solid #000000 0.5pt;vertical-align:top;padding:0pt 5.4pt 0pt 5.4pt;overflow:hidden;overflow-wrap:break-word;\"><br></td></tr></tbody></table></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><p><strong><br><br><br></strong></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">*</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">To be charged against the University GAD budget as per Section 28 of the 2016 General &nbsp; Appropriations Act.</span></p><p><strong><br><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Prepared by:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">MARIE CELIA R. AGLIBOT</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">GAD Coordinator</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Noted by:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">IVY H. CASUPANAN, Ed. D.</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Campus Director</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Recommending Approval:</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">EDEN T. BELTRAN, Ph. D.</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">University GAD Director</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Certified Funds Available: RAFF-GAA</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">ROBERTO C. BRIONES, JR.</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">University Accountant 1V</span></p><p dir=\"ltr\" style=\"line-height:1.2;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">&nbsp;&nbsp;&nbsp;&nbsp;</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Approved:</span></p><p><strong><br></strong></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">ROY N. VILLALOBOS, D.P.A.</span></p><p dir=\"ltr\" style=\"line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">University President</span><span style=\"font-size:12pt;font-family:'Times New Roman';color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\"><span class=\"Apple-tab-span\" style=\"white-space:pre;\">\t</span></span></p><p><br></p>"
+    }, {
+      "id": "abaea0fd-0e73-480f-8157-d31e3eec481a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//form/div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Save')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b011eda6-42de-451f-bdf5-2f8dddcad25a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/div[3]/div/form/div[3]/button", "xpath:idRelative"],
+        ["xpath=//form/div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Save')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0830a685-8ef8-434c-b523-fbcaa6555a98",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["d6376f8d-d931-4b44-866d-06499592eba9"]
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}

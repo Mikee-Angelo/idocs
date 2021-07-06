@@ -19,9 +19,12 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
+
+use App\Mail\GadPlanReview;
 
 class GadPlansController extends Controller
 {
@@ -101,10 +104,11 @@ class GadPlansController extends Controller
         // Store the GadPlan
         $gadPlan = GadPlan::create($sanitized);
 
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/gad-plans'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
-
+            
         return redirect('admin/gad-plans');
     }
 
@@ -209,6 +213,13 @@ class GadPlansController extends Controller
     
         $gadPlan->status = $request->status ? 2 : 3;
         $gadPlan->save(); 
+        
+        if($request->status == 2){ 
+            Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($gadPlan->implement_year));
+        }else{ 
+            Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        }
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/gad-plans'),
@@ -240,6 +251,8 @@ class GadPlansController extends Controller
 
             $gad->status = 1;
             $gad->save(); 
+
+            Mail::to(Auth::user()->email)->send(new GadPlanReview($gad->implement_year));
 
             if ($request->ajax()) {
                 return [

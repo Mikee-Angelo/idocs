@@ -20,8 +20,10 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendingSuccessProposal;
 use Illuminate\View\View;
-
+use PDF;
 class ProposalsController extends Controller
 {
 
@@ -105,7 +107,7 @@ class ProposalsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
-        $proposal = Proposal::first();
+        $proposal = Proposal::latest('id')->first();
         //Find the latest gad plan that is approved by the admin
         $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 2, 'implement_year' => date('Y')])->first();
 
@@ -116,15 +118,18 @@ class ProposalsController extends Controller
             $sanitized['prop_no'] = $tmp.(10000 + 1);
         }else{ 
             $proposal = explode('-', $proposal->prop_no);
-            $sanitized['prop_no'] = $tmp.($prop[2] + 1);
+            $sanitized['prop_no'] = $tmp.($proposal[2] + 1);
         }
 
         // Store the Proposal
         $proposal = Proposal::create($sanitized);
 
+        Mail::to(Auth::user()->email)->send(new SendingSuccessProposal($sanitized['prop_no']));
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
+
 
         return redirect('admin/proposals');
 
@@ -137,6 +142,19 @@ class ProposalsController extends Controller
      * @throws AuthorizationException
      * @return void
      */
+    public function export($id)
+    {
+        $data = Proposal::where([
+            ['id', '=', $id], 
+        ])->firstOrFail();
+
+        $pdf = PDF::loadView('admin.proposal.pdf', ['data' => $data])
+        ->setPaper('a4', 'portrait');
+
+        return $pdf->stream();
+        // TODO your code goes here
+    }
+
     public function show($id)
     {
         $data = Proposal::where([

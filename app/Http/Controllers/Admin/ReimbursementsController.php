@@ -20,7 +20,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-
+use PDF;
 class ReimbursementsController extends Controller
 {
 
@@ -134,6 +134,23 @@ class ReimbursementsController extends Controller
          
         return view('admin.reimbursement.show' , ['data' => $data]);
         // TODO your code goes here
+    }
+
+    public function export($id){ 
+        $data = Reimbursement::where([
+            ['id', '=', $id],
+         ])->first();
+
+        if(Auth::user()->roles()->pluck('id')[0] == 2){ 
+            $data->where('admin_user_id', Auth::user()->id);
+        }
+
+        $pdf = PDF::loadView('admin.reimbursement.pdf', ['data' => $data])
+        ->setPaper('a4');
+
+        return $pdf->stream();
+        // return $pdf->download(Auth::user()->id.'- GADPLAN -'.$data[0]->gad_plan['implement_year'].'.pdf');
+        
     }
 
     /**

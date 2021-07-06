@@ -58,10 +58,9 @@ Route::middleware(['web','auth:admin'])->group(static function () {
             Route::post('/bulk-destroy',                                'GadPlansController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{gadPlan}',                                   'GadPlansController@update')->name('update');
             Route::delete('/{gadPlan}',                                 'GadPlansController@destroy')->name('destroy');
-
             Route::post('/{gadPlan}/change-status',                     'GadPlansController@changeStatus')->name('change-status');
             Route::get('/{gadPlan}/items',                              'GadPlanListsController@show')->name('index');        
-          
+            Route::get('/{gadPlan}/export',                          'GadPlanListsController@export')->name('export');
         });
     });
 });
@@ -77,6 +76,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
             Route::post('/bulk-destroy',                                'GadPlanListsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{gadPlanList}',                               'GadPlanListsController@update')->name('update');
             Route::delete('/{gadPlanList}',                             'GadPlanListsController@destroy')->name('destroy');
+            
         });
     });
 });
@@ -153,6 +153,7 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
             Route::post('/{proposal}',                                  'ProposalsController@update')->name('update');
             Route::delete('/{proposal}',                                'ProposalsController@destroy')->name('destroy');
             Route::get('/{proposal}/',                                  'ProposalsController@show')->name('show');
+              Route::get('/{gadPlan}/export',                           'ProposalsController@export')->name('export');
         });
     });
 });
@@ -214,6 +215,8 @@ Route::middleware(['web', 'auth:admin'])->group(static function () {
             Route::post('/{reimbursement}',                             'ReimbursementsController@update')->name('update');
             Route::delete('/{reimbursement}',                           'ReimbursementsController@destroy')->name('destroy');
             Route::get('/{reimbursement}/',                             'ReimbursementsController@show')->name('show');
+            Route::get('/{reimbursement}/export',                       'ReimbursementsController@export')->name('export');
+        
         });
     });
 });
@@ -269,6 +272,21 @@ Route::middleware(['auth:admin'])->group(static function () {
             Route::delete('/{accomplishment}',                          'AccomplishmentsController@destroy')->name('destroy');
             Route::get('/{accomplishment}/',                             'AccomplishmentsController@show')->name('show');
             
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('liquidation-items')->name('liquidation-items/')->group(static function() {
+            Route::get('/',                                             'LiquidationItemsController@index')->name('index');
+            Route::get('/create',                                       'LiquidationItemsController@create')->name('create');
+            Route::post('/',                                            'LiquidationItemsController@store')->name('store');
+            Route::get('/{liquidationItem}/edit',                       'LiquidationItemsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'LiquidationItemsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{liquidationItem}',                           'LiquidationItemsController@update')->name('update');
+            Route::delete('/{liquidationItem}',                         'LiquidationItemsController@destroy')->name('destroy');
         });
     });
 });

@@ -116,14 +116,7 @@
                             <div class="no-items-found" v-if="!collection.length > 0">
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
-                                @if(Auth::user()->roles()->pluck('id')[0] == 2)
-                                    <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                    @if(!is_null($status))
-                                        <a class="btn btn-primary btn-spinner" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
-                                    @else
-                                         <a class="btn btn-primary btn-spinner" href="{{ url('admin/gad-plan-lists') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan.actions.create_gad') }}</a>
-                                    @endif
-                                @endif
+                         
                                 </div>
                         </div>
                     </div>

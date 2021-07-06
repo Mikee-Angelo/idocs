@@ -15,6 +15,7 @@ class School extends Model
         'address',
         'admin_users_id',
         'status',
+        'letter_header',
     
     ];
     

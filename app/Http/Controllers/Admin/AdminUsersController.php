@@ -145,6 +145,7 @@ class AdminUsersController extends Controller
             'adminUser' => $adminUser,
             'activation' => Config::get('admin-auth.activation_enabled'),
             'roles' => Role::where('guard_name', $this->guard)->get(),
+            'schools' => School::get(), 
         ]);
     }
 

@@ -194,3 +194,10 @@ $factory->define(App\Models\Accomplishment::class, static function (Faker\Genera
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\LiquidationItem::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});

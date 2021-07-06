@@ -24,7 +24,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
 class GadPlanListsController extends Controller
 {
 
@@ -166,6 +166,17 @@ class GadPlanListsController extends Controller
         // TODO your code goes here
     }
 
+
+    public function export($id, GadPlanList $gadPlanList){ 
+        $data = $gadPlanList->where('gad_plans_id', $id)->with(['gad_plan', 'relevant_agency', 'sourceofbudget'])->get();
+
+        $pdf = PDF::loadView('admin.gad-plan-list.pdf', ['data' => $data, 'sum' => $data->sum('budget_requirement')])
+        ->setPaper('legal', 'landscape');
+
+        return $pdf->stream();
+        // return $pdf->download(Auth::user()->id.'- GADPLAN -'.$data[0]->gad_plan['implement_year'].'.pdf');
+        
+    }
     /**
      * Show the form for editing the specified resource.
      *

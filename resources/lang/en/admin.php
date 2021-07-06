@@ -38,7 +38,8 @@ return [
             'index' => 'Gad Plans and Budget',
             'create' => 'New Gad Plan',
             'edit' => 'Edit :name',
-            'create_gad' => 'Create Gad Plan first'
+            'create_gad' => 'Create Gad Plan first',
+            'export' => 'Export as PDF',
         ],
 
         'columns' => [
@@ -94,7 +95,8 @@ return [
             'name' => 'Campus Name', 
             'admin_users_id' => 'Created By', 
             'status' => 'Status',
-            'address' => 'Complete Address'
+            'address' => 'Complete Address',
+            'letter_header' => 'Header Address',
         ],
     ],
 

@@ -15,3 +15,4 @@ import './reimbursement';
 import './event-type';
 import './announcement';
 import './accomplishment';
+import './liquidation-item';
