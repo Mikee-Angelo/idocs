@@ -14,8 +14,14 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.proposal.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
-                    </div>
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                            @if(!is_null($status))
+                                <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
+                            @else
+                                  <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan.actions.create_gad') }}</a>
+                            @endif
+                        @endif
+                        </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
                             <form @submit.prevent="">
@@ -42,15 +48,17 @@
                             <table class="table table-hover table-listing">
                                 <thead>
                                     <tr>
-                                        <th class="bulk-checkbox">
+                                        <!-- <th class="bulk-checkbox">
                                             <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
                                             <label class="form-check-label" for="enabled">
                                                 #
                                             </label>
-                                        </th>
+                                        </th> -->
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.proposal.columns.id') }}</th>
-                                        <th is='sortable' :column="'gad_plans_id'">{{ trans('admin.proposal.columns.gad_plans_id') }}</th>
+                                        <th is='sortable' :column="'prop_no'">{{ trans('admin.proposal.columns.prop_no') }}</th>
+                                        <th is='sortable' :column="'status'">{{ trans('admin.proposal.columns.status') }}</th>
+                                        <th is='sortable' :column="'created_at'">{{ trans('admin.proposal.columns.created_at') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -68,19 +76,26 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
-                                        <td class="bulk-checkbox">
+                                        <!-- <td class="bulk-checkbox">
                                             <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                             <label class="form-check-label" :for="'enabled' + item.id">
                                             </label>
-                                        </td>
+                                        </td> -->
 
-                                    <td>@{{ item.id }}</td>
-                                        <td>@{{ item.gad_plans_id }}</td>
-                                        
+                                        <td>@{{ item.id }}</td>
                                         <td>
-                                            <div class="row no-gutters">
+                                            <a :href="item.resource_url + '/'">@{{ item.prop_no }}</a>
+                                        </td>
+                                        <td>
+                                            <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
+                                            <span v-else-if="item.status == 1" class="badge badge-pill badge-success text-white">Approved</span>
+                                        </td>
+                                        
+                                        <td>@{{ item.created_at | datetime }}</td>
+                                        <td>
+                                            <div class="row no-gutters" v-if="item.status == 0">
                                                 <div class="col-auto">
-                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
+                                                    <a class="  btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
                                                 </div>
                                                 <form class="col" @submit.prevent="deleteItem(item.resource_url)">
                                                     <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
@@ -103,9 +118,8 @@
                             <div class="no-items-found" v-if="!collection.length > 0">
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
-                                <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/proposals/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.proposal.actions.create') }}</a>
-                            </div>
+                         
+                                </div>
                         </div>
                     </div>
                 </div>

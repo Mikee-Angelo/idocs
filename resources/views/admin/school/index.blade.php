@@ -19,7 +19,7 @@
                     <div class="card-body" v-cloak>
                         <div class="card-block">
                             <form @submit.prevent="">
-                                <div class="row justify-content-md-between">
+                                <div class="row jupstify-content-md-between">
                                     <div class="col col-lg-7 col-xl-5 form-group">
                                         <div class="input-group">
                                             <input class="form-control" placeholder="{{ trans('brackets/admin-ui::admin.placeholder.search') }}" v-model="search" @keyup.enter="filter('search', $event.target.value)" />
@@ -111,7 +111,6 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/schools/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.school.actions.create') }}</a>
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\EventType; 
 
 class AnnouncementsController extends Controller
 {
@@ -32,17 +34,23 @@ class AnnouncementsController extends Controller
     public function index(IndexAnnouncement $request)
     {
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(Announcement::class)->processRequestAndGet(
+        $data = AdminListing::create(Announcement::class)
+        ->modifyQuery(function($query) use ($request){
+                $query->where('model_id' , Auth::user()->id);
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'event_type_id', 'starts_at', 'ends_at', 'created_by'],
+            ['id', 'title', 'event_type_id', 'starts_at', 'ends_at'],
 
             // set columns to searchIn
-            ['id', 'header_img', 'title', 'description', 'url']
+            ['id', 'header_img', 'title', 'description', 'url'],
+            function ($query) use ($request){ 
+                $query->with('event_types');
+            }
         );
-
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -61,11 +69,11 @@ class AnnouncementsController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create(EventType $event_type)
     {
-        $this->authorize('admin.announcement.create');
+        // $this->authorize('admin.announcement.create');
 
-        return view('admin.announcement.create');
+        return view('admin.announcement.create', ['event_type' => $event_type->get()]);
     }
 
     /**
@@ -77,8 +85,9 @@ class AnnouncementsController extends Controller
     public function store(StoreAnnouncement $request)
     {
         // Sanitize input
+        
         $sanitized = $request->getSanitized();
-
+        $sanitized['model_id'] = Auth::user()->id; 
         // Store the Announcement
         $announcement = Announcement::create($sanitized);
 
@@ -114,9 +123,12 @@ class AnnouncementsController extends Controller
     {
         $this->authorize('admin.announcement.edit', $announcement);
 
+        $event_type = EventType::get(); 
+
 
         return view('admin.announcement.edit', [
             'announcement' => $announcement,
+            'event_type' => $event_type,
         ]);
     }
 

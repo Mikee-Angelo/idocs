@@ -38,6 +38,8 @@ return [
             'index' => 'Gad Plans and Budget',
             'create' => 'New Gad Plan',
             'edit' => 'Edit :name',
+            'create_gad' => 'Create Gad Plan first',
+            'export' => 'Export as PDF',
         ],
 
         'columns' => [
@@ -47,6 +49,7 @@ return [
             'model_id' => 'Campus Name',
             'created_at' => 'Date Created',
             'status' => 'Status',
+            'implement_year' => 'Implement Year',
             
         ],
     ],
@@ -58,6 +61,9 @@ return [
             'index' => 'Gad Plans and Budget Lists',
             'create' => 'Add GAD Plan',
             'edit' => 'Edit :name',
+            'accept' => 'Accept',
+            'decline' => 'Decline',
+            'submit' => 'Submit',
         ],
 
         'columns' => [
@@ -76,11 +82,11 @@ return [
     ],
 
     'school' => [
-        'title' => 'Registered Campus',
+        'title' => 'Campus/College',
 
         'actions' => [
-            'index' => 'Registered Campus',
-            'create' => 'Add Campus',
+            'index' => 'Campus/College',
+            'create' => 'Add Campus/College',
             'edit' => 'Edit :name',
         ],
 
@@ -89,7 +95,8 @@ return [
             'name' => 'Campus Name', 
             'admin_users_id' => 'Created By', 
             'status' => 'Status',
-            'address' => 'Complete Address'
+            'address' => 'Complete Address',
+            'letter_header' => 'Header Address',
         ],
     ],
 
@@ -134,9 +141,12 @@ return [
 
         'columns' => [
             'id' => 'ID',
-            'gad_plans_id' => 'GAD Plans',
+            'prop_no' => 'PROP_NO', 
+            'gad_plans_id' => 'GAD',
+            'status' => 'Status', 
             'letter_body' => 'Letter Body', 
             'proposal_body' => 'Proposal Body', 
+            'created_at' => 'Created At', 
         ],
     ],
     
@@ -154,6 +164,7 @@ return [
             'purpose' => 'Purpose',
             'status' => 'Status', 
             'proposal_body' => 'Proposal Body', 
+            'created_at' => 'Created At', 
         ],
     ],
 
@@ -200,7 +211,11 @@ return [
 
         'columns' => [
             'id' => 'ID',
+            'rmb_no' => 'RMB_NO',
+            'admin_user_id' => 'Created By',
             'letter_body' => 'Letter Body',
+            'status' => 'Status',
+            'created_at' => 'Created At',
         ],
     ],
 
@@ -218,5 +233,93 @@ return [
             'name' => 'Event Type Name',
         ],
     ],
+
+    'announcement' => [
+        'title' => 'Announcements',
+
+        'actions' => [
+            'index' => 'Announcements',
+            'create' => 'Add announcements',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Event Type Name',
+            'header_img' => 'Header Image',
+            'title' => 'Title',
+            'description' => 'Description',
+            'url' => 'Meeting Url   ',
+            'event_type_id' => 'Event Type',
+            'starts_at' => 'Starts At',
+            'ends_at' => 'Ends At',
+            'created_by' => 'Created By',
+            'created_at' => 'Created At'
+        ],
+    ],
+
+    'calendar' => [
+        'title' => 'Calendar',
+
+        'actions' => [
+            'index' => 'Calendar',
+            'create' => 'Add announcements',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Event Type Name',
+            'header_img' => 'Header Image',
+            'title' => 'Title',
+            'description' => 'Description',
+            'url' => 'Meeting Url   ',
+            'event_type_id' => 'Event Type',
+            'starts_at' => 'Starts At',
+            'ends_at' => 'Ends At',
+            'created_by' => 'Created By',
+            'created_at' => 'Created At'
+        ],
+    ],
+
+    'accomplishment' => [
+        'title' => 'Accomplishments',
+
+        'actions' => [
+            'index' => 'Accomplishments',
+            'create' => 'New Accomplishment',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'header' => 'Title', 
+            'gad_plans_id' => 'Gad plans',
+            'description' => 'Description',
+            'created_at' => 'Created At',
+        ],
+    ],
+
+    'liquidation-item' => [
+        'title' => 'Items',
+
+        'actions' => [
+            'index' => 'Summary of Items',
+            'create' => 'New Item',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'date_acquired' => 'Date',
+            'receipt_no' => 'Receipt No.', 
+            'supplier' => 'Supplier', 
+            'unit' => 'Unit', 
+            'item' => 'Item',
+            'qty' => 'Qty',
+            'price' => 'Unit Price',
+            'subtotal' => 'Subtotal',
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];

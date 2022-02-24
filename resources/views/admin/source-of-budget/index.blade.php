@@ -104,7 +104,6 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/source-of-budgets/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.source-of-budget.actions.create') }}</a>
                             </div>
                         </div>
                     </div>

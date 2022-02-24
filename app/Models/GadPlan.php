@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User; 
+use App\Models\School;
+use App\Models\Proposal;
 use Brackets\AdminAuth\Models\AdminUser;
 
 class GadPlan extends Model
@@ -13,7 +15,6 @@ class GadPlan extends Model
         'model_type',
         'model_id',
         'status',
-    
     ];
     
     
@@ -32,7 +33,16 @@ class GadPlan extends Model
         return url('/admin/gad-plans/'.$this->getKey());
     }
 
-    public function user(){ 
+    public function admin_user(){ 
         return $this->belongsTo(AdminUser::class, 'model_id');
     }
+
+    public function gad_plan_list(){ 
+        return $this->hasMany(GadPlanList::class, 'id');
+    }
+
+    public function proposal(){ 
+        return $this->hasMany(Proposal::class, 'id');
+    }
+  
 }

@@ -18,7 +18,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use PDF;
+use Illuminate\Http\Request;
+
 
 class LiquidationsController extends Controller
 {
@@ -32,17 +36,27 @@ class LiquidationsController extends Controller
     public function index(IndexLiquidation $request)
     {
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(Liquidation::class)->processRequestAndGet(
+        $data = AdminListing::create(Liquidation::class)
+        ->modifyQuery(function($query) use ($request){
+            if (Auth::user()->roles()->pluck('id')[0] == 1) {
+                $query->where('status', '!=', 0);
+            }else{ 
+                $query->where([
+                    ['admin_users_id', '=',Auth::user()->id],
+                ]);
+            }
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'admin_users_id', 'status', 'isSent'],
+            ['id', 'purpose', 'status', 'isSent', 'created_at'],
 
             // set columns to searchIn
-            ['id', 'purpose']
-        );
+            ['id', 'purpose'],
 
+        );
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -63,8 +77,6 @@ class LiquidationsController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin.liquidation.create');
-
         return view('admin.liquidation.create');
     }
 
@@ -78,15 +90,15 @@ class LiquidationsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
-
+        $sanitized['admin_users_id'] = Auth::user()->id;
         // Store the Liquidation
         $liquidation = Liquidation::create($sanitized);
 
         if ($request->ajax()) {
-            return ['redirect' => url('admin/liquidations'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            return ['redirect' => url('admin/liquidations'.$liquidation->id.'/items'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
-        return redirect('admin/liquidations');
+        return redirect('admin/liquidations'.$liquidation->id.'/items');
     }
 
     /**
@@ -112,9 +124,6 @@ class LiquidationsController extends Controller
      */
     public function edit(Liquidation $liquidation)
     {
-        $this->authorize('admin.liquidation.edit', $liquidation);
-
-
         return view('admin.liquidation.edit', [
             'liquidation' => $liquidation,
         ]);
@@ -184,5 +193,59 @@ class LiquidationsController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    public function submit($id){ 
+        try { 
+            $lq = Liquidation::where([
+                ['id', '=', $id],
+                ['admin_users_id', '=', Auth::user()->id],
+                ['status', '=', 0]
+            ])->update([
+                'status' => 1
+            ]);
+
+            return response([
+                'redirect' => url('admin/liquidations/'.$id.'/items'),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded')
+            ]);
+        } catch (Exception $e){ 
+            abort(400);
+        }
+
+    }
+
+    public function export($id)
+    {
+        $data = Liquidation::where([
+            ['id', '=', $id], 
+        ])->with(['liquidation_items'])->firstOrFail();
+
+        $pdf = PDF::loadView('admin.liquidation-item.pdf', ['data' => $data])
+        ->setPaper('a4', 'portrait');
+
+        return $pdf->stream();
+        // TODO your code goes here
+    }
+
+    public function changeStatus(Liquidation $liquidation, Request $request) { 
+    
+        $liquidation->status = $request->status ? 2 : 3;
+        $liquidation->save(); 
+        
+        // if($request->status == 2){ 
+        //     Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($liquidation->implement_year));
+        // }else{ 
+        //     Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        // }
+
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/liquidations/'.$liquidation->id.'/items'),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/liquidations/'.$liquidation->id.'/items');
     }
 }

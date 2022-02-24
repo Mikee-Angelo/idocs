@@ -10,7 +10,7 @@ class Proposal extends Model
         'gad_plans_id',
         'letter_body',
         'proposal_body',
-    
+        'prop_no',
     ];
     
     
@@ -27,5 +27,9 @@ class Proposal extends Model
     public function getResourceUrlAttribute()
     {
         return url('/admin/proposals/'.$this->getKey());
+    }
+
+    public function gad_plan(){
+        return $this->belongsTo(GadPlan::class, 'gad_plans_id');
     }
 }

@@ -18,8 +18,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
+use App\Mail\GadPlanReview;
+use App\Mail\AcceptedGadPlan;
 
 class GadPlansController extends Controller
 {
@@ -30,23 +35,33 @@ class GadPlansController extends Controller
      * @param IndexGadPlan $request
      * @return array|Factory|View
      */
-    public function index(IndexGadPlan $request)
+    public function index( IndexGadPlan $request)
     {
-  
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(GadPlan::class)->processRequestAndGet(
+        $data = AdminListing::create(GadPlan::class)
+        ->modifyQuery(function($query) use ($request){
+            if (Auth::user()->roles()->pluck('id')[0] == 1) {
+                $query->where('status', '!=', 0);
+            }else{ 
+                $query->where([
+                    ['model_id', '=',Auth::user()->id],
+                    ['implement_year' , '!=', null]
+                ]);
+            }
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'model_id', 'status', 'created_at'],
+            ['id', 'model_id', 'status', 'created_at', 'implement_year'],
 
             // set columns to searchIn
-            ['id'],
+            ['id', 'model_id', 'status', 'created_at', 'implement_year'],
 
             function($query) use ($request) {
-                $query->with(['user','user.school']);
-            }
+                $query->with(['admin_user','admin_user.school' ,'gad_plan_list']);
+            },
         );
         
         if ($request->ajax()) {
@@ -57,6 +72,8 @@ class GadPlansController extends Controller
             }
             return ['data' => $data];
         }
+
+    
         return view('admin.gad-plan.index', ['data' => $data]);
     }
 
@@ -87,10 +104,11 @@ class GadPlansController extends Controller
         // Store the GadPlan
         $gadPlan = GadPlan::create($sanitized);
 
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/gad-plans'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
-
+            
         return redirect('admin/gad-plans');
     }
 
@@ -189,5 +207,59 @@ class GadPlansController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    public function changeStatus(GadPlan $gadPlan, Request $request) { 
+    
+        $gadPlan->status = $request->status ? 2 : 3;
+        $gadPlan->save(); 
+        
+        if($request->status == 2){ 
+            Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($gadPlan->implement_year));
+        }else{ 
+            Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        }
+
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/gad-plans'),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/gad-plans');
+    }
+    
+    public function submitStatus(Request $request) { 
+    
+            $gad = GadPlan::where([
+                ['implement_year', '=', null],
+                ['model_id', '=', Auth::user()->id],
+                ['status', '=', 0]
+            ])->latest('id')->first();
+            
+            $yearGad = GadPlan::select('implement_year')->where([
+                ['implement_year', '!=', null],
+                ['model_id', '=', Auth::user()->id],
+            ])->latest('id')->first();
+
+            if(is_null($yearGad)){ 
+                $gad->implement_year = date('Y') + 1;
+            }else{ 
+                $gad->implement_year =  $yearGad->implement_year + 1;
+            }
+
+            $gad->status = 1;
+            $gad->save(); 
+
+            Mail::to(Auth::user()->email)->send(new GadPlanReview($gad->implement_year));
+
+            if ($request->ajax()) {
+                return [
+                    'redirect' => url('admin/gad-plans'),
+                    'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+                ];
+            }
+        return redirect('admin/gad-plans');
     }
 }

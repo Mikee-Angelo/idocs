@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Proposal\IndexProposal;
 use App\Http\Requests\Admin\Proposal\StoreProposal;
 use App\Http\Requests\Admin\Proposal\UpdateProposal;
 use App\Models\Proposal;
+use App\Models\GadPlan;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -18,8 +19,12 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendingSuccessProposal;
 use Illuminate\View\View;
-
+use PDF;
+use Illuminate\Http\Request;
 class ProposalsController extends Controller
 {
 
@@ -31,17 +36,41 @@ class ProposalsController extends Controller
      */
     public function index(IndexProposal $request)
     {
+
+        $status = null ;
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(Proposal::class)->processRequestAndGet(
+        $data = AdminListing::create(Proposal::class)
+        ->modifyQuery(function($query) use ($request){
+            if (Auth::user()->roles()->pluck('id')[0] == 2) {
+                $gad = GadPlan::where([
+                    ['status', '>', 0],
+                    ['model_id', '=', Auth::user()->id],
+                    ['implement_year', '=', date('Y')]
+                ])->first();
+                $query->where('gad_plans_id', '=', !is_null($gad) ? $gad->id : null);   
+            }
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'gad_plans_id'],
+            ['id', 'gad_plans_id', 'prop_no','status'],
 
             // set columns to searchIn
-            ['id', 'letter_body', 'proposal_body']
+            ['id', 'status'],
+            function($query) use ($request) {
+                $query->with(['gad_plan']);
+            }
         );
+        $gad = GadPlan::where([
+                ['status', '>', 0],
+                ['model_id', '=', Auth::user()->id]
+            ])->whereYear('created_at', date('Y'))->first();
+
+        if(!is_null($gad)){ 
+            $status = $gad->status; 
+        }
 
         if ($request->ajax()) {
             if ($request->has('bulk')) {
@@ -52,7 +81,7 @@ class ProposalsController extends Controller
             return ['data' => $data];
         }
 
-        return view('admin.proposal.index', ['data' => $data]);
+        return view('admin.proposal.index', ['data' => $data, 'status' => $status]);
     }
 
     /**
@@ -63,7 +92,7 @@ class ProposalsController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin.proposal.create');
+        // $this->authorize('admin.proposal.create');
 
         return view('admin.proposal.create');
     }
@@ -79,14 +108,32 @@ class ProposalsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
+        $proposal = Proposal::latest('id')->first();
+        //Find the current year gad plan that is approved by the admin
+        $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 2, 'implement_year' => date('Y')])->first();
+        
+        $sanitized['gad_plans_id'] = $gad->id;
+        $tmp = 'PROP'.Auth::user()->id.'-'.date('Y').'-';
+
+        if(is_null($proposal)){ 
+            $sanitized['prop_no'] = $tmp.(10000 + 1);
+        }else{ 
+            $proposal = explode('-', $proposal->prop_no);
+            $sanitized['prop_no'] = $tmp.($proposal[2] + 1);
+        }
+
         // Store the Proposal
         $proposal = Proposal::create($sanitized);
+
+        Mail::to(Auth::user()->email)->send(new SendingSuccessProposal($sanitized['prop_no']));
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/proposals'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
+
         return redirect('admin/proposals');
+
     }
 
     /**
@@ -96,10 +143,26 @@ class ProposalsController extends Controller
      * @throws AuthorizationException
      * @return void
      */
-    public function show(Proposal $proposal)
+    public function export($id)
     {
-        $this->authorize('admin.proposal.show', $proposal);
+        $data = Proposal::where([
+            ['id', '=', $id], 
+        ])->firstOrFail();
 
+        $pdf = PDF::loadView('admin.proposal.pdf', ['data' => $data])
+        ->setPaper('a4', 'portrait');
+
+        return $pdf->stream();
+        // TODO your code goes here
+    }
+
+    public function show($id)
+    {
+        $data = Proposal::where([
+            ['id', '=', $id], 
+        ])->firstOrFail();
+
+        return view('admin.proposal.show',['data' => $data]);
         // TODO your code goes here
     }
 
@@ -112,8 +175,6 @@ class ProposalsController extends Controller
      */
     public function edit(Proposal $proposal)
     {
-        $this->authorize('admin.proposal.edit', $proposal);
-
 
         return view('admin.proposal.edit', [
             'proposal' => $proposal,
@@ -184,5 +245,26 @@ class ProposalsController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    public function changeStatus(Proposal $proposal, Request $request) { 
+    
+        $proposal->status = $request->status ? 1 : 2;
+        $proposal->save(); 
+        
+        // if($request->status == 2){ 
+        //     Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($gadPlan->implement_year));
+        // }else{ 
+        //     Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        // }
+
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/proposals/'.$proposal->id),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/proposals/'.$proposal->id);
     }
 }

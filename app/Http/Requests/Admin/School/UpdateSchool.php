@@ -29,9 +29,8 @@ class UpdateSchool extends FormRequest
         return [
             'name' => ['sometimes', 'string'],
             'address' => ['sometimes', 'string'],
-            'admin_users_id' => ['sometimes', 'string'],
             'status' => ['sometimes', 'boolean'],
-            
+            'letter_header' => ['sometimes', 'string'],
         ];
     }
 

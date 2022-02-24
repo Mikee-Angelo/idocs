@@ -21,7 +21,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('admin-users')->name('admin-users/')->group(static function() {
             Route::get('/',                                             'AdminUsersController@index')->name('index');
@@ -37,7 +37,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::get('/profile',                                      'ProfileController@editProfile')->name('edit-profile');
         Route::post('/profile',                                     'ProfileController@updateProfile')->name('update-profile');
@@ -47,35 +47,10 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::prefix('admin-users')->name('admin-users/')->group(static function() {
-            Route::get('/',                                             'AdminUsersController@index')->name('index');
-            Route::get('/create',                                       'AdminUsersController@create')->name('create');
-            Route::post('/',                                            'AdminUsersController@store')->name('store');
-            Route::get('/{adminUser}/impersonal-login',                 'AdminUsersController@impersonalLogin')->name('impersonal-login');
-            Route::get('/{adminUser}/edit',                             'AdminUsersController@edit')->name('edit');
-            Route::post('/{adminUser}',                                 'AdminUsersController@update')->name('update');
-            Route::delete('/{adminUser}',                               'AdminUsersController@destroy')->name('destroy');
-            Route::get('/{adminUser}/resend-activation',                'AdminUsersController@resendActivationEmail')->name('resendActivationEmail');
-        });
-    });
-});
-
-/* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::get('/profile',                                      'ProfileController@editProfile')->name('edit-profile');
-        Route::post('/profile',                                     'ProfileController@updateProfile')->name('update-profile');
-        Route::get('/password',                                     'ProfileController@editPassword')->name('edit-password');
-        Route::post('/password',                                    'ProfileController@updatePassword')->name('update-password');
-    });
-});
-
-/* Auto-generated admin routes */
-Route::middleware(['web', 'auth:user'])->group(static function () {
+Route::middleware(['web','auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('gad-plans')->name('gad-plans/')->group(static function() {
+            Route::post('/submit-status',                               'GadPlansController@submitStatus')->name('submit-status');         
             Route::get('/',                                             'GadPlansController@index')->name('index');
             Route::get('/create',                                       'GadPlansController@create')->name('create');
             Route::post('/',                                            'GadPlansController@store')->name('store');
@@ -83,12 +58,15 @@ Route::middleware(['web', 'auth:user'])->group(static function () {
             Route::post('/bulk-destroy',                                'GadPlansController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{gadPlan}',                                   'GadPlansController@update')->name('update');
             Route::delete('/{gadPlan}',                                 'GadPlansController@destroy')->name('destroy');
+            Route::post('/{gadPlan}/change-status',                     'GadPlansController@changeStatus')->name('change-status');
+            Route::get('/{gadPlan}/items',                              'GadPlanListsController@show')->name('index');        
+            Route::get('/{gadPlan}/export',                          'GadPlanListsController@export')->name('export');
         });
     });
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web', 'auth:user'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('gad-plan-lists')->name('gad-plan-lists/')->group(static function() {
             Route::get('/',                                             'GadPlanListsController@index')->name('index');
@@ -98,12 +76,13 @@ Route::middleware(['web', 'auth:user'])->group(static function () {
             Route::post('/bulk-destroy',                                'GadPlanListsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{gadPlanList}',                               'GadPlanListsController@update')->name('update');
             Route::delete('/{gadPlanList}',                             'GadPlanListsController@destroy')->name('destroy');
+            
         });
     });
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web' , 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('schools')->name('schools/')->group(static function() {
             Route::get('/',                                             'SchoolsController@index')->name('index');
@@ -133,7 +112,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('relevant-agencies')->name('relevant-agencies/')->group(static function() {
             Route::get('/',                                             'RelevantAgenciesController@index')->name('index');
@@ -148,7 +127,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('source-of-budgets')->name('source-of-budgets/')->group(static function() {
             Route::get('/',                                             'SourceOfBudgetController@index')->name('index');
@@ -163,7 +142,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('proposals')->name('proposals/')->group(static function() {
             Route::get('/',                                             'ProposalsController@index')->name('index');
@@ -173,14 +152,20 @@ Route::middleware(['web'])->group(static function () {
             Route::post('/bulk-destroy',                                'ProposalsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{proposal}',                                  'ProposalsController@update')->name('update');
             Route::delete('/{proposal}',                                'ProposalsController@destroy')->name('destroy');
+            Route::get('/{proposal}/',                                  'ProposalsController@show')->name('show');
+            Route::get('/{proposal}/export',                             'ProposalsController@export')->name('export');
+            Route::post('/{proposal}/change-status',                     'ProposalsController@changeStatus')->name('change-status');
+            
         });
     });
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('liquidations')->name('liquidations/')->group(static function() {
+            
+            Route::post('{liquidation}/submit',                       'LiquidationsController@submit')->name('submit');         
             Route::get('/',                                             'LiquidationsController@index')->name('index');
             Route::get('/create',                                       'LiquidationsController@create')->name('create');
             Route::post('/',                                            'LiquidationsController@store')->name('store');
@@ -188,12 +173,19 @@ Route::middleware(['web'])->group(static function () {
             Route::post('/bulk-destroy',                                'LiquidationsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{liquidation}',                               'LiquidationsController@update')->name('update');
             Route::delete('/{liquidation}',                             'LiquidationsController@destroy')->name('destroy');
+            Route::get('{liquidation}/export',                          'LiquidationsController@export')->name('index');
+            
+            Route::get('{liquidation}/items/create',                    'LiquidationItemsController@create')->name('create');
+            Route::post('{liquidation}/items',                          'LiquidationItemsController@store')->name('store');
+            Route::get('{liquidation}/items',                           'LiquidationItemsController@show')->name('index');
+            Route::post('/{liquidation}/change-status',                 'LiquidationsController@changeStatus')->name('change-status');
+            
         });
     });
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('suppliers')->name('suppliers/')->group(static function() {
             Route::get('/',                                             'SuppliersController@index')->name('index');
@@ -208,7 +200,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('units')->name('units/')->group(static function() {
             Route::get('/',                                             'UnitsController@index')->name('index');
@@ -223,7 +215,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('reimbursements')->name('reimbursements/')->group(static function() {
             Route::get('/',                                             'ReimbursementsController@index')->name('index');
@@ -233,12 +225,16 @@ Route::middleware(['web'])->group(static function () {
             Route::post('/bulk-destroy',                                'ReimbursementsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{reimbursement}',                             'ReimbursementsController@update')->name('update');
             Route::delete('/{reimbursement}',                           'ReimbursementsController@destroy')->name('destroy');
+            Route::get('/{reimbursement}/',                             'ReimbursementsController@show')->name('show');
+            Route::get('/{reimbursement}/export',                       'ReimbursementsController@export')->name('export');
+            Route::post('/{reimbursement}/change-status',               'ReimbursementsController@changeStatus')->name('change-status');
+            
         });
     });
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin', 'isAdmin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('event-types')->name('event-types/')->group(static function() {
             Route::get('/',                                             'EventTypesController@index')->name('index');
@@ -253,7 +249,7 @@ Route::middleware(['web'])->group(static function () {
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['web'])->group(static function () {
+Route::middleware(['web', 'auth:admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('announcements')->name('announcements/')->group(static function() {
             Route::get('/',                                             'AnnouncementsController@index')->name('index');
@@ -266,3 +262,45 @@ Route::middleware(['web'])->group(static function () {
         });
     });
 });
+/* Auto-generated admin routes */
+Route::middleware(['web', 'auth:admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('calendar')->name('calendar/')->group(static function() {
+            Route::get('/',                                             'CalendarsController@index')->name('index');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('accomplishments')->name('accomplishments/')->group(static function() {
+            Route::get('/',                                             'AccomplishmentsController@index')->name('index');
+            Route::get('/create',                                       'AccomplishmentsController@create')->name('create');
+            Route::post('/',                                            'AccomplishmentsController@store')->name('store');
+            Route::get('/{accomplishment}/edit',                        'AccomplishmentsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'AccomplishmentsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{accomplishment}',                            'AccomplishmentsController@update')->name('update');
+            Route::delete('/{accomplishment}',                          'AccomplishmentsController@destroy')->name('destroy');
+            Route::get('/{accomplishment}/',                            'AccomplishmentsController@show')->name('show');
+            Route::get('/{accomplishment}/export',                      'AccomplishmentsController@export')->name('index');
+            Route::post('/{accomplishment}/change-status',               'AccomplishmentsControllers@changeStatus')->name('change-status');
+            
+        });
+    });
+});
+
+// /* Auto-generated admin routes */
+// Route::middleware(['web', 'auth:admin'])->group(static function () {
+//     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+//         Route::prefix('liquidation-items')->name('liquidation-items/')->group(static function() {
+//             Route::get('/',                                             'LiquidationItemsController@index')->name('index');
+//             Route::get('/create',                                       'LiquidationItemsController@create')->name('create');
+//             Route::post('/',                                            'LiquidationItemsController@store')->name('store');
+//             Route::get('/{liquidationItem}/edit',                       'LiquidationItemsController@edit')->name('edit');
+//             Route::post('/bulk-destroy',                                'LiquidationItemsController@bulkDestroy')->name('bulk-destroy');
+//             Route::post('/{liquidationItem}',                           'LiquidationItemsController@update')->name('update');
+//             Route::delete('/{liquidationItem}',                         'LiquidationItemsController@destroy')->name('destroy');
+//         });
+//     });
+// });

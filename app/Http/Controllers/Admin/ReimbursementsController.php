@@ -18,7 +18,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use PDF;
+use Illuminate\Http\Request;
 
 class ReimbursementsController extends Controller
 {
@@ -32,17 +35,26 @@ class ReimbursementsController extends Controller
     public function index(IndexReimbursement $request)
     {
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(Reimbursement::class)->processRequestAndGet(
+        $data = AdminListing::create(Reimbursement::class)
+        ->modifyQuery(function($query) use ($request){
+
+            if (Auth::user()->roles()->pluck('id')[0] == 2) {
+                $query->where('admin_user_id', Auth::user()->id);    
+            }
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'admin_user_id', 'status'],
+            ['id', 'admin_user_id', 'status' , 'rmb_no', 'created_at'],
 
             // set columns to searchIn
-            ['id', 'letter_body']
+            ['id', 'letter_body'],
+            function($query) use ($request) {
+                $query->with(['admin_user']);
+            }
         );
-
         if ($request->ajax()) {
             if ($request->has('bulk')) {
                 return [
@@ -63,8 +75,6 @@ class ReimbursementsController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin.reimbursement.create');
-
         return view('admin.reimbursement.create');
     }
 
@@ -78,6 +88,19 @@ class ReimbursementsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+
+        
+        $rb = Reimbursement::first();
+
+        $tmp = 'RMB'.Auth::user()->id.'-'.date('Y').'-';
+        $sanitized['admin_user_id'] = Auth::user()->id;
+
+        if(is_null($rb)){ 
+            $sanitized['rmb_no'] = $tmp.(10000 + 1);
+        }else{ 
+            $rmb = explode('-', $rb->rmb_no);
+            $sanitized['rmb_no'] = $tmp.($rmb[2] + 1);
+        }
 
         // Store the Reimbursement
         $reimbursement = Reimbursement::create($sanitized);
@@ -96,11 +119,40 @@ class ReimbursementsController extends Controller
      * @throws AuthorizationException
      * @return void
      */
-    public function show(Reimbursement $reimbursement)
+    public function show($id)
     {
-        $this->authorize('admin.reimbursement.show', $reimbursement);
+        // $this->authorize('admin.reimbursement.show', $reimbursement);
+        $data = Reimbursement::where([
+            ['id', '=', $id],
+         ])->first();
 
+        if(Auth::user()->roles()->pluck('id')[0] == 2){ 
+            $data->where('admin_user_id', Auth::user()->id);
+        }
+
+         if(is_null($data)){ 
+             abort(404);
+         }
+         
+        return view('admin.reimbursement.show' , ['data' => $data]);
         // TODO your code goes here
+    }
+
+    public function export($id){ 
+        $data = Reimbursement::where([
+            ['id', '=', $id],
+         ])->first();
+
+        if(Auth::user()->roles()->pluck('id')[0] == 2){ 
+            $data->where('admin_user_id', Auth::user()->id);
+        }
+
+        $pdf = PDF::loadView('admin.reimbursement.pdf', ['data' => $data])
+        ->setPaper('a4');
+
+        return $pdf->stream();
+        // return $pdf->download(Auth::user()->id.'- GADPLAN -'.$data[0]->gad_plan['implement_year'].'.pdf');
+        
     }
 
     /**
@@ -112,7 +164,6 @@ class ReimbursementsController extends Controller
      */
     public function edit(Reimbursement $reimbursement)
     {
-        $this->authorize('admin.reimbursement.edit', $reimbursement);
 
 
         return view('admin.reimbursement.edit', [
@@ -184,5 +235,26 @@ class ReimbursementsController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    public function changeStatus(Reimbursement $reimbursement, Request $request) { 
+    
+        $reimbursement->status = $request->status ? 1 : 2;
+        $reimbursement->save(); 
+        
+        // if($request->status == 2){ 
+        //     Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($liquidation->implement_year));
+        // }else{ 
+        //     Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        // }
+
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/reimbursements/'.$reimbursement->id),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/reimbursements/'.$reimbursement->id);
     }
 }

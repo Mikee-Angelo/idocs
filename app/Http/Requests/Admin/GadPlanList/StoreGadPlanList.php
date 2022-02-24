@@ -34,8 +34,7 @@ class StoreGadPlanList extends FormRequest
             'gad_activity' => ['required', 'string'],
             'indicator_target' => ['required', 'string'],
             'budget_requirement' => ['required', 'numeric'],
-            'budget_source' => ['required', 'numeric'],
-            'responsible_unit' => ['required', 'string'],
+            'responsible_unit' => ['required', 'numeric'],
             
         ];
     }

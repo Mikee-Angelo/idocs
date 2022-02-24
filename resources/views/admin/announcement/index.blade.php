@@ -50,10 +50,11 @@
                                         </th>
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.announcement.columns.id') }}</th>
+                                        <th is='sortable' :column="'id'">{{ trans('admin.announcement.columns.title') }}</th>
                                         <th is='sortable' :column="'event_type_id'">{{ trans('admin.announcement.columns.event_type_id') }}</th>
                                         <th is='sortable' :column="'starts_at'">{{ trans('admin.announcement.columns.starts_at') }}</th>
                                         <th is='sortable' :column="'ends_at'">{{ trans('admin.announcement.columns.ends_at') }}</th>
-                                        <th is='sortable' :column="'created_by'">{{ trans('admin.announcement.columns.created_by') }}</th>
+                                        <th is='sortable' :column="'created_at'">{{ trans('admin.announcement.columns.created_at') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -77,11 +78,12 @@
                                             </label>
                                         </td>
 
-                                    <td>@{{ item.id }}</td>
-                                        <td>@{{ item.event_type_id }}</td>
+                                        <td>@{{ item.id }}</td>
+                                        <td>@{{ item.title }}</td>
+                                        <td>@{{ item.event_types.name }}</td>
                                         <td>@{{ item.starts_at | datetime }}</td>
                                         <td>@{{ item.ends_at | datetime }}</td>
-                                        <td>@{{ item.created_by }}</td>
+                                        <td>@{{ item.created_at | datetime }}</td>
                                         
                                         <td>
                                             <div class="row no-gutters">
@@ -110,7 +112,6 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/announcements/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.announcement.actions.create') }}</a>
                             </div>
                         </div>
                     </div>

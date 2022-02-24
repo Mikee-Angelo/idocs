@@ -28,14 +28,11 @@ class StoreAnnouncement extends FormRequest
     {
         return [
             'event_type_id' => ['required', 'integer'],
-            'header_img' => ['nullable', 'string'],
             'title' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'url' => ['nullable', 'string'],
             'starts_at' => ['required', 'date'],
             'ends_at' => ['required', 'date'],
-            'created_by' => ['required', 'string'],
-            
+            'header' => ['required']
         ];
     }
 

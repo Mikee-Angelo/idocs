@@ -12,6 +12,7 @@ use App\Models\GadPlanList;
 use App\Models\RelevantAgency;
 use App\Models\SourceOfBudget;
 use App\Models\GadPlan;
+use App\Models\School;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -23,7 +24,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
 class GadPlanListsController extends Controller
 {
 
@@ -33,10 +34,24 @@ class GadPlanListsController extends Controller
      * @param IndexGadPlanList $request
      * @return array|Factory|View
      */
-    public function index(IndexGadPlanList $request)
+    public function index(?int $id = null, IndexGadPlanList $request )
     {
+        $status = null;
+
+        
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(GadPlanList::class)->processRequestAndGet(
+        $data = AdminListing::create(GadPlanList::class) 
+          ->modifyQuery(
+            function($query) use ($request){
+            if (Auth::user()->roles()->pluck('id')[0] == 2) {
+                $gad = GadPlan::where([
+                    ['model_id', '=', Auth::user()->id],
+                    ['status', '=', 0],
+                ])->first();
+                $query->where('gad_plans_id', '=', !is_null($gad) ? $gad->id : null);    
+            }
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
@@ -46,9 +61,20 @@ class GadPlanListsController extends Controller
             // set columns to searchIn
             ['id', 'gad_issue_mandate', 'cause_of_issue', 'gad_statement_objective', 'gad_activity', 'indicator_target'],
             function($query) use ($request) {
-                $query->with(['relevant_agency', 'sourceofbudget']);
+                $query->with(['relevant_agency', 'sourceofbudget' ,'gad_plan']);
             }
         );
+
+        //Check if user is an admin
+        if(Auth::user()->roles()->pluck('id')[0] == 1 && !is_null($id)){
+            $data->where('id', $id);
+            $gad = GadPlan::find($id);
+            $status = $gad->status; 
+        }else {
+;
+            $status = !is_null($data->first()) ? $data->first()->gad_plan->status : null;
+        }
+
 
         if ($request->ajax()) {
             if ($request->has('bulk')) {
@@ -59,7 +85,8 @@ class GadPlanListsController extends Controller
             return ['data' => $data];
         }
 
-        return view('admin.gad-plan-list.index', ['data' => $data]);
+
+        return view('admin.gad-plan-list.index', ['data' => $data, 'id' => $id, 'status' => $status]);
     }
 
     /**
@@ -73,10 +100,12 @@ class GadPlanListsController extends Controller
         // $this->authorize('admin.gad-plan-list.create');
         $relevant_agencies = RelevantAgency::get();
         $source_of_budget = SourceOfBudget::get(); 
+        $schools = School::get();
 
         return view('admin.gad-plan-list.create', [
             'relevant_agencies' => $relevant_agencies, 
             'budget_source' => $source_of_budget,
+            'responsible_unit' => $schools,
         ]);
     }
 
@@ -86,18 +115,28 @@ class GadPlanListsController extends Controller
      * @param StoreGadPlanList $request
      * @return array|RedirectResponse|Redirector
      */
-    public function store(StoreGadPlanList $request, GadPlan $gadplan)
+    public function store(StoreGadPlanList $request)
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
         
-        $gp = GadPlan::whereYear('created_at', date('Y'))->first(); 
+        $gp = GadPlan::where([
+            ['model_id', '=', Auth::user()->id], 
+            ['implement_year', '=', null],
+        ])->latest('id')->first(); 
+        
+        $sanitized['budget_source'] = 'GAA';
 
-        if(is_null($gp)){ 
-            $gadplan->model_id = Auth::user()->id;
-            $gadplan->save();
-            $sanitized['gad_plans_id'] = $gadplan->id;
-        }else{ 
+        if(is_null($gp)){
+            $gad = new GadPlan(); 
+            $gad->model_id = Auth::user()->id;
+            $gad->save();
+            $sanitized['gad_plans_id'] = $gad->id;
+        }else{             
+            $gp->update([
+                'model_id' =>  Auth::user()->id,
+            ]);
+
             $sanitized['gad_plans_id'] = $gp->id;
         }
         
@@ -118,13 +157,26 @@ class GadPlanListsController extends Controller
      * @throws AuthorizationException
      * @return void
      */
-    public function show(GadPlanList $gadPlanList)
+    public function show($id, GadPlanList $gadPlanList)
     {
-        $this->authorize('admin.gad-plan-list.show', $gadPlanList);
+
+        $data = $gadPlanList->where('gad_plans_id', $id)->with(['gad_plan', 'relevant_agency', 'sourceofbudget']);
+        return view('admin.gad-plan-list.show', ['data' => $data->get(), 'sum' => $data->sum('budget_requirement')]);
 
         // TODO your code goes here
     }
 
+
+    public function export($id, GadPlanList $gadPlanList){ 
+        $data = $gadPlanList->where('gad_plans_id', $id)->with(['gad_plan', 'relevant_agency', 'sourceofbudget'])->get();
+
+        $pdf = PDF::loadView('admin.gad-plan-list.pdf', ['data' => $data, 'sum' => $data->sum('budget_requirement')])
+        ->setPaper('legal', 'landscape');
+
+        return $pdf->stream();
+        
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *

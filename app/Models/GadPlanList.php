@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\RelevantAgency; 
+use App\Models\SourceOfBudget; 
+use App\Models\GadPlanList; 
 
 class GadPlanList extends Model
 {
@@ -45,6 +47,14 @@ class GadPlanList extends Model
     }
 
     public function sourceofbudget(){ 
-        return $this->belongsTo(SourceOfBudget::class, 'budget_source');
+        return $this->belongsTo(SourceOfBudget::class , 'budget_source');
+    }
+
+    public function gad_plan(){ 
+        return $this->belongsTo(GadPlan::class, 'gad_plans_id');
+    }
+
+    public function responsible_unit(){ 
+        return $this->belongsTo(School::class, 'responsible_unit');
     }
 }

@@ -14,7 +14,10 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.gad-plan.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan.actions.create') }}</a>
+
+                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
+                            <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/gad-plan-lists') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan.actions.create') }}</a>
+                        @endif
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
@@ -42,14 +45,19 @@
                             <table class="table table-hover table-listing">
                                 <thead>
                                     <tr>
-                                        <th class="bulk-checkbox">
+                                        <!-- <th class="bulk-checkbox">
                                             <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
                                             <label class="form-check-label" for="enabled">
                                                 #
                                             </label>
-                                        </th>
+                                        </th> -->
 
-                                        <th is='sortable' :column="'model_id'">{{ trans('admin.gad-plan.columns.model_id') }}</th>
+                                        <th is='sortable' :column="'implement_year'">{{ trans('admin.gad-plan.columns.implement_year') }}</th>
+                                        
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                                            <th is='sortable' :column="'model_id'">{{ trans('admin.gad-plan.columns.model_id') }}</th>
+                                        @endif
+
                                         <th is='sortable' :column="'status'">{{ trans('admin.gad-plan.columns.status') }}</th>
                                         <th is='sortable' :column="'created_at'">{{ trans('admin.gad-plan.columns.created_at') }}</th>
 
@@ -69,25 +77,38 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
-                                        <td class="bulk-checkbox">
+                                   
+                                        <!-- <td class="bulk-checkbox" v-if="item.status == 0">
                                             <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                             <label class="form-check-label" :for="'enabled' + item.id">
                                             </label>
+                                        </td> -->
+
+
+                                        <td>
+                                            <a :href="item.resource_url + '/items'">@{{ item.implement_year  }}</a>
                                         </td>
 
-                                        <td>@{{ item.user.school.name }}</td>
-                                        <td>
-                                            <span v-if="item.status == 0" class="badge badge-pill badge-warning">Pending</span>
-                                            <span v-else class="badge badge-pill badge-success">Approved</span>
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 1)
+                                            <td>
+                                            @{{item.admin_user.school.name}} 
+                                            </td>
+                                        @endif
+                                    <td>
+                                            <span v-if="item.status == 1" class="badge badge-pill badge-warning">Pending</span>
+                                            <span v-else-if="item.status == 2" class="badge badge-pill badge-success text-white">Approved</span>
+                                            <span v-else-if="item.status == 3" class="badge badge-pill badge-danger text-white">Declined</span>
                                         </td>
                                         
-                                        <td>@{{ item.created_at }}</td>
+                                        <td>@{{ item.created_at | datetime}}</td>
                                         <td>
                                             <div class="row no-gutters">
                                                 {{-- <div class="col-auto">
                                                     <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
                                                 </div> --}}
-                                                <form class="col" @submit.prevent="deleteItem(item.resource_url)">
+
+                                                
+                                                <form v-if="item.status == 0" class="col" @submit.prevent="deleteItem(item.resource_url)">
                                                     <button type="submit" class="btn btn-sm btn-danger" title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i class="fa fa-trash-o"></i></button>
                                                 </form>
                                             </div>
@@ -109,7 +130,8 @@
                                 <i class="icon-magnifier"></i>
                                 <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                                 <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                                <a class="btn btn-primary btn-spinner" href="{{ url('admin/gad-plan-lists') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan.actions.create') }}</a>
+                                
+                    
                             </div>
                         </div>
                     </div>

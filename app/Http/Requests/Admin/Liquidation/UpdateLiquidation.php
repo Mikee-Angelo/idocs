@@ -28,10 +28,6 @@ class UpdateLiquidation extends FormRequest
     {
         return [
             'purpose' => ['sometimes', 'string'],
-            'admin_users_id' => ['sometimes', 'string'],
-            'status' => ['sometimes', 'boolean'],
-            'isSent' => ['sometimes', 'boolean'],
-            
         ];
     }
 

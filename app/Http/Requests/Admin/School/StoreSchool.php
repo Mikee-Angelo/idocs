@@ -30,6 +30,7 @@ class StoreSchool extends FormRequest
             'name' => ['required', 'string'],
             'address' => ['required', 'string'],
             'status' => ['required', 'boolean'],
+            'letter_header' => ['required', 'string'],
         ];
     }
 

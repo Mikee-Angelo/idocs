@@ -18,7 +18,7 @@ class StoreReimbursement extends FormRequest
         // return Gate::allows('admin.reimbursement.create');
         return true ;
     }
-
+     
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,9 +28,6 @@ class StoreReimbursement extends FormRequest
     {
         return [
             'letter_body' => ['required', 'string'],
-            'admin_user_id' => ['required', 'string'],
-            'status' => ['required', 'boolean'],
-            
         ];
     }
 

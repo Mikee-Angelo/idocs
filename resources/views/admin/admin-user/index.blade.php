@@ -49,7 +49,6 @@
                                     <th is='sortable' :column="'email'">{{ trans('admin.admin-user.columns.email') }}</th>
                                     <th is='sortable' :column="'activated'" v-if="activation">{{ trans('admin.admin-user.columns.activated') }}</th>
                                     <th is='sortable' :column="'forbidden'">{{ trans('admin.admin-user.columns.forbidden') }}</th>
-                                    <th is='sortable' :column="'language'">{{ trans('admin.admin-user.columns.language') }}</th>
                                     <th is='sortable' :column="'last_login_at'">{{ trans('admin.admin-user.columns.last_login_at') }}</th>
                                     
                                     <th></th>
@@ -73,7 +72,6 @@
                                             <span class="switch-slider"></span>
                                         </label>
                                     </td>
-                                    <td >@{{ item.language }}</td>
                                     <td >@{{ item.last_login_at | datetime }}</td>
                                     
                                     <td>
@@ -111,7 +109,7 @@
 		                    <i class="icon-magnifier"></i>
                             <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
                             <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                            <a class="btn btn-primary btn-spinner" href="{{ url('admin/admin-users/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('brackets/admin-ui::admin.btn.new') }} AdminUser</a>
+                        
 	                    </div>
                     </div>
                 </div>

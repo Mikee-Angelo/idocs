@@ -34,17 +34,17 @@ class AdminUsersController extends Controller
      *
      * @var string
      */
-    protected $guard = 'admin';
+    protected $guard = 'user';
 
     /**
      * AdminUsersController constructor.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->guard = config('admin-auth.defaults.guard');
-    }
+    // public function __construct()
+    // {
+    //     $this->guard = config('admin-auth.defaults.guard');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -145,6 +145,7 @@ class AdminUsersController extends Controller
             'adminUser' => $adminUser,
             'activation' => Config::get('admin-auth.activation_enabled'),
             'roles' => Role::where('guard_name', $this->guard)->get(),
+            'schools' => School::get(), 
         ]);
     }
 

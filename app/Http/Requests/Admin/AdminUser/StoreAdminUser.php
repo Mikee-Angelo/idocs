@@ -34,7 +34,6 @@ class StoreAdminUser extends FormRequest
             'email' => ['required', 'email', Rule::unique('admin_users', 'email'), 'string'],
             'password' => ['required', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string'],
             'forbidden' => ['required', 'boolean'],
-            'language' => ['required', 'string'],
             'school_id' => ['nullable'],
             'roles' => ['array'],
         ];

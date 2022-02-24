@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Brackets\AdminAuth\Models\AdminUser;
+use App\Models\GadPlan;
 
 class School extends Model
 {
-    protected $table = 'Schools';
+    protected $table = 'schools';
 
     protected $fillable = [
         'name',
         'address',
         'admin_users_id',
         'status',
+        'letter_header',
     
     ];
     
@@ -34,6 +36,10 @@ class School extends Model
     }
 
     public function admin_user() {
-        return $this->hasMany(AdminUser::class);
+        return $this->belongsTo(AdminUser::class, 'admin_users_id');
+    }
+
+    public function gadplan(){ 
+        return $this->hasMany(GadPlan::class);
     }
 }
