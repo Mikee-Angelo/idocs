@@ -1,0 +1,1 @@
+<img {!! $attributes->merge(['class' => '']) !!} src="{{asset('img/logo.png')}}" alt="PRMSU Logo">
