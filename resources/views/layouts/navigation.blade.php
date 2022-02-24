@@ -17,6 +17,12 @@
                     </x-nav-link>
                 </div>
 
+
+                {{-- Campus/College --}}
+                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('campus.index')" :active="request()->routeIs('campus.index')">
+                        {{ __('Campus') }}
+
                  <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('gadplans.index')" :active="request()->routeIs('gadplans.index')">

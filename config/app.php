@@ -165,8 +165,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         //Custom
-        Yajra\DataTables\DataTablesServiceProvider::class,
+         Yajra\DataTables\DataTablesServiceProvider::class,
         
+
         /*
          * Package Service Providers...
          */

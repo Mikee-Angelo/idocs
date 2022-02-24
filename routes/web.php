@@ -22,4 +22,9 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('gadplans', App\Http\Controllers\GadplanController::class);
 });
 
+Route::middleware(['auth'])->group(function(){ 
+    Route::get('/dashboard', function() { return view('dashboard'); })->name('dashboard'); 
+    Route::resource('campus', App\Http\Controllers\CampusController::class);
+});
+
 require __DIR__.'/auth.php';
