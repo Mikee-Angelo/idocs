@@ -17,9 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware(['auth'])->group(function() { 
+    Route::get('/dashboard', function() { return view('dashboard'); })->name('dashboard');
+    Route::resource('gadplans', App\Http\Controllers\GadplanController::class);
+});
 
 Route::middleware(['auth'])->group(function(){ 
     Route::get('/dashboard', function() { return view('dashboard'); })->name('dashboard'); 
