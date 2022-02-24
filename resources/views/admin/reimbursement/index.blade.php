@@ -45,12 +45,12 @@
                             <table class="table table-hover table-listing">
                                 <thead>
                                     <tr>
-                                        <th class="bulk-checkbox">
+                                        <!-- <th class="bulk-checkbox">
                                             <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
                                             <label class="form-check-label" for="enabled">
                                                 #
                                             </label>
-                                        </th>
+                                        </th> -->
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.reimbursement.columns.id') }}</th>
                                         <th is='sortable' :column="'rmb_no'">{{ trans('admin.reimbursement.columns.rmb_no') }}</th>
@@ -59,6 +59,7 @@
                                             <th is='sortable' :column="'admin_user_id'">{{ trans('admin.reimbursement.columns.admin_user_id') }}</th>
                                         @endif
                                         <th is='sortable' :column="'status'">{{ trans('admin.reimbursement.columns.status') }}</th>
+                                        <th is='sortable' :column="'created_at'">{{ trans('admin.reimbursement.columns.created_at') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -76,11 +77,11 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
-                                        <td class="bulk-checkbox">
+                                        <!-- <td class="bulk-checkbox">
                                             <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                             <label class="form-check-label" :for="'enabled' + item.id">
                                             </label>
-                                        </td>
+                                        </td> -->
 
                                     <td>@{{ item.id }}</td>
                                     <td>
@@ -95,10 +96,11 @@
                                             <span v-else-if="item.status == 1" class="badge badge-pill badge-success text-white">Approved</span>
                                         </td>
                                         
+                                        <td>@{{ item.created_at | datetime }}</td>
+                                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
                                         <td>
                                                 
-                                        @if(Auth::user()->roles()->pluck('id')[0] == 2)
-                                                <div class="row no-gutters">
+                                                <div class="row no-gutters" v-if="item.status == 0">
                                                     <div class="col-auto">
                                                         <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
                                                     </div>
@@ -107,8 +109,8 @@
                                                     </form>
                                                 </div>
                                                 
-                                        @endif
                                             </td>
+                                        @endif
                                     </tr>
                                 </tbody>
                             </table>

@@ -38,16 +38,17 @@ class CalendarsController extends Controller
             $request,
 
             // set columns to query
-            ['id',  'header_img', 'title', 'description', 'url', 'event_type_id', 'starts_at', 'ends_at'],
+            ['id', 'model_id',  'header_img', 'title', 'description', 'url', 'event_type_id', 'starts_at', 'ends_at'],
 
             // set columns to searchIn
             ['id', 'header_img', 'title', 'description', 'url'],
             function ($query) use ($request){ 
-                $query->with('event_types');
+                $query->with(['admin_user', 'admin_user.user_school' ,'event_types']);
             }
         );
         
         $events = []; 
+
         foreach($data as $value){ 
             $events[] = \Calendar::event(
                 $value->title, //event title
@@ -56,6 +57,7 @@ class CalendarsController extends Controller
                 $value->ends_at, //end time (you can also use Carbon instead of DateTime)
                 $value->id, //optionally, you can specify an event ID
                 [
+                    'created_by' => (is_null($value->admin_user->user_school)) ? 'Administrator' : $value->admin_user->user_school->name,
                     'description' => $value->description,
                     'type' => $value->event_types->name,
                     'img' => count($value->getMedia('header')) == 0 ? null : $value->getMedia('header')[0]->getUrl(),
@@ -88,6 +90,7 @@ class CalendarsController extends Controller
                 }
                 
                 $("#modalTitle").html(event.event.title);
+                $("#createdBy").html( event.event.extendedProps.created_by);
                 $("#eventStart").html( event.event.start);
                 $("#eventEnd").html( event.event.end);
                 $("#modalBody").html(event.event.extendedProps.description);
@@ -99,135 +102,4 @@ class CalendarsController extends Controller
 
         return view('admin.calendar.index', compact('calendar'));
     }
-
-    /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @throws AuthorizationException
-    //  * @return Factory|View
-    //  */
-    // public function create()
-    // {
-    //     $this->authorize('admin.calendar.create');
-
-    //     return view('admin.calendar.create');
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param StoreCalendar $request
-    //  * @return array|RedirectResponse|Redirector
-    //  */
-    // public function store(StoreCalendar $request)
-    // {
-    //     // Sanitize input
-    //     $sanitized = $request->getSanitized();
-
-    //     // Store the Calendar
-    //     $calendar = Calendar::create($sanitized);
-
-    //     if ($request->ajax()) {
-    //         return ['redirect' => url('admin/calendars'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
-    //     }
-
-    //     return redirect('admin/calendars');
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param Calendar $calendar
-    //  * @throws AuthorizationException
-    //  * @return void
-    //  */
-    // public function show(Calendar $calendar)
-    // {
-    //     $this->authorize('admin.calendar.show', $calendar);
-
-    //     // TODO your code goes here
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param Calendar $calendar
-    //  * @throws AuthorizationException
-    //  * @return Factory|View
-    //  */
-    // public function edit(Calendar $calendar)
-    // {
-    //     $this->authorize('admin.calendar.edit', $calendar);
-
-
-    //     return view('admin.calendar.edit', [
-    //         'calendar' => $calendar,
-    //     ]);
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param UpdateCalendar $request
-    //  * @param Calendar $calendar
-    //  * @return array|RedirectResponse|Redirector
-    //  */
-    // public function update(UpdateCalendar $request, Calendar $calendar)
-    // {
-    //     // Sanitize input
-    //     $sanitized = $request->getSanitized();
-
-    //     // Update changed values Calendar
-    //     $calendar->update($sanitized);
-
-    //     if ($request->ajax()) {
-    //         return [
-    //             'redirect' => url('admin/calendars'),
-    //             'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
-    //         ];
-    //     }
-
-    //     return redirect('admin/calendars');
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param DestroyCalendar $request
-    //  * @param Calendar $calendar
-    //  * @throws Exception
-    //  * @return ResponseFactory|RedirectResponse|Response
-    //  */
-    // public function destroy(DestroyCalendar $request, Calendar $calendar)
-    // {
-    //     $calendar->delete();
-
-    //     if ($request->ajax()) {
-    //         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
-    //     }
-
-    //     return redirect()->back();
-    // }
-
-    // /**
-    //  * Remove the specified resources from storage.
-    //  *
-    //  * @param BulkDestroyCalendar $request
-    //  * @throws Exception
-    //  * @return Response|bool
-    //  */
-    // public function bulkDestroy(BulkDestroyCalendar $request) : Response
-    // {
-    //     DB::transaction(static function () use ($request) {
-    //         collect($request->data['ids'])
-    //             ->chunk(1000)
-    //             ->each(static function ($bulkChunk) {
-    //                 Calendar::whereIn('id', $bulkChunk)->delete();
-
-    //                 // TODO your code goes here
-    //             });
-    //     });
-
-    //     return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
-    // }
 }

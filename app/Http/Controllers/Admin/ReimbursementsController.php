@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use PDF;
+use Illuminate\Http\Request;
+
 class ReimbursementsController extends Controller
 {
 
@@ -45,7 +47,7 @@ class ReimbursementsController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'admin_user_id', 'status' , 'rmb_no'],
+            ['id', 'admin_user_id', 'status' , 'rmb_no', 'created_at'],
 
             // set columns to searchIn
             ['id', 'letter_body'],
@@ -235,5 +237,24 @@ class ReimbursementsController extends Controller
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }
 
+    public function changeStatus(Reimbursement $reimbursement, Request $request) { 
+    
+        $reimbursement->status = $request->status ? 1 : 2;
+        $reimbursement->save(); 
+        
+        // if($request->status == 2){ 
+        //     Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($liquidation->implement_year));
+        // }else{ 
+        //     Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        // }
 
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/reimbursements/'.$reimbursement->id),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/reimbursements/'.$reimbursement->id);
+    }
 }

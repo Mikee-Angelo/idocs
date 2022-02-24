@@ -12,8 +12,8 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">     
-                    <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0 ml-2" href="{{ url('admin/gad-plans/'.$data[0]['id'].'/export') }}" role="button"><i class="fa fa-file-pdf-o"></i>&nbsp; {{ trans('admin.gad-plan.actions.export') }}</a>
-                    @if($data[0]->gad_plan->status > 1 && Auth::user()->roles()->pluck('id')[0] == 1)
+                    <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0 ml-2" href="{{ url('admin/gad-plans/'.$data[0]['gad_plans_id'].'/export') }}" role="button"><i class="fa fa-file-pdf-o"></i>&nbsp; {{ trans('admin.gad-plan.actions.export') }}</a>
+                    @if($data[0]->gad_plan->status == 1 && Auth::user()->roles()->pluck('id')[0] == 1)
                         <form @submit.prevent="changeStatus('change-status', true)">
                             <button type="submit"  class="btn btn-success  btn-sm pull-right m-b-0 text-white ml-2" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-check"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.accept') }}</button>
                         </form>
@@ -25,7 +25,18 @@
                 </div>
 
                 <div class="body">
+                   
+
                     <div class="card-block">
+                         <h5>Status:  
+                        @if($data[0]->gad_plan->status == 1)
+                            <span class="badge badge-pill badge-warning">Pending</span>
+                        @elseif($data[0]->gad_plan->status == 2)
+                            <span class="badge badge-pill badge-success text-white">Approved</span>
+                        @elseif($data[0]->gad_plan->status == 3)
+                            <span class="badge badge-pill badge-danger text-white">Declined</span>
+                        @endif
+                    </h5>
                     <div class="row">
                         <div class="col-3 text-right">
                             <img src="{{url('public/images/logo.png')}}" style="height:5rem" alt="">
@@ -55,6 +66,7 @@
                                         <th >{{ trans('admin.gad-plan-list.columns.indicator_target') }}</th>
                                         <th >{{ trans('admin.gad-plan-list.columns.budget_requirement') }}</th>
                                         <th>{{ trans('admin.gad-plan-list.columns.budget_source') }}</th>
+                                    </tr>
                                 </thead>
                                  <tbody>
                                      @foreach($data as $d)

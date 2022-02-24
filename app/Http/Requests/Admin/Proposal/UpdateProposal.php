@@ -27,10 +27,9 @@ class UpdateProposal extends FormRequest
     public function rules(): array
     {
         return [
-            'gad_plans_id' => ['sometimes', 'string'],
             'letter_body' => ['sometimes', 'string'],
             'proposal_body' => ['sometimes', 'string'],
-            
+
         ];
     }
 

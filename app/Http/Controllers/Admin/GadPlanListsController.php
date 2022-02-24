@@ -174,9 +174,9 @@ class GadPlanListsController extends Controller
         ->setPaper('legal', 'landscape');
 
         return $pdf->stream();
-        // return $pdf->download(Auth::user()->id.'- GADPLAN -'.$data[0]->gad_plan['implement_year'].'.pdf');
         
     }
+    
     /**
      * Show the form for editing the specified resource.
      *

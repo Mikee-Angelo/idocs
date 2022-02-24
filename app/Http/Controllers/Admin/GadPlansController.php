@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
-
 use App\Mail\GadPlanReview;
+use App\Mail\AcceptedGadPlan;
 
 class GadPlansController extends Controller
 {

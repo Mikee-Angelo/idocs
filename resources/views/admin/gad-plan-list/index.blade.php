@@ -19,8 +19,7 @@
                                     <form @submit.prevent="submitStatus('gad-plans/submit-status', true)">
                                         <button type="submit" class="btn btn-success btn-sm pull-right m-b-0 text-white" title="{{ trans('brackets/admin-ui::admin.btn.accept') }}" role="button"><i class="fa fa-send"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.submit') }}</button>
                                     </form>
-
-                                 @endif
+                                @endif
                                   <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0 mr-2" href="{{ url('admin/gad-plan-lists/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.gad-plan-list.actions.create') }}</a>
                             @endif
                           

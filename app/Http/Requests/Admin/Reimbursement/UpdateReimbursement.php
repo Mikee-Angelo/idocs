@@ -28,9 +28,6 @@ class UpdateReimbursement extends FormRequest
     {
         return [
             'letter_body' => ['sometimes', 'string'],
-            'admin_user_id' => ['sometimes', 'string'],
-            'status' => ['sometimes', 'boolean'],
-            
         ];
     }
 

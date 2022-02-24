@@ -10,6 +10,7 @@ use Brackets\Media\HasMedia\HasMediaThumbsTrait;
 use Brackets\Media\HasMedia\ProcessMediaTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Brackets\AdminAuth\Models\AdminUser;
 
 class Announcement extends Model implements HasMedia
 {
@@ -27,7 +28,6 @@ class Announcement extends Model implements HasMedia
         'starts_at',
         'ends_at',
         'model_id'
-        
     ];
     
     
@@ -53,10 +53,9 @@ class Announcement extends Model implements HasMedia
      */
     public function registerMediaCollections(): void {
         $this->addMediaCollection('header')
-            ->disk('media')
+            ->useDisk('s3')
             ->accepts('image/*')
-            ->maxNumberOfFiles(20)
-            ->canView('media.view');
+            ->maxNumberOfFiles(20);
     }
 
     /**
@@ -98,5 +97,9 @@ class Announcement extends Model implements HasMedia
 
     public function event_types(){ 
         return $this->belongsTo(EventType::class, 'event_type_id');
+    }
+
+    public function admin_user() {
+        return $this->belongsTo(AdminUser::class, 'model_id');
     }
 }

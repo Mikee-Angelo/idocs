@@ -18,7 +18,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\Unit;
+use App\Models\Liquidation;
 
 class LiquidationItemsController extends Controller
 {
@@ -61,11 +64,11 @@ class LiquidationItemsController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
+    public function create($id)
     {
-        $this->authorize('admin.liquidation-item.create');
-
-        return view('admin.liquidation-item.create');
+        // $this->authorize('admin.liquidation-item.create');
+        $unit = Unit::get();
+        return view('admin.liquidation-item.create', ['unit' =>  $unit, 'id' => $id]);
     }
 
     /**
@@ -74,19 +77,28 @@ class LiquidationItemsController extends Controller
      * @param StoreLiquidationItem $request
      * @return array|RedirectResponse|Redirector
      */
-    public function store(StoreLiquidationItem $request)
+    public function store($id, StoreLiquidationItem $request)
     {
+
         // Sanitize input
         $sanitized = $request->getSanitized();
+        
+        foreach($sanitized['inputs'] as $datas){ 
+            $sanitized['liquidation_id'] = $id;
+            $sanitized['item'] = $datas['item']; 
+            $sanitized['price'] = $datas['price'];
+            $sanitized['qty'] = $datas['qty'];
+            $sanitized['unit'] = $datas['unit'];
+            $sanitized['total'] = $datas['price'] * $datas['qty'];
 
-        // Store the LiquidationItem
-        $liquidationItem = LiquidationItem::create($sanitized);
-
-        if ($request->ajax()) {
-            return ['redirect' => url('admin/liquidation-items'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            $liquidationItem = LiquidationItem::create($sanitized);
         }
 
-        return redirect('admin/liquidation-items');
+        if ($request->ajax()) {
+            return ['redirect' => url('admin/liquidations/'.$id.'/items'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+        }
+
+        return redirect('admin/liquidations/'.$id.'/items');
     }
 
     /**
@@ -96,9 +108,24 @@ class LiquidationItemsController extends Controller
      * @throws AuthorizationException
      * @return void
      */
-    public function show(LiquidationItem $liquidationItem)
+    public function show($id, LiquidationItem $liquidationItem)
     {
-        $this->authorize('admin.liquidation-item.show', $liquidationItem);
+        // $this->authorize('admin.liquidation-item.show', $liquidationItem);
+
+        $items = Liquidation::where([
+            ['id', '=', $id]
+        ]);
+
+        if(Auth::user()->roles()->pluck('id')[0] == 2){ 
+            $items->where('admin_users_id',  Auth::user()->id);
+        }     
+    
+        $data = $items->with(['liquidation_items'])->first();
+
+        if(is_null($data)) return abort(404); 
+        
+  
+        return view('admin.liquidation-item.show', ['data' => $data, 'id' => $id]);
 
         // TODO your code goes here
     }

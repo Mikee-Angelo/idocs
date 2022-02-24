@@ -45,12 +45,12 @@
                             <table class="table table-hover table-listing">
                                 <thead>
                                     <tr>
-                                        <th class="bulk-checkbox">
+                                        <!-- <th class="bulk-checkbox">
                                             <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
                                             <label class="form-check-label" for="enabled">
                                                 #
                                             </label>
-                                        </th>
+                                        </th> -->
 
                                         <th is='sortable' :column="'implement_year'">{{ trans('admin.gad-plan.columns.implement_year') }}</th>
                                         
@@ -78,11 +78,12 @@
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
                                    
-                                        <td class="bulk-checkbox">
+                                        <!-- <td class="bulk-checkbox" v-if="item.status == 0">
                                             <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                             <label class="form-check-label" :for="'enabled' + item.id">
                                             </label>
-                                        </td>
+                                        </td> -->
+
 
                                         <td>
                                             <a :href="item.resource_url + '/items'">@{{ item.implement_year  }}</a>
@@ -93,13 +94,13 @@
                                             @{{item.admin_user.school.name}} 
                                             </td>
                                         @endif
-                                        <td>
+                                    <td>
                                             <span v-if="item.status == 1" class="badge badge-pill badge-warning">Pending</span>
                                             <span v-else-if="item.status == 2" class="badge badge-pill badge-success text-white">Approved</span>
                                             <span v-else-if="item.status == 3" class="badge badge-pill badge-danger text-white">Declined</span>
                                         </td>
                                         
-                                        <td>@{{ item.created_at }}</td>
+                                        <td>@{{ item.created_at | datetime}}</td>
                                         <td>
                                             <div class="row no-gutters">
                                                 {{-- <div class="col-auto">

@@ -9,6 +9,7 @@ use Brackets\Media\HasMedia\HasMediaThumbsTrait;
 use Brackets\Media\HasMedia\ProcessMediaTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Brackets\AdminAuth\Models\AdminUser;
 
 class Accomplishment extends Model implements HasMedia
 {
@@ -46,10 +47,9 @@ class Accomplishment extends Model implements HasMedia
      */
     public function registerMediaCollections(): void {
         $this->addMediaCollection('gallery')
+            ->useDisk('s3')
             ->accepts('image/*')
-            ->maxNumberOfFiles(20)
-            ->canView('media.view')
-            ->canUpload('media.upload');
+            ->maxNumberOfFiles(20);
     }
 
     /**
@@ -85,5 +85,9 @@ class Accomplishment extends Model implements HasMedia
     public function getResourceUrlAttribute()
     {
         return url('/admin/accomplishments/'.$this->getKey());
+    }
+
+    public function user() {
+        return $this->belongsTo(AdminUser::class, 'admin_users_id');
     }
 }

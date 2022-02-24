@@ -20,34 +20,39 @@
     </style>
 </head>
 <body>
-  
+    <div class="col-12 mx-auto">
+        <div class="row">
 
-
-            <div class="card-body">
-                <div class="col-12 mx-auto">
-                    <div class="row">
-                        {{-- <div class="col-3 text-right">
-                            <img src="{{url('images/logo.png')}}" style="height:5rem" alt="">
-                        </div> --}}
-                        <div class="col-12 text-center">
-                            <p class="mb-0">Republic of the Philippines</p>
-                            <h6 class="mb-0 ">PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY</h6>
-                            <p class="mb-0">(Formerly Ramon Magsaysay Technological University)</p>
-                            <p>{{$data->gad_plan->admin_user->user_school->letter_header}}</p>
-                        </div>
-                        {{-- <div class="col-3 text-left">
-                            <img src="{{url('images/gad.png')}}" style="height:7rem" alt="">
-                        </div> --}}
-                    </div>
-                    <hr class="mt-0" style="border:solid thin black">
-                    <h5 class="text-center font-weight-bold mb-5">Office of Gender and Development</h5>
-
-
-                    {!! $data->letter_body !!}
-                </div>
-
+            <div class="col-12 text-center">
+                <p class="mb-0">Republic of the Philippines</p>
+                <h6 class="mb-0 ">PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY</h6>
+                <p class="mb-0">(Formerly Ramon Magsaysay Technological University)</p>
+                <p>{{$data->gad_plan->admin_user->user_school->letter_header}}</p>
             </div>
- 
+
+        </div>
+        <hr class="mt-0" style="border:solid thin black">
+        <h5 class="text-center font-weight-bold mb-5">Office of Gender and Development</h5>
+        {!! $data->letter_body !!}
+    </div>
+
+    <!-- <div class="page-break"></div> -->
+
+    <!-- <div class="col-12 mx-auto">
+        <div class="row">
+
+            <div class="col-12 text-center">
+                <p class="mb-0">Republic of the Philippines</p>
+                <h6 class="mb-0 ">PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY</h6>
+                <p class="mb-0">(Formerly Ramon Magsaysay Technological University)</p>
+                <p>{{$data->gad_plan->admin_user->user_school->letter_header}}</p>
+            </div>
+        </div>
+        <hr class="mt-0" style="border:solid thin black">
+        <h5 class="text-center font-weight-bold mb-5">Office of Gender and Development</h5>
+        {!! $data->proposal_body !!}
+    </div> -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

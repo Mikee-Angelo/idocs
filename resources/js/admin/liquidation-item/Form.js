@@ -5,9 +5,22 @@ Vue.component('liquidation-item-form', {
     data: function() {
         return {
             form: {
-                
-            }
-        }
-    }
+                inputs: []
+            },
+            inputs: [
+                {
+                    item: ''
+                }
+            ]
 
+        }
+    },
+    methods: {
+        add(index) {
+            this.inputs.push({ item: '' });
+        },
+        remove(index) {
+            this.inputs.splice(index, 1);
+        }
+    },
 });

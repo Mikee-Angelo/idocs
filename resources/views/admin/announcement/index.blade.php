@@ -50,6 +50,7 @@
                                         </th>
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.announcement.columns.id') }}</th>
+                                        <th is='sortable' :column="'id'">{{ trans('admin.announcement.columns.title') }}</th>
                                         <th is='sortable' :column="'event_type_id'">{{ trans('admin.announcement.columns.event_type_id') }}</th>
                                         <th is='sortable' :column="'starts_at'">{{ trans('admin.announcement.columns.starts_at') }}</th>
                                         <th is='sortable' :column="'ends_at'">{{ trans('admin.announcement.columns.ends_at') }}</th>
@@ -78,6 +79,7 @@
                                         </td>
 
                                         <td>@{{ item.id }}</td>
+                                        <td>@{{ item.title }}</td>
                                         <td>@{{ item.event_types.name }}</td>
                                         <td>@{{ item.starts_at | datetime }}</td>
                                         <td>@{{ item.ends_at | datetime }}</td>

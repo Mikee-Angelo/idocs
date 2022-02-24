@@ -7,7 +7,7 @@
 @section('body')
 
     {!! $calendar->calendar() !!}
-
+    
 <div id="calendarModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -18,6 +18,8 @@
                 <div id="headerImage" class="mb-4" style="height:15rem; background-repeat: no-repeat; background-position: center; background-size: cover;"></div>
                 <h4 id="modalTitle" class="modal-title text-left mb-1"></h4>
                 <h4><span class="badge badge-primary mb-2" id="badge_event"></span></h4>
+
+                <span class="font-weight-bold">Created By : <p id="createdBy" class="modal-title text-left mb-3 font-weight-normal"></p></span>
                 <span class="font-weight-bold">Starts At : <p id="eventStart" class="modal-title text-left mb-3 font-weight-normal"></p></span>
                 <span class="font-weight-bold">Ends At : <p id="eventEnd" class="modal-title text-left font-weight-normal"></p></span>
                 <hr>

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendingSuccessProposal;
 use Illuminate\View\View;
 use PDF;
+use Illuminate\Http\Request;
 class ProposalsController extends Controller
 {
 
@@ -108,9 +109,9 @@ class ProposalsController extends Controller
         $sanitized = $request->getSanitized();
 
         $proposal = Proposal::latest('id')->first();
-        //Find the latest gad plan that is approved by the admin
+        //Find the current year gad plan that is approved by the admin
         $gad = GadPlan::where(['model_id' => Auth::user()->id, 'status' => 2, 'implement_year' => date('Y')])->first();
-
+        
         $sanitized['gad_plans_id'] = $gad->id;
         $tmp = 'PROP'.Auth::user()->id.'-'.date('Y').'-';
 
@@ -244,5 +245,26 @@ class ProposalsController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    public function changeStatus(Proposal $proposal, Request $request) { 
+    
+        $proposal->status = $request->status ? 1 : 2;
+        $proposal->save(); 
+        
+        // if($request->status == 2){ 
+        //     Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($gadPlan->implement_year));
+        // }else{ 
+        //     Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        // }
+
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/proposals/'.$proposal->id),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/proposals/'.$proposal->id);
     }
 }

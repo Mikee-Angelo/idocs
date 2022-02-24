@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LiquidationItem extends Model
 {
     protected $fillable = [
-    
+        'date_acquired', 'supplier', 'item', 'price', 'qty', 'unit', 'total', 'receipt_no', 'liquidation_id'
     ];
     
     
@@ -24,4 +24,5 @@ class LiquidationItem extends Model
     {
         return url('/admin/liquidation-items/'.$this->getKey());
     }
+
 }

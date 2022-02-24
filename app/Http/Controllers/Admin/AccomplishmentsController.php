@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\GadPlan;
-
+use PDF;
 class AccomplishmentsController extends Controller
 {
 
@@ -212,4 +212,39 @@ class AccomplishmentsController extends Controller
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }
+
+    public function export($id)
+    {
+        $data = Accomplishment::where([
+            ['id', '=', $id], 
+        ])->firstOrFail();
+
+        $pdf = PDF::loadView('admin.accomplishment.pdf', ['data' => $data])
+        ->setPaper('a4', 'portrait');
+
+        return $pdf->stream();
+        // TODO your code goes here
+    }
+
+    public function changeStatus(Proposal $proposal, Request $request) { 
+    
+        $proposal->status = $request->status ? 1 : 2;
+        $proposal->save(); 
+        
+        // if($request->status == 2){ 
+        //     Mail::to(Auth::user()->email)->send(new AcceptedGadPlan($gadPlan->implement_year));
+        // }else{ 
+        //     Mail::to(Auth::user()->email)->send(new DeclinedGadPlan($gadPlan->implement_year));
+        // }
+
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/proposals/'.$proposal->id),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/proposals/'.$proposal->id);
+    }
+    
 }

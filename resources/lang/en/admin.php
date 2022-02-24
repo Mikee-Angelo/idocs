@@ -146,6 +146,7 @@ return [
             'status' => 'Status', 
             'letter_body' => 'Letter Body', 
             'proposal_body' => 'Proposal Body', 
+            'created_at' => 'Created At', 
         ],
     ],
     
@@ -163,6 +164,7 @@ return [
             'purpose' => 'Purpose',
             'status' => 'Status', 
             'proposal_body' => 'Proposal Body', 
+            'created_at' => 'Created At', 
         ],
     ],
 
@@ -213,6 +215,7 @@ return [
             'admin_user_id' => 'Created By',
             'letter_body' => 'Letter Body',
             'status' => 'Status',
+            'created_at' => 'Created At',
         ],
     ],
 
@@ -294,6 +297,27 @@ return [
             'gad_plans_id' => 'Gad plans',
             'description' => 'Description',
             'created_at' => 'Created At',
+        ],
+    ],
+
+    'liquidation-item' => [
+        'title' => 'Items',
+
+        'actions' => [
+            'index' => 'Summary of Items',
+            'create' => 'New Item',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'date_acquired' => 'Date',
+            'receipt_no' => 'Receipt No.', 
+            'supplier' => 'Supplier', 
+            'unit' => 'Unit', 
+            'item' => 'Item',
+            'qty' => 'Qty',
+            'price' => 'Unit Price',
+            'subtotal' => 'Subtotal',
         ],
     ],
 

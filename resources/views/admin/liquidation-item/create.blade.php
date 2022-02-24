@@ -9,7 +9,7 @@
                 <div class="card">
         
         <liquidation-item-form
-            :action="'{{ url('admin/liquidation-items') }}'"
+            :action="'{{ url('admin/liquidations/'.$id.'/items') }}'"
             v-cloak
             inline-template>
 

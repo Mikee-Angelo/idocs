@@ -19,7 +19,7 @@
                     <div class="card-body" v-cloak>
                         <div class="card-block">
                             <form @submit.prevent="">
-                                <div class="row justify-content-md-between">
+                                <div class="row jupstify-content-md-between">
                                     <div class="col col-lg-7 col-xl-5 form-group">
                                         <div class="input-group">
                                             <input class="form-control" placeholder="{{ trans('brackets/admin-ui::admin.placeholder.search') }}" v-model="search" @keyup.enter="filter('search', $event.target.value)" />

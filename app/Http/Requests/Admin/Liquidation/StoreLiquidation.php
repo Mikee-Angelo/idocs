@@ -28,10 +28,7 @@ class StoreLiquidation extends FormRequest
     {
         return [
             'purpose' => ['required', 'string'],
-            'admin_users_id' => ['required', 'string'],
             'status' => ['required', 'boolean'],
-            'isSent' => ['required', 'boolean'],
-            
         ];
     }
 

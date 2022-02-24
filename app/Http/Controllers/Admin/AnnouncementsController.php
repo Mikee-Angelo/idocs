@@ -34,12 +34,16 @@ class AnnouncementsController extends Controller
     public function index(IndexAnnouncement $request)
     {
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(Announcement::class)->processRequestAndGet(
+        $data = AdminListing::create(Announcement::class)
+        ->modifyQuery(function($query) use ($request){
+                $query->where('model_id' , Auth::user()->id);
+        })
+        ->processRequestAndGet(
             // pass the request with params
             $request,
 
             // set columns to query
-            ['id', 'event_type_id', 'starts_at', 'ends_at'],
+            ['id', 'title', 'event_type_id', 'starts_at', 'ends_at'],
 
             // set columns to searchIn
             ['id', 'header_img', 'title', 'description', 'url'],
@@ -67,7 +71,7 @@ class AnnouncementsController extends Controller
      */
     public function create(EventType $event_type)
     {
-        $this->authorize('admin.announcement.create');
+        // $this->authorize('admin.announcement.create');
 
         return view('admin.announcement.create', ['event_type' => $event_type->get()]);
     }

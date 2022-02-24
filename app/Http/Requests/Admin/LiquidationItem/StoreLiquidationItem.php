@@ -15,7 +15,8 @@ class StoreLiquidationItem extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.liquidation-item.create');
+        // return Gate::allows('admin.liquidation-item.create');
+        return true;
     }
 
     /**
@@ -26,7 +27,10 @@ class StoreLiquidationItem extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'date_acquired' => 'required',
+            'supplier' => 'required|string', 
+            'inputs' => 'required|array' ,
+            'receipt_no' => 'required|string'
         ];
     }
 
