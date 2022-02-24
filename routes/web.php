@@ -17,13 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function() { 
-    Route::get('/dashboard', function() { return view('dashboard'); })->name('dashboard');
-    Route::resource('gadplans', App\Http\Controllers\GadplanController::class);
-});
-
 Route::middleware(['auth'])->group(function(){ 
     Route::get('/dashboard', function() { return view('dashboard'); })->name('dashboard'); 
+    Route::resource('gadplans', App\Http\Controllers\GadplanController::class);
     Route::resource('campus', App\Http\Controllers\CampusController::class);
 });
 
