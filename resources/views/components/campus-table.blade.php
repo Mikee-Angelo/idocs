@@ -26,25 +26,59 @@
 
 
 <script type="text/javascript">
-  $(function () {
-    
-    var table = $('.campus-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('campus.index') }}",
-        columns: [
-            {data: 'campus_name', name: 'campus_name'},
-            {data: 'address', name: 'address'},
-            {data: 'status', name: 'status'},
-            {data: 'created_at', name: 'created_at'},
-            {
-                data: 'action', 
-                name: 'action', 
-                orderable: true, 
-                searchable: true
-            },
-        ]
+    $(function () {
+
+        var table = $('.campus-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('campus.index') }}",
+            columns: [{
+                    data: 'campus_name',
+                    name: 'campus_name'
+                },
+                {
+                    data: 'address',
+                    name: 'address'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ]
+        });
+
+        $(".campus-table").on('click', '.del-btn[data-remote]', function (e) {
+            e.preventDefault();
+
+            var url = $(this).data('remote');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: 'campus/' + url,
+                type: 'DELETE',
+                dataType: 'json',
+                data: {
+                    method: '_DELETE',
+                    submit: true
+                }
+            }).always(function (data) {
+                $('.campus-table').DataTable().draw(false);
+            });
+        });
+
     });
-    
-  });
+
 </script>

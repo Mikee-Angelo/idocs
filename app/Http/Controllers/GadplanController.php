@@ -34,4 +34,8 @@ class GadplanController extends Controller
     public function create() { 
         return view('gadplan.create');
     }
+
+    public function store() { 
+        dd('test');
+    }
 }
