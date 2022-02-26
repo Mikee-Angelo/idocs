@@ -20,7 +20,9 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function(){ 
     Route::get('/dashboard', function() { return view('dashboard'); })->name('dashboard'); 
     Route::resource('gadplans', App\Http\Controllers\GadplanController::class);
+    Route::resource('gadplans/{id}/items', App\Http\Controllers\GadplanListController::class);
     Route::resource('campus', App\Http\Controllers\CampusController::class);
+    Route::resource('agencies', App\Http\Controllers\AgencyController::class);
 });
 
 require __DIR__.'/auth.php';

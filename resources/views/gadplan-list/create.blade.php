@@ -24,7 +24,7 @@
                         </p>
                     </div>
                     @endif
-                    <form action="{{ route('items.store')}}" method="post">
+                    <form action="{{ route('items.store', ['id' => 1])}}" method="post">
                         @csrf
                         <!-- Gender Issue and Mandate -->
                         <div>
@@ -56,7 +56,18 @@
                         <div class="mt-3">
                             <x-label for="cause_of_issue" :value="__('Relevant Agencies')" />
 
-                            <x-dropdown-input></x-dropdown-input>
+                            <select
+                                class="block w-full text-gray-700 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                                name="relevant_agencies">
+                                <option value="">
+                                    Select an option
+                                </option>
+                                @foreach ($agencies as $agency)
+                                     <option value="{{ $agency->id }}">
+                                    {{$agency->name }}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <!-- GAD Activity -->
@@ -94,9 +105,20 @@
 
                         <!-- Responsible Unit -->
                         <div class="mt-3">
-                            <x-label for="cause_of_issue" :value="__('Responsible Unit')" />
+                            <x-label for="responsible_unit" :value="__('Responsible Unit')" />
 
-                            <x-dropdown-input></x-dropdown-input>
+                             <select
+                                class="block w-full text-gray-700 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                                name="responsible_unit">
+                                <option value="">
+                                    Select an option
+                                </option>
+                                @foreach ($campuses as $campus)
+                                     <option value="{{ $campus->id }}">
+                                    {{$campus->campus_name }}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <x-button class="mt-5">
