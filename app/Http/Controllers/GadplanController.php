@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 //Models
 use App\Models\Gadplan; 
 use App\Models\GadplanList; 
+use App\Models\Agency; 
+use App\Models\Campus; 
+
+//Requests
+use App\Http\Requests\GadplanList\StoreGadplanListRequest;
 
 //Others
 use Yajra\DataTables\DataTables;
@@ -36,23 +41,35 @@ class GadplanController extends Controller
     public function create() { 
         $list = Gadplan::where('user_id', Auth::id())->get();
         
-        if($list->count() == 0) { 
+        if($list->count() > 0) { 
             return redirect('gadplans/1/items');
         }
 
-        return view('gadplan.create');
+        $agencies = Agency::get();
+        $campuses = Campus::get();
+
+        return view('gadplan.create', compact('agencies', 'campuses'));
     }
 
-    public function store(StoreGadplanListRequest $request) { 
+    public function store(StoreGadplanListRequest    $request) { 
+
        $validated = $request->validated();
+       $id = Auth::id();
 
-       $gad = new GadPlan; 
+       $gad = GadPlan::where('user_id', $id)->latest()->first(); 
 
-       $gad->user_id = Auth::id(); 
-       $gad->status = $validated['status'];
-       $gad->implement_year = $validated['implement_year'];
+       $payload = [
+           'user_id' => $id, 
+           'status' => 1,
+       ];
 
-       $gad->save();
+       if($gad->count() == 0) { 
+            $payload['implement_year'] = \Carbon\Carbon::now()->year;
+       }else{
+            $payload['implement_year'] = $gad->implement_year + 1;
+       }
+       
+       $gad = $gad->create($payload);
 
        $list = new GadplanList;
 
@@ -64,7 +81,7 @@ class GadplanController extends Controller
        $list->gad_activity = $validated['gad_activity'];
        $list->indicator_target = $validated['indicator_target']; 
        $list->budget_requirement = $validated['budget_requirement']; 
-       $list->budget_source = $validated['budget_source']; 
+       $list->budget_source = 'GAA';
        $list->responsible_unit = $validated['responsible_unit'];
 
        $list->save(); 
