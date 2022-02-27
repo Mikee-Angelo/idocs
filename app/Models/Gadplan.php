@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Gadplan extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'implement_year', 
+        'status',
+    ];
 }

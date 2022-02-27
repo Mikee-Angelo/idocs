@@ -24,7 +24,7 @@
                         </p>
                     </div>
                     @endif
-                    <form action="{{ route('items.store')}}" method="post">
+                    <form action="{{ route('gadplans.store')}}" method="post">
                         @csrf
                         <!-- Gender Issue and Mandate -->
                         <div>
@@ -56,7 +56,19 @@
                         <div class="mt-3">
                             <x-label for="cause_of_issue" :value="__('Relevant Agencies')" />
 
-                            <x-dropdown-input></x-dropdown-input>
+                            <select
+                                class="block w-full text-gray-700 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                                name="relevant_agencies">
+                                <option value="">
+                                    Select an option
+                                </option>
+                                @foreach ($agencies as $agency)
+                                    <option value="{{ $agency->id }}">
+                                        {{ $agency->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
                         </div>
 
                         <!-- GAD Activity -->
@@ -88,7 +100,7 @@
                             <x-label for="budget_source" :value="__('Source of Budget')" />
 
                             <x-input id="budget_source" class="block mt-1 w-full" type="number" name="budget_source"
-                                :value="old('budget_source')" value="GAA" required autofocus disabled
+                                value="GAA" required autofocus disabled
                                 placeholder="GAA" />
                         </div>
 
@@ -96,7 +108,18 @@
                         <div class="mt-3">
                             <x-label for="cause_of_issue" :value="__('Responsible Unit')" />
 
-                            <x-dropdown-input></x-dropdown-input>
+                            <select
+                                class="block w-full text-gray-700 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                                name="responsible_unit">
+                                <option value="">
+                                    Select an option
+                                </option>
+                                @foreach ($campuses as $campus)
+                                    <option value="{{ $campus->id }}">
+                                        {{ $campus->campus_name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <x-button class="mt-5">

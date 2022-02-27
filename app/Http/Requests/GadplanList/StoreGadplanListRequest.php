@@ -13,7 +13,7 @@ class StoreGadplanListRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,11 +28,11 @@ class StoreGadplanListRequest extends FormRequest
             'gad_issue_mandate' => 'required|string',
             'cause_of_issue' => 'required|string',
             'gad_statement_objective' => 'required|string',
-            'relevant_agencies' => 'required|string',
+            'relevant_agencies' => 'required|string|exists:agencies,id',
             'gad_activity' => 'required|string',
             'indicator_target' => 'required|string',
             'budget_requirement' => 'required|string',
-            'responsible_unit' => 'required|string',
+            'responsible_unit' => 'required|string|exists:campuses,id',
         ];
     }
 }
