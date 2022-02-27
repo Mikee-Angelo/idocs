@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('gadplans/{id}/items', App\Http\Controllers\GadplanListController::class);
     Route::resource('campus', App\Http\Controllers\CampusController::class);
     Route::resource('agencies', App\Http\Controllers\AgencyController::class);
+    Route::resource('budget-sources', App\Http\Controllers\BudgetController::class);
 });
 
 require __DIR__.'/auth.php';
