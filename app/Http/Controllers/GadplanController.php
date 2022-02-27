@@ -10,6 +10,7 @@ use App\Models\Gadplan;
 use App\Models\GadplanList; 
 use App\Models\Agency; 
 use App\Models\Campus; 
+use App\Models\Budget;
 
 //Requests
 use App\Http\Requests\GadplanList\StoreGadplanListRequest;
@@ -81,7 +82,7 @@ class GadplanController extends Controller
        $list->gad_activity = $validated['gad_activity'];
        $list->indicator_target = $validated['indicator_target']; 
        $list->budget_requirement = $validated['budget_requirement']; 
-       $list->budget_source = 'GAA';
+       $list->budget_source = 1;
        $list->responsible_unit = $validated['responsible_unit'];
 
        $list->save(); 
