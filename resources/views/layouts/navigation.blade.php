@@ -38,6 +38,12 @@
                     </x-nav-link>
                 </div>
 
+                 {{-- Source of Budget --}}
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('budget-sources.index')" :active="request()->routeIs('budget-sources.index')">
+                        {{ __('Source of Budget') }}
+                    </x-nav-link>
+                </div>
 
             </div>
 
