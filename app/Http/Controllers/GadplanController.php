@@ -74,7 +74,7 @@ class GadplanController extends Controller
 
        $list = new GadplanList;
 
-       $list->gad_plan_id = $gad->id; 
+       $list->gadplan_id = $gad->id; 
        $list->gad_issue_mandate = $validated['gad_issue_mandate']; 
        $list->cause_of_issue = $validated['cause_of_issue']; 
        $list->gad_statement_objective = $validated['gad_statement_objective'];
