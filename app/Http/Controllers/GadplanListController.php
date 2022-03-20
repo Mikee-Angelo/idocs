@@ -12,10 +12,13 @@ use App\Models\Campus;
 //Others
 use Yajra\DataTables\DataTables;
 
+//Requests
+use App\Http\Requests\GadplanList\StoreGadplanListRequest;
+
 class GadplanListController extends Controller
 {
     //
-    public function index(Request $request) { 
+    public function index(String $id, Request $request) { 
 
         if ($request->ajax()) {
             $data = GadPlanList::get(); 
@@ -31,7 +34,7 @@ class GadplanListController extends Controller
         }
 
 
-        return view('gadplan-list.index');
+        return view('gadplan-list.index', compact('id'));
     }
 
     public function create() { 
@@ -41,8 +44,41 @@ class GadplanListController extends Controller
         return view('gadplan-list.create', compact('agencies', 'campuses'));
     }
 
-    public function store() { 
-        $list = new GadplanList; 
-        
+    public function store(StoreGadplanListRequest $request) { 
+
+       $validated = $request->validated();
+       $id = Auth::id();
+
+       $gad = GadPlan::where('user_id', $id)->latest()->first(); 
+
+       $payload = [
+           'user_id' => $id, 
+           'status' => 1,
+       ];
+
+       if(is_null($gad)) { 
+            $payload['implement_year'] = \Carbon\Carbon::now()->year;
+       }else{
+            $payload['implement_year'] = $gad->implement_year + 1;
+       }
+       
+       $gad = GadPlan::create($payload);
+
+       $list = new GadplanList;
+
+       $list->gad_plan_id = $gad->id; 
+       $list->gad_issue_mandate = $validated['gad_issue_mandate']; 
+       $list->cause_of_issue = $validated['cause_of_issue']; 
+       $list->gad_statement_objective = $validated['gad_statement_objective'];
+       $list->relevant_agencies = $validated['relevant_agencies']; 
+       $list->gad_activity = $validated['gad_activity'];
+       $list->indicator_target = $validated['indicator_target']; 
+       $list->budget_requirement = $validated['budget_requirement']; 
+       $list->budget_source = 1;
+       $list->responsible_unit = $validated['responsible_unit'];
+
+       $list->save(); 
+
+        return redirect('gadplans/'.$gad->id.'/items');
     }
 }

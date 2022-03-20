@@ -23,13 +23,21 @@ class GadplanController extends Controller
     //
     public function index(Request $request) { 
         if ($request->ajax()) {
+            $user = Auth::user();
 
-            $gad = Gadplan::get(); 
+            if($user->hasRole('Super Admin')){ 
+                $gad = Gadplan::get(); 
+            }else{ 
+                $gad = Gadplan::where('user_id', $user->id)->get();
+            }
 
             return Datatables::of($gad)
                 ->addIndexColumn()
+                ->editColumn('status', function($row){
+                    return ucfirst($row->status);
+                })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">View</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -52,7 +60,7 @@ class GadplanController extends Controller
         return view('gadplan.create', compact('agencies', 'campuses'));
     }
 
-    public function store(StoreGadplanListRequest    $request) { 
+    public function store(StoreGadplanListRequest $request) { 
 
        $validated = $request->validated();
        $id = Auth::id();
@@ -64,17 +72,17 @@ class GadplanController extends Controller
            'status' => 1,
        ];
 
-       if($gad->count() == 0) { 
+       if(is_null($gad)) { 
             $payload['implement_year'] = \Carbon\Carbon::now()->year;
        }else{
             $payload['implement_year'] = $gad->implement_year + 1;
        }
        
-       $gad = $gad->create($payload);
+       $gad = GadPlan::create($payload);
 
        $list = new GadplanList;
 
-       $list->gadplan_id = $gad->id; 
+       $list->gad_plan_id = $gad->id; 
        $list->gad_issue_mandate = $validated['gad_issue_mandate']; 
        $list->cause_of_issue = $validated['cause_of_issue']; 
        $list->gad_statement_objective = $validated['gad_statement_objective'];

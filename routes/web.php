@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('agencies', App\Http\Controllers\AgencyController::class);
     Route::resource('budget-sources', App\Http\Controllers\BudgetController::class);
     Route::resource('proposals', App\Http\Controllers\ProposalController::class);
+    Route::resource('manage-users', App\Http\Controllers\UserController::class);
 });
 
 require __DIR__.'/auth.php';
