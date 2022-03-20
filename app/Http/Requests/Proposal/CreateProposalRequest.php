@@ -13,7 +13,7 @@ class CreateProposalRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class CreateProposalRequest extends FormRequest
         return [
             //
             'gadplan_id' => 'required|exists:gadplans,id',
-            ''
+            'file' => 'required|mimetypes:application/pdf',
         ];
     }
 }

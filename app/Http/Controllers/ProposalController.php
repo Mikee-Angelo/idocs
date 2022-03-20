@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Facades
+use Illuminate\Support\Facades\Storage;
+
 //Models
 use App\Models\Proposal;
 use App\Models\Gadplan; 
 
 //Others
 use Yajra\DataTables\DataTables;
+
+//Requests
+use App\Http\Requests\Proposal\CreateProposalRequest; 
 
 
 class ProposalController extends Controller
@@ -38,6 +44,17 @@ class ProposalController extends Controller
         return view('proposal.create', compact('gadplans'));
     }
 
-    public function store() {
+    public function store(CreateProposalRequest $request) {
+        $validated = $request->validated(); 
+        $fileModel = new Proposal;
+
+        if($request->file()) {
+            $fileModle->gadplan_id = $validated['gadplan_id'];
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->file_name = time().'_'.$request->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+        }
     }
 }

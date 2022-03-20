@@ -26,7 +26,7 @@
                         </div>
                     @endif
                     
-                    <form action="{{route('proposals.store')}}" method="post">
+                    <form action="{{route('proposals.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <!-- GAD -->
