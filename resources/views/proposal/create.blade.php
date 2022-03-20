@@ -46,7 +46,9 @@
                                 @endforeach
                             </select>
                         </div>
-
+                        
+                        <x-dropzone name="file"></x-dropzone>
+                        
                         <x-button class="mt-3">
                             {{ __('Create') }}
                         </x-button>
