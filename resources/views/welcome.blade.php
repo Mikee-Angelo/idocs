@@ -8,7 +8,7 @@
     <div class="flex relative z-20 items-center">
         <div class="container mx-auto px-6 flex flex-col justify-between items-center relative py-4">
             <div class="flex flex-col">
-                <x-application-logo class="h-26 w-26 self-center"></x-application-logo>
+                <x-application-logo class="h-24 w-24 self-center"></x-application-logo>
                 <p class="text-3xl my-6 text-center dark:text-white">
                    President Ramon Magsaysay State University
                 </p>
