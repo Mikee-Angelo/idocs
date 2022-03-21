@@ -3,7 +3,7 @@
         <tr>
             <th scope="col"
                 class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
-                User ID
+                Coordinator
             </th>
             <th scope="col"
                 class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
@@ -33,8 +33,8 @@
     $(function () {
         var columns = [
             {
-                data: 'User',
-                name: 'user_id'
+                data: 'user',
+                name: 'user'
             },
             {
                 data: 'implement_year',

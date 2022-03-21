@@ -26,15 +26,22 @@ class GadplanController extends Controller
             $user = Auth::user();
 
             if($user->hasRole('Super Admin')){ 
-                $gad = Gadplan::get(); 
+                $gad = Gadplan::with('user')->get(); 
             }else{ 
-                $gad = Gadplan::where('user_id', $user->id)->get();
+                $gad = Gadplan::with('user')->where('user_id', $user->id)->get();
             }
 
             return Datatables::of($gad)
-                ->addIndexColumn()
+                ->editColumn('user', function($row) {
+                    return $row->user->name;
+                })
                 ->editColumn('status', function($row){
                     return ucfirst($row->status);
+                })
+                ->editColumn('created_at', function($row) {
+                    $date = \Carbon\Carbon::parse($row->created_at);
+
+                    return $date->format('M d, Y');
                 })
                 ->addColumn('action', function($row){
                     $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">View</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
