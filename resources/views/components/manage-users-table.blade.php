@@ -9,7 +9,14 @@
                 class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
                 Role
             </th>
-            <th></th>
+             <th scope="col"
+                class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                Created At
+            </th>
+             <th scope="col"
+                class="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +39,10 @@
                 {
                     data: 'role',
                     name: 'role'
+                },
+                 {
+                    data: 'created_at',
+                    name: 'created_at'
                 },
                 {
                     data: 'action',

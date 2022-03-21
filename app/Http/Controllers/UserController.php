@@ -27,6 +27,11 @@ class UserController extends Controller
 
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->editColumn('created_at', function($row) {
+                    $date = \Carbon\Carbon::parse($row->created_at);
+
+                    return $date->format('M d, Y');
+                })
                 ->addColumn('role', function($row){
                     $role = $row->roles->pluck('name');
                     return $role[0] ?? '';

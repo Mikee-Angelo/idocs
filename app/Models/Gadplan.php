@@ -14,4 +14,8 @@ class Gadplan extends Model
         'implement_year', 
         'status',
     ];
+
+    public function user() { 
+        return $this->belongsTo('App\Models\User');
+    }
 }

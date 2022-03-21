@@ -31,6 +31,11 @@ class ProposalController extends Controller
                     $actionBtn = '<a href="#" class="edit btn btn-success btn-sm mr-2">Edit</a><button type="button" data-remote="'.$row->id.'" class="del-btn delete btn btn-danger btn-sm">Delete</button>';
                     return $actionBtn;
                 })
+                ->editColumn('created_at', function($row) {
+                    $date = \Carbon\Carbon::parse($row->created_at);
+
+                    return $date->format('M d, Y');
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }
