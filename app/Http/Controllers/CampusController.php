@@ -10,6 +10,7 @@ use App\Models\Campus;
 
 //Others
 use Yajra\DataTables\DataTables;
+use PDF;
 
 //Request
 use App\Http\Requests\AddCampusRequest; 
@@ -39,6 +40,8 @@ class CampusController extends Controller
         return view('campus.index'); 
     }
 
+    public function show() {}
+
     public function create() { 
         return view('campus.create');
     }
@@ -67,5 +70,9 @@ class CampusController extends Controller
 
         $campus->delete();
 
+    }
+
+    public function generatePDF() { 
+        return view('campus.pdf');
     }
 }

@@ -28,7 +28,7 @@ class AgencyController extends Controller
                     return $date->format('M d, Y');
                 })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="#" class="edit btn btn-success btn-sm mr-2">Edit</a><button type="button" data-remote="'.$row->id.'" class="del-btn delete btn btn-danger btn-sm">Delete</button>';
+                    $actionBtn = '<a href="#" class="mr-2 edit btn btn-success btn-sm">Edit</a><button type="button" data-remote="'.$row->id.'" class="del-btn delete btn btn-danger btn-sm">Delete</button>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
